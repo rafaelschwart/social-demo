@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
+import { DemoHeader } from "@/components/demo-header";
+import { DemoSidebar, MobileNav } from "@/components/demo-nav";
 import "./globals.css";
 
 // Numbers are always IBM Plex Mono (tabular). Satoshi (words) loads from Fontshare below.
@@ -11,7 +13,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Social Analytics — Rafael Schwart · Arqentia",
+  title: { default: "Social Analytics — Rafael Schwart · Arqentia", template: "%s · Social Analytics" },
   description: "Engagement and post analytics across X, LinkedIn and Instagram for the Personal and Arqentia accounts.",
   robots: { index: false, follow: false },
 };
@@ -31,7 +33,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <div className="flex min-h-dvh">
+          <DemoSidebar />
+          <div className="flex min-w-0 flex-1 flex-col">
+            <DemoHeader />
+            <MobileNav />
+            <main className="mx-auto w-full max-w-[1400px] flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-7">{children}</main>
+            <footer className="border-t border-[var(--color-border)] px-4 py-5 text-center text-[11px] text-[var(--color-faint)]">
+              Read-only snapshot · data via Zernio · recommendations by platform specialist agents · built by Arqentia
+            </footer>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }

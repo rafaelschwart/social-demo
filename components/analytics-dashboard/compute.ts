@@ -5,8 +5,8 @@
  * any browser.
  *
  * Honesty rules (CLAUDE.md): a missing metric stays null ("not available" is
- * not zero), and engagement rates are only ever shown per platform, because the
- * basis differs (Instagram = reach, X / LinkedIn = impressions).
+ * not zero), and engagement rates are only compared within one platform, because
+ * "impressions" (Zernio's ER denominator) means different things per platform.
  */
 import type { AnalyticsSnapshot, Brand, Platform, SnapshotAccount, SnapshotPost } from "./types";
 import { PLATFORM_ORDER } from "./types";
@@ -224,7 +224,7 @@ export interface WeekdayRow {
   perPost: number | null;
 }
 
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+export const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 /** Engagements per post by publish weekday (snapshot timezone). */
 export function weekdayRows(posts: SnapshotPost[], tz: string): WeekdayRow[] {
@@ -234,4 +234,102 @@ export function weekdayRows(posts: SnapshotPost[], tz: string): WeekdayRow[] {
     groups[(d.getUTCDay() + 6) % 7].push(p);
   }
   return groups.map((list, i) => ({ day: WEEKDAYS[i], posts: list.length, perPost: summarize(list).perPost }));
+}
+
+/* ─────────────────────────────── best times ─────────────────────────────── */
+
+/** 3-hour blocks, by starting hour. */
+export const BLOCK_LABELS = ["12a", "3a", "6a", "9a", "12p", "3p", "6p", "9p"];
+
+/** Weekday (Mon = 0) and hour (0–23) of an instant, in the given timezone. */
+export function localSlot(iso: string, tz: string): { day: number; hour: number } {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: tz,
+    weekday: "short",
+    hour: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(new Date(iso));
+  const wd = parts.find((p) => p.type === "weekday")?.value ?? "Mon";
+  const hour = parseInt(parts.find((p) => p.type === "hour")?.value ?? "0", 10) % 24;
+  return { day: Math.max(0, WEEKDAYS.indexOf(wd)), hour };
+}
+
+export interface TimeSlot {
+  day: number;
+  /** 3-hour block index (grid cells) or hour (hour bars). */
+  index: number;
+  n: number;
+  /** Shrunk lift relative to the selection average: 1 = average, 1.5 = 50% better. */
+  lift: number;
+  avgEngagements: number | null;
+}
+
+export interface BestTimes {
+  sample: number;
+  grid: (TimeSlot | null)[][];
+  hours: (TimeSlot | null)[];
+  days: (TimeSlot | null)[];
+  top: TimeSlot[];
+}
+
+function median(xs: number[]): number {
+  if (!xs.length) return 0;
+  const s = [...xs].sort((a, b) => a - b);
+  const m = Math.floor(s.length / 2);
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+}
+
+/**
+ * When posts do best. Each post's lift = (engagements + 1) / (its account's
+ * median + 1), so a 3K-follower account and a 120-follower account compare
+ * fairly. Cells are shrunk toward the average (k posts of prior) so one lucky
+ * post can't crown a slot. `reference` supplies the account medians (usually
+ * every post in the snapshot, so a short range still has stable baselines).
+ */
+export function bestTimes(posts: SnapshotPost[], reference: SnapshotPost[], tz: string, k = 3): BestTimes {
+  const byAccount = new Map<string, number[]>();
+  for (const p of reference) {
+    if (p.engagements === null) continue;
+    byAccount.set(p.accountKey, [...(byAccount.get(p.accountKey) ?? []), p.engagements]);
+  }
+  const medians = new Map([...byAccount.entries()].map(([key, xs]) => [key, median(xs)]));
+
+  const rows = posts
+    .filter((p) => p.engagements !== null && medians.has(p.accountKey))
+    .map((p) => ({
+      ...localSlot(p.publishedAt, tz),
+      eng: p.engagements as number,
+      lift: ((p.engagements as number) + 1) / ((medians.get(p.accountKey) as number) + 1),
+    }));
+
+  const mu = rows.length ? rows.reduce((a, r) => a + r.lift, 0) / rows.length : 1;
+  const cell = (list: typeof rows, day: number, index: number): TimeSlot | null => {
+    if (!list.length) return null;
+    const sum = list.reduce((a, r) => a + r.lift, 0);
+    return {
+      day,
+      index,
+      n: list.length,
+      lift: (sum + k * mu) / (list.length + k) / mu,
+      avgEngagements: list.reduce((a, r) => a + r.eng, 0) / list.length,
+    };
+  };
+
+  const grid = WEEKDAYS.map((_, d) =>
+    BLOCK_LABELS.map((__, b) => cell(rows.filter((r) => r.day === d && Math.floor(r.hour / 3) === b), d, b)),
+  );
+  const hours = Array.from({ length: 24 }, (_, h) => cell(rows.filter((r) => r.hour === h), -1, h));
+  const days = WEEKDAYS.map((_, d) => cell(rows.filter((r) => r.day === d), d, -1));
+
+  const cells = grid.flat().filter((c): c is TimeSlot => c !== null);
+  const solid = cells.filter((c) => c.n >= 2);
+  const top = (solid.length >= 3 ? solid : cells).sort((a, b) => b.lift - a.lift).slice(0, 5);
+
+  return { sample: rows.length, grid, hours, days, top };
+}
+
+export function slotLabel(s: TimeSlot): string {
+  const start = s.index * 3;
+  const fmt = (h: number) => `${h % 12 === 0 ? 12 : h % 12}${h < 12 ? "am" : "pm"}`;
+  return `${WEEKDAYS[s.day]} ${fmt(start)}–${fmt((start + 3) % 24)}`;
 }

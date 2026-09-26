@@ -1,141 +1,38 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import {
-  ArrowUpRight,
-  BarChart3,
-  Eye,
-  FileText,
-  Heart,
-  Info,
-  Users,
-} from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Info } from "lucide-react";
 import { Card, CardContent, CardDescription, CardEyebrow, CardHeader, CardTitle } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/misc";
-import { MetricStat, TrendPill } from "@/components/analytics/metric-stat";
-import { TrendChart } from "@/components/analytics/trend-chart";
+import { TrendPill } from "@/components/analytics/metric-stat";
+import { TrendChart, type TrendSeries } from "@/components/analytics/trend-chart";
 import { PostThumb } from "@/components/analytics/post-thumb";
-import { cn, formatCompact } from "@/lib/utils";
+import { formatCompact } from "@/lib/utils";
 import {
   accountRows,
   change,
-  engagementSeries,
   formatRows,
-  matchAccount,
-  platformsPresent,
-  postsIn,
   summarize,
   weekdayRows,
-  windowFor,
-  type BrandFilter,
-  type PlatformFilter,
-  type RangeDays,
+  type SeriesRow,
   type Summary,
 } from "./compute";
-import {
-  BRAND_META,
-  PLATFORM_META,
-  PLATFORM_ORDER,
-  type AnalyticsSnapshot,
-  type Brand,
-  type Platform,
-  type SnapshotAccount,
-  type SnapshotPost,
-} from "./types";
+import { PLATFORM_META, type Platform, type SnapshotAccount, type SnapshotPost } from "./types";
+import { BrandChip, PlatformDot, Segmented, perPostFmt, pct, postLink, whole, type LinkMode } from "./ui";
 
-const RANGES: { value: RangeDays; label: string }[] = [
-  { value: 30, label: "30D" },
-  { value: 90, label: "90D" },
-  { value: 365, label: "12M" },
-];
+/* ──────────────────────────── group comparison card ─────────────────────────── */
 
-const pct = (v: number | null, digits = 1) => (v === null ? "—" : `${(v * 100).toFixed(digits)}%`);
-const whole = (v: number | null) => (v === null ? "—" : new Intl.NumberFormat("en").format(Math.round(v)));
-const perPostFmt = (v: number | null) => (v === null ? "—" : v >= 100 ? formatCompact(v) : v.toFixed(1));
-
-function PlatformDot({ platform, className }: { platform: Platform; className?: string }) {
-  return (
-    <span
-      aria-hidden
-      className={cn("inline-block size-2 shrink-0 rounded-full", className)}
-      style={{ background: PLATFORM_META[platform].color }}
-    />
-  );
-}
-
-function BrandChip({ brand }: { brand: Brand }) {
-  return (
-    <span
-      className={cn(
-        "rounded-[var(--radius-chip)] border px-1.5 text-[10.5px] font-semibold leading-[18px]",
-        brand === "arqentia"
-          ? "border-[color-mix(in_srgb,var(--color-accent)_32%,transparent)] bg-[var(--color-accent-soft)] text-[var(--color-accent-text)]"
-          : "border-[var(--color-border)] bg-[var(--color-surface-2)] text-[var(--color-text-2)]",
-      )}
-    >
-      {BRAND_META[brand].label}
-    </span>
-  );
-}
-
-/** Segmented control (the Citi Zero tab strip). */
-function Segmented<T extends string | number>({
-  value,
-  options,
-  onChange,
-  label,
-}: {
-  value: T;
-  options: { value: T; label: React.ReactNode; disabled?: boolean; title?: string }[];
-  onChange: (v: T) => void;
-  label: string;
-}) {
-  return (
-    <div
-      role="tablist"
-      aria-label={label}
-      className="well inline-flex h-9 items-center gap-0.5 rounded-[var(--radius-control)] border border-[var(--color-border)] p-0.5"
-    >
-      {options.map((o) => {
-        const active = o.value === value;
-        return (
-          <button
-            key={String(o.value)}
-            type="button"
-            role="tab"
-            aria-selected={active}
-            disabled={o.disabled}
-            title={o.title}
-            onClick={() => onChange(o.value)}
-            className={cn(
-              "inline-flex h-full items-center gap-1.5 rounded-[5px] px-3 text-[13px] font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-40",
-              active
-                ? "bg-[var(--color-surface)] text-[var(--color-text)] shadow-[var(--shadow-card)]"
-                : "text-[var(--color-muted)] hover:text-[var(--color-text)]",
-            )}
-          >
-            {o.label}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-function postLink(p: SnapshotPost, linkMode: "internal" | "external"): string | null {
-  return linkMode === "internal" ? (p.href ?? p.url) : p.url;
-}
-
-/* ─────────────────────────── brand comparison ─────────────────────────── */
-
-function BrandCard({
-  brand,
+/** A brand (or account) at a glance: engagements, key stats, per-account bars. */
+export function GroupCard({
+  eyebrow,
+  title,
   accounts,
   current,
   previous,
   posts,
 }: {
-  brand: Brand;
+  eyebrow: string;
+  title: string;
   accounts: SnapshotAccount[];
   current: Summary;
   previous: Summary;
@@ -149,8 +46,8 @@ function BrandCard({
     <Card className="flex flex-col">
       <CardHeader className="flex-row items-start justify-between gap-3 pb-3">
         <div>
-          <CardEyebrow>{BRAND_META[brand].blurb}</CardEyebrow>
-          <CardTitle className="mt-1 text-base">{BRAND_META[brand].label}</CardTitle>
+          <CardEyebrow>{eyebrow}</CardEyebrow>
+          <CardTitle className="mt-1 text-base">{title}</CardTitle>
         </div>
         <div className="text-right">
           <p className="num text-[15px] font-medium text-[var(--color-text)]">{whole(followers)}</p>
@@ -216,18 +113,72 @@ function BrandCard({
   );
 }
 
+/* ──────────────────────────────── activity chart ─────────────────────────────── */
+
+export function ActivityChart({
+  title,
+  subtitle,
+  rows,
+  series,
+  missing,
+  emptyText,
+}: {
+  title: string;
+  subtitle: string;
+  rows: SeriesRow[];
+  series: TrendSeries[];
+  /** Legend entries for series with no data (dashed swatch). */
+  missing?: string[];
+  emptyText: string;
+}) {
+  const hasData = series.length > 0 && rows.some((r) => series.some((s) => typeof r[s.key] === "number" && (r[s.key] as number) > 0));
+  return (
+    <Card>
+      <CardHeader className="flex-row flex-wrap items-start justify-between gap-3 pb-2">
+        <div>
+          <CardTitle className="text-base">{title}</CardTitle>
+          <CardDescription className="mt-1 text-[13px]">{subtitle}</CardDescription>
+        </div>
+        <div className="flex flex-wrap justify-end gap-4 text-xs text-[var(--color-muted)]">
+          {series.map((s) => (
+            <span key={s.key} className="inline-flex items-center gap-1.5">
+              <span className="size-2.5 rounded-[2px]" style={{ background: s.color }} />
+              {s.label}
+            </span>
+          ))}
+          {missing?.map((m) => (
+            <span key={m} className="inline-flex items-center gap-1.5 text-[var(--color-faint)]">
+              <span className="size-2.5 rounded-[2px] border border-dashed border-[var(--color-border-strong)]" />
+              {m}
+            </span>
+          ))}
+        </div>
+      </CardHeader>
+      <CardContent>
+        {hasData ? (
+          <TrendChart data={rows} series={series} height={280} />
+        ) : (
+          <EmptyState title="No posts in this range" description={emptyText} />
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 /* ─────────────────────────────── top posts ─────────────────────────────── */
 
-function TopPosts({
+export function TopPosts({
   posts,
   tz,
   linkMode,
   singlePlatform,
+  className,
 }: {
   posts: SnapshotPost[];
   tz: string;
-  linkMode: "internal" | "external";
+  linkMode: LinkMode;
   singlePlatform: boolean;
+  className?: string;
 }) {
   const [sort, setSort] = useState<"engagements" | "rate">("engagements");
   const effective = singlePlatform ? sort : "engagements";
@@ -242,7 +193,7 @@ function TopPosts({
     .slice(0, 8);
 
   return (
-    <Card className="lg:col-span-2">
+    <Card className={className}>
       <CardHeader className="flex-row flex-wrap items-start justify-between gap-3">
         <div>
           <CardEyebrow>Posts in range</CardEyebrow>
@@ -260,21 +211,21 @@ function TopPosts({
               disabled: !singlePlatform,
               title: singlePlatform
                 ? undefined
-                : "Pick one platform — engagement rates use different bases per platform",
+                : "Open one platform — engagement rates use different bases per platform",
             },
           ]}
         />
       </CardHeader>
       {ranked.length === 0 ? (
         <CardContent>
-          <EmptyState title="No posts in this range" description="Widen the range or pick another brand or platform." />
+          <EmptyState title="No posts in this range" description="Widen the range or pick another brand." />
         </CardContent>
       ) : (
         <ol className="pb-2">
           {ranked.map((p, i) => {
             const href = postLink(p, linkMode);
             const external = linkMode === "external" || !p.href;
-            const Row = (
+            const row = (
               <div className="group flex items-center gap-3 border-t border-[var(--color-border)] px-5 py-3 transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--color-text)_3.5%,transparent)]">
                 <span className="num w-5 shrink-0 text-xs text-[var(--color-faint)]">{String(i + 1).padStart(2, "0")}</span>
                 <PostThumb thumbnailUrl={p.thumbnailUrl} mediaType={p.mediaType} size="md" />
@@ -311,10 +262,10 @@ function TopPosts({
               <li key={p.id}>
                 {href ? (
                   <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
-                    {Row}
+                    {row}
                   </a>
                 ) : (
-                  Row
+                  row
                 )}
               </li>
             );
@@ -334,7 +285,7 @@ const MIX = [
   { key: "saves", label: "Saves", tone: 18 },
 ] as const;
 
-function EngagementMix({ posts, platforms }: { posts: SnapshotPost[]; platforms: Platform[] }) {
+export function EngagementMix({ posts, platforms }: { posts: SnapshotPost[]; platforms: Platform[] }) {
   const rows = platforms
     .map((pl) => ({ platform: pl, s: summarize(posts.filter((p) => p.platform === pl)) }))
     .filter((r) => r.s.posts > 0 && (r.s.engagements ?? 0) > 0);
@@ -404,7 +355,7 @@ function EngagementMix({ posts, platforms }: { posts: SnapshotPost[]; platforms:
 
 /* ───────────────────────────── format + weekday ─────────────────────────── */
 
-function PatternsCard({ posts, tz }: { posts: SnapshotPost[]; tz: string }) {
+export function PatternsCard({ posts, tz }: { posts: SnapshotPost[]; tz: string }) {
   const formats = formatRows(posts).filter((f) => f.posts > 0);
   const days = weekdayRows(posts, tz);
   const maxFormat = Math.max(1, ...formats.map((f) => f.perPost ?? 0));
@@ -419,7 +370,7 @@ function PatternsCard({ posts, tz }: { posts: SnapshotPost[]; tz: string }) {
       </CardHeader>
       <CardContent className="space-y-5">
         <div>
-          <p className="eyebrow mb-2 text-[9.5px]">By format</p>
+          <p className="eyebrow mb-2 text-[9.5px]">By format · posts</p>
           {formats.length === 0 ? (
             <p className="text-xs text-[var(--color-muted)]">No posts in this range.</p>
           ) : (
@@ -449,14 +400,21 @@ function PatternsCard({ posts, tz }: { posts: SnapshotPost[]; tz: string }) {
           </p>
           <div className="grid grid-cols-7 items-end gap-1.5">
             {days.map((d) => (
-              <div key={d.day} className="flex flex-col items-center gap-1" title={`${d.day}: ${d.posts} posts, ${perPostFmt(d.perPost)} per post`}>
+              <div
+                key={d.day}
+                className="flex flex-col items-center gap-1"
+                title={`${d.day}: ${d.posts} posts, ${perPostFmt(d.perPost)} per post`}
+              >
                 <div className="well flex h-20 w-full items-end overflow-hidden rounded-[4px]">
                   <div
-                    className={cn(
-                      "w-full rounded-[3px]",
-                      d === bestDay && d.perPost !== null ? "bg-[var(--color-accent)]" : "bg-[color-mix(in_srgb,var(--color-accent)_40%,var(--color-surface-2))]",
-                    )}
-                    style={{ height: `${((d.perPost ?? 0) / maxDay) * 100}%` }}
+                    className="w-full rounded-[3px]"
+                    style={{
+                      height: `${((d.perPost ?? 0) / maxDay) * 100}%`,
+                      background:
+                        d === bestDay && d.perPost !== null
+                          ? "var(--color-accent)"
+                          : "color-mix(in srgb, var(--color-accent) 40%, var(--color-surface-2))",
+                    }}
                   />
                 </div>
                 <span className="text-[10.5px] text-[var(--color-muted)]">{d.day}</span>
@@ -472,7 +430,7 @@ function PatternsCard({ posts, tz }: { posts: SnapshotPost[]; tz: string }) {
 
 /* ───────────────────────────── account table ───────────────────────────── */
 
-function AccountTable({
+export function AccountTable({
   accounts,
   posts,
   allPosts,
@@ -481,7 +439,7 @@ function AccountTable({
   accounts: SnapshotAccount[];
   posts: SnapshotPost[];
   allPosts: SnapshotPost[];
-  linkMode: "internal" | "external";
+  linkMode: LinkMode;
 }) {
   const rows = accountRows(accounts, posts);
   return (
@@ -566,309 +524,17 @@ function AccountTable({
   );
 }
 
-/* ─────────────────────────────────── view ───────────────────────────────── */
+/* ───────────────────────────── method notes ───────────────────────────── */
 
-export function AnalyticsDashboard({
-  snapshot,
-  linkMode = "internal",
-}: {
-  snapshot: AnalyticsSnapshot;
-  /** internal = the app's post detail page; external = the post on the platform. */
-  linkMode?: "internal" | "external";
-}) {
-  const [brand, setBrand] = useState<BrandFilter>("all");
-  const [platform, setPlatform] = useState<PlatformFilter>("all");
-  const [range, setRange] = useState<RangeDays>(90);
-  const tz = snapshot.timeZone;
-
-  const view = useMemo(() => {
-    const f = { brand, platform };
-    const w = windowFor(snapshot, range, tz);
-    const accounts = snapshot.accounts.filter((a) => matchAccount(a, f));
-    const current = postsIn(snapshot, f, w.from, w.to, tz);
-    const previous = postsIn(snapshot, f, w.prevFrom, w.prevTo, tz);
-    const withPosts = PLATFORM_ORDER.filter((pl) => snapshot.posts.some((p) => p.platform === pl));
-    const chartPlatforms = platformsPresent(accounts).filter((pl) => withPosts.includes(pl));
-    return {
-      w,
-      accounts,
-      current,
-      cur: summarize(current),
-      prev: summarize(previous),
-      followers: accounts.reduce((a, x) => a + (x.followers ?? 0), 0),
-      chartPlatforms,
-      series: engagementSeries(current, w, range, chartPlatforms, tz),
-      noPostPlatforms: platformsPresent(accounts).filter((pl) => !withPosts.includes(pl)),
-    };
-  }, [snapshot, brand, platform, range, tz]);
-
-  const brandView = useMemo(() => {
-    const w = windowFor(snapshot, range, tz);
-    return (["personal", "arqentia"] as Brand[]).map((b) => {
-      const f = { brand: b, platform };
-      return {
-        brand: b,
-        accounts: snapshot.accounts.filter((a) => matchAccount(a, f)),
-        posts: postsIn(snapshot, f, w.from, w.to, tz),
-        current: summarize(postsIn(snapshot, f, w.from, w.to, tz)),
-        previous: summarize(postsIn(snapshot, f, w.prevFrom, w.prevTo, tz)),
-      };
-    });
-  }, [snapshot, platform, range, tz]);
-
-  if (snapshot.accounts.length === 0) {
-    return (
-      <EmptyState
-        title="No analytics accounts yet"
-        description="Connect X, LinkedIn or Instagram in Zernio, assign each account to a brand in lib/brands.ts, then run a sync."
-      />
-    );
-  }
-
-  const stamp = snapshot.lastSyncedAt
-    ? new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short", timeZone: tz }).format(
-        new Date(snapshot.lastSyncedAt),
-      )
-    : null;
-  const rangeLabel = RANGES.find((r) => r.value === range)?.label ?? "";
-  const noPostAccounts = snapshot.accounts.filter((a) => !snapshot.posts.some((p) => p.accountKey === a.key));
-  const totalEng = brandView.reduce((a, b) => a + (b.current.engagements ?? 0), 0);
-
+export function MethodNotes({ notes }: { notes: React.ReactNode[] }) {
   return (
-    <div className="space-y-5">
-      {/* Header */}
-      <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-b border-[var(--color-border)] pb-5">
-        <div>
-          <p className="eyebrow">Analytics · X · LinkedIn · Instagram</p>
-          <h1 className="mt-2 text-[28px] font-bold leading-none tracking-[-0.02em]">Engagement</h1>
-          <p className="mt-2.5 text-sm text-[var(--color-muted)]">
-            How posts perform across the Personal and Arqentia accounts.
-          </p>
-        </div>
-        <p className="num flex items-center gap-2 text-[11px] uppercase tracking-[0.08em] text-[var(--color-muted)]">
-          <span className={stamp ? "live-dot" : "size-[7px] rounded-full bg-[var(--color-faint)]"} aria-hidden />
-          {stamp ? `Data as of ${stamp}` : "Never synced"}
-        </p>
-      </header>
-
-      {/* Filters */}
-      <div className="flex flex-wrap items-center gap-2.5">
-        <Segmented
-          label="Brand"
-          value={brand}
-          onChange={setBrand}
-          options={[
-            { value: "all", label: "All accounts" },
-            { value: "personal", label: "Personal" },
-            { value: "arqentia", label: "Arqentia" },
-          ]}
-        />
-        <Segmented
-          label="Platform"
-          value={platform}
-          onChange={setPlatform}
-          options={[
-            { value: "all", label: "All platforms" },
-            ...PLATFORM_ORDER.map((pl) => ({
-              value: pl as PlatformFilter,
-              label: (
-                <>
-                  <PlatformDot platform={pl} />
-                  {PLATFORM_META[pl].label}
-                </>
-              ),
-            })),
-          ]}
-        />
-        <div className="ml-auto">
-          <Segmented label="Range" value={range} onChange={setRange} options={RANGES} />
-        </div>
-      </div>
-
-      {/* KPIs */}
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
-        <MetricStat
-          label="Engagements"
-          value={view.cur.engagements}
-          display={whole(view.cur.engagements)}
-          deltaPct={change(view.cur.engagements, view.prev.engagements)}
-          sublabel={`Likes, comments, shares, saves · ${rangeLabel}`}
-          icon={<Heart />}
-          accent
-        />
-        <MetricStat
-          label="Per post"
-          value={view.cur.perPost}
-          display={perPostFmt(view.cur.perPost)}
-          deltaPct={change(view.cur.perPost, view.prev.perPost)}
-          sublabel="Average engagements per post"
-          icon={<BarChart3 />}
-        />
-        <MetricStat
-          label="Posts"
-          value={view.cur.posts}
-          display={whole(view.cur.posts)}
-          deltaPct={change(view.cur.posts, view.prev.posts)}
-          sublabel={`Published in the last ${rangeLabel}`}
-          icon={<FileText />}
-        />
-        <MetricStat
-          label="Impressions"
-          value={view.cur.impressions}
-          deltaPct={change(view.cur.impressions, view.prev.impressions)}
-          sublabel={view.cur.reach !== null ? `${formatCompact(view.cur.reach)} reach` : "Reach n/a"}
-          icon={<Eye />}
-        />
-        <MetricStat
-          label="Followers"
-          value={view.followers}
-          display={whole(view.followers)}
-          tag={`${view.accounts.length} account${view.accounts.length === 1 ? "" : "s"}`}
-          sublabel="Current total, selected accounts"
-          icon={<Users />}
-          className="col-span-2 md:col-span-1"
-        />
-      </div>
-
-      {/* Brand comparison */}
-      {brand === "all" && (
-        <section aria-label="Personal vs Arqentia" className="space-y-3">
-          <div className="flex flex-wrap items-center gap-3">
-            <p className="eyebrow">Personal vs Arqentia · share of engagements</p>
-            {totalEng > 0 && (
-              <div className="flex min-w-48 flex-1 items-center gap-3">
-                <div className="well flex h-2 flex-1 overflow-hidden rounded-full">
-                  {brandView.map((b) => (
-                    <span
-                      key={b.brand}
-                      className="h-full border-r border-[var(--color-surface)] last:border-0"
-                      style={{
-                        width: `${((b.current.engagements ?? 0) / totalEng) * 100}%`,
-                        background:
-                          b.brand === "personal"
-                            ? "var(--color-text-2)"
-                            : "var(--color-accent)",
-                      }}
-                    />
-                  ))}
-                </div>
-                <span className="num text-xs text-[var(--color-muted)]">
-                  {brandView
-                    .map((b) => `${BRAND_META[b.brand].label} ${Math.round(((b.current.engagements ?? 0) / totalEng) * 100)}%`)
-                    .join(" · ")}
-                </span>
-              </div>
-            )}
-          </div>
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-            {brandView.map((b) =>
-              b.accounts.length === 0 ? (
-                <Card key={b.brand}>
-                  <CardContent className="pt-5">
-                    <EmptyState
-                      title={`No ${BRAND_META[b.brand].label} account on ${platform === "all" ? "these platforms" : PLATFORM_META[platform].label}`}
-                    />
-                  </CardContent>
-                </Card>
-              ) : (
-                <BrandCard
-                  key={b.brand}
-                  brand={b.brand}
-                  accounts={b.accounts}
-                  current={b.current}
-                  previous={b.previous}
-                  posts={b.posts}
-                />
-              ),
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* Engagement over time */}
-      <Card>
-        <CardHeader className="flex-row flex-wrap items-start justify-between gap-3 pb-2">
-          <div>
-            <CardTitle className="text-base">Engagement over time</CardTitle>
-            <CardDescription className="mt-1 text-[13px]">
-              Engagements by publish {view.series.bucket === "day" ? "day" : "week"} · last {rangeLabel}
-            </CardDescription>
-          </div>
-          <div className="flex flex-wrap justify-end gap-4 text-xs text-[var(--color-muted)]">
-            {view.chartPlatforms.map((pl) => (
-              <span key={pl} className="inline-flex items-center gap-1.5">
-                <span className="size-2.5 rounded-[2px]" style={{ background: PLATFORM_META[pl].color }} />
-                {PLATFORM_META[pl].label}
-              </span>
-            ))}
-            {view.noPostPlatforms.map((pl) => (
-              <span key={pl} className="inline-flex items-center gap-1.5 text-[var(--color-faint)]">
-                <span className="size-2.5 rounded-[2px] border border-dashed border-[var(--color-border-strong)]" />
-                {PLATFORM_META[pl].label} · no posts synced
-              </span>
-            ))}
-          </div>
-        </CardHeader>
-        <CardContent>
-          {view.chartPlatforms.length > 0 && view.current.length > 0 ? (
-            <TrendChart
-              data={view.series.rows}
-              series={view.chartPlatforms.map((pl) => ({
-                key: pl,
-                label: PLATFORM_META[pl].label,
-                color: PLATFORM_META[pl].color,
-              }))}
-              height={280}
-            />
-          ) : (
-            <EmptyState
-              title="No posts in this range"
-              description={
-                view.noPostPlatforms.length > 0 && view.chartPlatforms.length === 0
-                  ? "Zernio returns followers but no posts for this account yet."
-                  : "Widen the range or pick another brand or platform."
-              }
-            />
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Posts + mix */}
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-        <TopPosts posts={view.current} tz={tz} linkMode={linkMode} singlePlatform={platform !== "all"} />
-        <div className="space-y-5">
-          <EngagementMix posts={view.current} platforms={view.chartPlatforms} />
-          <PatternsCard posts={view.current} tz={tz} />
-        </div>
-      </div>
-
-      <AccountTable accounts={view.accounts} posts={view.current} allPosts={snapshot.posts} linkMode={linkMode} />
-
-      {/* Method notes */}
-      <div className="flex gap-2.5 rounded-[var(--radius-card)] border border-[var(--color-border)] px-4 py-3 text-xs leading-relaxed text-[var(--color-muted)]">
-        <Info className="mt-0.5 size-3.5 shrink-0 text-[var(--color-faint)]" aria-hidden />
-        <ul className="space-y-1">
-          <li>
-            Engagements are likes + comments + shares + saves as each platform reports them through Zernio. Periods
-            compare posts published in the last {rangeLabel} against the {rangeLabel} before; recent posts are still
-            collecting engagement.
-          </li>
-          <li>
-            Engagement rate uses each platform&apos;s own basis — Instagram on reach, X and LinkedIn on impressions — so
-            rates are compared within a platform, never across.
-          </li>
-          <li>Personal LinkedIn: LinkedIn only returns analytics for posts published through Zernio.</li>
-          {noPostAccounts.length > 0 && (
-            <li>
-              {noPostAccounts
-                .map((a) => `${PLATFORM_META[a.platform].label} @${a.handle}`)
-                .join(", ")}
-              : Zernio returns no posts yet, so {noPostAccounts.length === 1 ? "it shows" : "they show"} followers only.
-            </li>
-          )}
-          <li>Missing values show as a dash — not available is not zero.</li>
-        </ul>
-      </div>
+    <div className="flex gap-2.5 rounded-[var(--radius-card)] border border-[var(--color-border)] px-4 py-3 text-xs leading-relaxed text-[var(--color-muted)]">
+      <Info className="mt-0.5 size-3.5 shrink-0 text-[var(--color-faint)]" aria-hidden />
+      <ul className="space-y-1">
+        {notes.map((n, i) => (
+          <li key={i}>{n}</li>
+        ))}
+      </ul>
     </div>
   );
 }

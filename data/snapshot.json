@@ -1,7 +1,412 @@
 {
-  "generatedAt": "2026-09-26T02:46:50.491Z",
+  "generatedAt": "2026-09-26T03:26:21.777Z",
   "timeZone": "America/New_York",
   "lastSyncedAt": "2026-09-26T01:48:06.830Z",
+  "connections": [
+    {
+      "key": "linkedin-rafael-schwart-pmp",
+      "platform": "linkedin",
+      "brand": "personal",
+      "handle": "Rafael Schwart , PMP",
+      "displayName": "Rafael Schwart , PMP",
+      "avatarUrl": "/avatars/899b485c22da99bd.jpg",
+      "profileUrl": "https://www.linkedin.com/in/rafaelschwart/",
+      "followers": 3564,
+      "followersUpdatedAt": "2026-09-25T03:35:25.539Z",
+      "status": "connected",
+      "health": "healthy",
+      "inAnalytics": true,
+      "postsTracked": 97
+    },
+    {
+      "key": "instagram-rgschwart",
+      "platform": "instagram",
+      "brand": "personal",
+      "handle": "rgschwart",
+      "displayName": "Rafa Schwart",
+      "avatarUrl": "/avatars/b57cdb6d0aece66a.jpg",
+      "profileUrl": "https://instagram.com/rgschwart",
+      "followers": 3233,
+      "followersUpdatedAt": "2026-09-25T03:30:33.477Z",
+      "status": "connected",
+      "health": "healthy",
+      "inAnalytics": true,
+      "postsTracked": 5
+    },
+    {
+      "key": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "handle": "arqentia",
+      "displayName": "Arqentia Inc",
+      "avatarUrl": "/avatars/54fa9fe1028eb6bf.jpg",
+      "profileUrl": "https://x.com/arqentia",
+      "followers": 326,
+      "followersUpdatedAt": "2026-09-25T04:24:27.168Z",
+      "status": "connected",
+      "health": "healthy",
+      "inAnalytics": true,
+      "postsTracked": 0
+    },
+    {
+      "key": "instagram-arqentia-inc",
+      "platform": "instagram",
+      "brand": "arqentia",
+      "handle": "arqentia.inc",
+      "displayName": "Arqentia | Business Automation & AI Integration",
+      "avatarUrl": "/avatars/a6bba4788b4e9bcb.jpg",
+      "profileUrl": "https://instagram.com/arqentia.inc",
+      "followers": 120,
+      "followersUpdatedAt": "2026-09-25T03:30:31.981Z",
+      "status": "connected",
+      "health": "healthy",
+      "inAnalytics": true,
+      "postsTracked": 55
+    },
+    {
+      "key": "tiktok-rafa-flows",
+      "platform": "tiktok",
+      "brand": "personal",
+      "handle": "rafa.flows",
+      "displayName": "rafa.flows",
+      "avatarUrl": "/avatars/b56b6cf356be5aa2.jpg",
+      "profileUrl": "https://tiktok.com/@rafa.flows",
+      "followers": 68,
+      "followersUpdatedAt": "2026-09-25T03:30:32.052Z",
+      "status": "connected",
+      "health": "healthy",
+      "inAnalytics": false,
+      "postsTracked": 16
+    },
+    {
+      "key": "facebook-arqentia",
+      "platform": "facebook",
+      "brand": "arqentia",
+      "handle": "Arqentia",
+      "displayName": "Arqentia",
+      "avatarUrl": "/avatars/a70fe949b91be2e9.jpg",
+      "profileUrl": "https://facebook.com/1166731903190824",
+      "followers": 2,
+      "followersUpdatedAt": "2026-09-25T03:30:36.362Z",
+      "status": "connected",
+      "health": "healthy",
+      "inAnalytics": false,
+      "postsTracked": 27
+    }
+  ],
+  "recommendations": [
+    {
+      "fix": [
+        {
+          "point": "There is no post-level data, so we can't tell whether the account is inactive or just not syncing.",
+          "evidence": "Posts are 0 across allTime, last30Days, last90Days and previous30Days. Engagements, impressions and avgEngagementRate are all null. The data note says 'Zernio returns no posts for this account (followers only)'."
+        },
+        {
+          "point": "There is no timing data to schedule against.",
+          "evidence": "The bestTimes sample is 0, topSlots is empty, and lift is null for all 7 weekdays."
+        },
+        {
+          "point": "There is no format or language split, so we can't compare text, threads or video, or English against Spanish.",
+          "evidence": "byFormat is [], byMonth is [] and the posts array is empty."
+        }
+      ],
+      "agent": "x-specialist",
+      "model": "Claude Opus (local Claude Code)",
+      "actions": [
+        {
+          "title": "Confirm whether @arqentia posts on X, and fix the sync if it does",
+          "detail": "Open the @arqentia X profile and count the posts from the last 90 days. If there are posts, reconnect the X account in Zernio or publish future posts through Zernio so post metrics flow into the dashboard. If there are none, go straight to the next action.",
+          "effort": "low",
+          "impact": "high",
+          "account": "arqentia",
+          "evidence": "All period post counts are 0, and the data note says Zernio returns followers only, so the dashboard can't tell 'no posts' from 'no data'."
+        },
+        {
+          "title": "Publish 5 tracked posts a week, Monday to Friday",
+          "detail": "Schedule every post through Zernio so it gets measured. Suggested weekly mix: 2 text posts with one concrete operations or AI lesson each (a before/after or a time saved); 1 native vertical video cut from existing Arqentia Reels, with no other platform's watermark; 1 thread (5–7 posts) walking through one automation step by step; 1 question post aimed at operators ('What's the one task your team still does by hand?').",
+          "effort": "medium",
+          "impact": "high",
+          "account": "arqentia",
+          "evidence": "Posts are 0 in last30Days and last90Days. With no posts there is nothing to measure, and the best-time sample stays at 0."
+        },
+        {
+          "title": "Spend 20 minutes a day replying to larger AI and operations accounts",
+          "detail": "Every weekday, leave 10–15 useful replies (a specific fix, number or example, not 'great post') on posts from larger accounts in AI, automation and operations, in English and Spanish. At 326 followers, replies are the main way new people find the profile. Treat this as a practitioner heuristic to test, not a proven rule.",
+          "effort": "medium",
+          "impact": "medium",
+          "account": "arqentia",
+          "evidence": "Followers (326) is the only live metric, so weekly follower change is the one growth signal we can measure. Log 326 as the baseline for 2026-09-26."
+        },
+        {
+          "title": "Move lead-magnet links out of the main post",
+          "detail": "For lead-magnet posts, use 'Reply KEYWORD and I'll DM it', or put the link in the first reply rather than the post body. Judge these posts on impressions, reposts and bookmarks, not reply count alone, because the keyword CTA inflates replies.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia",
+          "evidence": "No link or CTA data exists yet (posts: []). This sets up a clean comparison once posts are tracked."
+        },
+        {
+          "title": "Tag every post with its language and format",
+          "detail": "In Zernio, label each post EN or ES and text, thread or video, so the dashboard can split results by language and format once data arrives.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia",
+          "evidence": "byFormat is [], and the audience context covers both English and Spanish speakers in the US and Latin America."
+        },
+        {
+          "title": "Pin a post that explains what Arqentia does",
+          "detail": "Pin one post with a concrete automation example: what the client did before, what was automated and what changed. End it with one clear next step (a DM keyword or a booking link in the reply). New visitors who come from your replies will see this first.",
+          "effort": "low",
+          "impact": "low",
+          "account": "arqentia",
+          "evidence": "No existing post can be named as a pin candidate because the posts array is empty."
+        }
+      ],
+      "cadence": "Starting playbook, not a data finding: the best-time table has a sample of 0 and null lift on all 7 days. Post 5 times a week (one a day, Monday to Friday) and add replies every weekday. Until data exists, rotate posts evenly across three 3-hour blocks in America/New_York: 9–12, 12–15 and 18–21. The evening block overlaps with daytime in Latin America, which suits the Spanish posts. After about 20 tracked posts, reread the best-time table and keep only the blocks with lift above 1.0.",
+      "working": [
+        {
+          "point": "The account has an audience to post to.",
+          "evidence": "326 followers on 2026-09-26, even though the brief shows 0 posts in every period."
+        },
+        {
+          "point": "The target audience is clearly defined, so content can be tightly focused from the first post.",
+          "evidence": "The brief's audience context: business owners, operators and builders adopting AI in the US and Latin America, in English and Spanish."
+        }
+      ],
+      "headline": "Find out whether @arqentia actually posts on X or only lacks synced data, then publish a tracked 5-posts-a-week schedule; right now 326 followers is the only number available.",
+      "platform": "twitter",
+      "diagnosis": "The brief has no post data for @arqentia on X. Posts are 0 all-time, 0 in the last 30 days, 0 in the last 90 days and 0 in the previous 30 days, and every engagement, impression and engagement-rate field is null. The data note says Zernio returns followers only for this account, so this could be a sync gap rather than an inactive account; unavailable data is not the same as zero activity. The only number available is 326 followers as of 2026-09-26. Everything below is a starting playbook, not a data finding.",
+      "dataQuality": "none",
+      "experiments": [
+        {
+          "test": "Weeks 1–2: 5 posts a week with minimal replies. Weeks 3–4: the same 5 posts plus 10–15 replies each weekday. Record followers every Monday, starting from 326.",
+          "metric": "Net follower change per week",
+          "hypothesis": "For a 326-follower account, daily replies bring more new followers than extra original posts."
+        },
+        {
+          "test": "Alternate languages so each reaches at least 10 tracked posts (about 4 weeks at 5 a week). Keep the topic mix the same across both.",
+          "metric": "Median engagement rate on impressions, per language",
+          "hypothesis": "English and Spanish posts perform differently with this audience."
+        },
+        {
+          "test": "Run 2 lead-magnet posts with 'Reply KEYWORD' and 2 with the link in the post body, on similar topics.",
+          "metric": "Impressions, reposts and bookmarks per post, plus DMs sent",
+          "hypothesis": "Lead-magnet posts reach more people when the link isn't in the main post."
+        }
+      ],
+      "generatedAt": "2026-09-26T03:15:58.535Z"
+    },
+    {
+      "fix": [
+        {
+          "point": "Image posts stopped getting shown in September.",
+          "evidence": "The 13 September image posts had a median of 33 impressions. The 3 September text posts had a median of 136: 'You are pasting the summary into Claude' (323), 'How much of your process is anyone actually working on?' (136) and 'Revoking an agent's access' (81). Six image posts got only 23 to 33 impressions each, e.g. 'An automation does not break. It drifts.' (33) and '75% of companies say their AI agents are secure' (23). The Sep 24 and 25 posts are still collecting impressions."
+        },
+        {
+          "point": "The same template keeps repeating, and the repeat posts got no engagement.",
+          "evidence": "The line '8+ years shipping hardware programs inside a Fortune 500' appears in at least 15 posts between Jul 11 and Aug 10. Three follow-ups that re-used earlier posts ('I published my ... on this feed') got 0 engagements between them: 'Every readiness checklist gets run top to bottom' (Aug 24, 102 impressions), 'Who picked the process you are automating' (Aug 25, 79) and 'Nobody's AI automation fails in the chat window' (Aug 26, 76)."
+        },
+        {
+          "point": "Video is your weakest format.",
+          "evidence": "Your 19 videos average 1.4 engagements per post, with a median of 62 impressions, the lowest of the four formats. The last 6 videos (Aug 14 to Sep 22, e.g. 'You do not know which steps of your automation are safe to run twice') got 39 to 63 impressions each and 3 engagements between them."
+        },
+        {
+          "point": "Your posts start almost no conversation.",
+          "evidence": "97 posts drew 22 comments and 8 shares in total. The last 30 days had 23 posts, 5 comments and 0 shares. 29 of the 97 posts (30%) got no engagement at all."
+        }
+      ],
+      "agent": "linkedin-specialist",
+      "model": "Claude Opus (local Claude Code)",
+      "actions": [
+        {
+          "title": "Post twice a week about AI skills for operators who aren't developers",
+          "detail": "Write about what an operator or owner should learn, which parts of a job AI changes, and what the Claude certification paths mean for a team. Frame each post around a buyer's decision, such as what your team should learn first or what should stay with a person, so the posts reach Arqentia's buyers and not only job seekers. When Anthropic or another vendor announces something about skills or certification, post about it within 24 hours.",
+          "effort": "low",
+          "impact": "high",
+          "account": "Rafael Schwart , PMP",
+          "evidence": "The 7 posts on AI skills and careers had a median of 255 impressions and 3.9 engagements per post. The account median is about 85 impressions and 1 engagement. The Jul 10 certification post alone got 2,197 impressions. The last post on this topic was Aug 10."
+        },
+        {
+          "title": "Open with your position, not a survey stat or your credentials",
+          "detail": "Make the first line a claim about a decision the reader faces, as in 'The most valuable AI skill right now is not prompting. It is knowing what to leave alone.' Mention your hardware background in one line in the middle of the post, and word it differently each time. Stop re-posting earlier frameworks as 'I published my ... on this feed' posts. If a framework deserves a second run, rebuild it as a document post.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "Rafael Schwart , PMP",
+          "evidence": "The Aug 10 post that opened with a position got 10 engagements and 4 comments. Nine posts that opened with a statistic ('87% of AI decision-makers', '75% of companies say', '32% of AI agent conversations', etc.) had a median of 78 impressions and 1.4 engagements each. The Aug 24–26 re-runs got 0 engagements."
+        },
+        {
+          "title": "Post your best work Friday to Monday, and never more than once a day",
+          "detail": "Keep posting at 11am ET. Put the week's AI-skills post on Saturday or Sunday, post on Friday and Monday, and use only one day from Tuesday to Thursday. Don't add a second post on the same day.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "Rafael Schwart , PMP",
+          "evidence": "Weekday lift (1.0 = average): Sat 1.3 (12 posts), Sun 1.2 (13), Fri and Mon 1.0, Wed 0.9, Tue and Thu 0.8. 7 of the 9 posts with 5 or more engagements went out Friday to Sunday. Second posts on the same day often got few impressions: 'Standing access gives an AI agent' got 18, posted an hour after a 261-impression post; 'AI can be a liability' got 23; and 'Kenco put six AI agents' (17) and the Spanish Arqentia post (20) went out 2–3 hours after a 141-impression post on Aug 6."
+        },
+        {
+          "title": "Stop posting native video on LinkedIn and turn the scripts into text posts",
+          "detail": "Post each video's script as a text-only post, with the first two lines as the hook. Go back to video only if a test beats the text median.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "Rafael Schwart , PMP",
+          "evidence": "Video averages 1.4 engagements per post, with a median of 62 impressions across 19 posts. The last 6 videos got 3 engagements between them. The text median is 136 impressions."
+        },
+        {
+          "title": "End each post with a question readers can answer from their own work, and reply to every comment the same day",
+          "detail": "Ask for a specific answer, such as 'Which step in your process would you never automate?', rather than a general 'Thoughts?'. Replying the same day keeps threads going while the post is still being shown.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "Rafael Schwart , PMP",
+          "evidence": "97 posts drew 22 comments in total. The last 30 days had 23 posts, 5 comments and 0 shares. The most-commented posts asked for a judgment readers could make from their own experience: 'The most valuable AI skill right now is not prompting' (4 comments) and 'Who runs your AI automation when you are not there?' (2)."
+        }
+      ],
+      "cadence": "5 posts a week, one per day, at 11am ET: Friday, Saturday, Sunday, Monday and one day from Tuesday to Thursday. Weekday lift is highest on Saturday (1.3, 12 posts) and Sunday (1.2, 13 posts) and lowest on Tuesday and Thursday (0.8). Saturday 9am–12pm, where your 11am Saturday posts land, is the best time slot with a real sample (lift 1.3 over 8 posts). Put the week's AI-skills post on Saturday or Sunday. Before moving Monday and Friday posts to 12:30pm, test it: Mon 12–3pm shows a lift of 1.6 and Fri 12–3pm 1.4, but from only 2 and 3 posts. Don't post twice on the same day.",
+      "working": [
+        {
+          "point": "Posts about AI skills and careers for non-developers are your strongest topic.",
+          "evidence": "7 posts: 'Anthropic is turning Claude into a career ladder' (Jul 10, 2,197 impressions, 18% of all tracked impressions), 'AI is not coming for your job' (326), 'You do not need a CS degree to become an AI architect' (261, 6 engagements), 'You picked your workflow' (255), 'Ten years on factory floors taught me more about AI' (241), 'The most valuable AI skill right now is not prompting' (132, 10 engagements) and 'Everyone is asking what new skill to learn' (94). Median 255 impressions (248 without the outlier) and 3.9 engagements per post. The account median is about 85 impressions and 1 engagement."
+        },
+        {
+          "point": "Taking a clear position on a decision operators face gets people to respond.",
+          "evidence": "Your top post by engagements, 'The most valuable AI skill right now is not prompting. It is knowing what to leave alone' (Aug 10), had 10 engagements, including 4 comments: a 7.6% engagement rate on 132 impressions. Next were 'Small businesses do not need an AI employee' (7, including 2 comments and 1 share) and 'Who runs your AI automation when you are not there?' (6, including 2 comments)."
+        },
+        {
+          "point": "Text-only posts reach the most people.",
+          "evidence": "Median impressions: text 136 (17 posts), image 83 (57 posts), video 62 (19 posts). Text is 18% of your posts but 6 of the 12 highest-impression posts, e.g. 'AI is not coming for your job' (326), 'You are pasting the summary into Claude' (323) and 'You can build a working AI automation in Claude in one afternoon' (318). Images still get slightly more engagements per post than text: 1.9 vs 1.5."
+        },
+        {
+          "point": "You were right to stop the generic company-voice posts.",
+          "evidence": "14 posts were written as Arqentia or general business advice with no personal story, e.g. 'Build or buy is the wrong first question', 'Kenco put six AI agents into production' and 'Your dashboard is not the system'. All stayed at 27 impressions or fewer, with 9 engagements between them. None has run since Aug 7."
+        }
+      ],
+      "headline": "Go back to posts about AI skills and careers for non-developers. Your 7 posts on that topic had a median of 255 impressions and 3.9 engagements each. You haven't posted one since Aug 10, and impressions per post fell to 80 in September.",
+      "platform": "linkedin",
+      "diagnosis": "Results per post have dropped three months in a row. Impressions per post went from 181 in July (128 without the 2,197-impression 'Anthropic is turning Claude into a career ladder' post) to 105 in August and 80 in September. Engagements per post went from 2.0 to 1.6 to 1.2, and the last 30 days had 0 shares. Post count fell over the same months (39, then 31, then 19 so far in September), so posting less has not helped per-post results on its own. What changed is the mix, which narrowed to agent governance told through factory-floor examples, mostly as image posts. The data is partial because only posts published through Zernio are tracked, and the median post gets about 85 impressions and 1 engagement, so rely on impressions more than engagements and don't read much into gaps between single posts.",
+      "dataQuality": "limited",
+      "experiments": [
+        {
+          "test": "For the next 10 posts, alternate text-only posts and single-image posts on similar topics, all at 11am ET.",
+          "metric": "Impressions and engagements per post 72 hours after posting. Baseline: September medians of 136 impressions for text and 33 for images.",
+          "hypothesis": "Text-only posts reach more people than similar posts with an image, without losing engagements."
+        },
+        {
+          "test": "Turn the First-Automation Test and the Payoff Test into 6 to 8 page document posts and publish them on two Saturdays.",
+          "metric": "Impressions, saves and engagements, compared with the image median of 83 impressions and the image average of 1.9 engagements per post. Of your 4 carousels so far, 'Cisco just cut 4,000 jobs' got 394 impressions and '95% of enterprise AI pilots failed' got 269.",
+          "hypothesis": "Frameworks posted as PDF documents (carousels) reach more people than single-image posts."
+        },
+        {
+          "test": "For the next 4 Mondays and 4 Fridays, alternate between 11am and 12:30pm ET.",
+          "metric": "Impressions 72 hours after posting, for each time slot. The best-times table shows a lift of 1.6 for Mon 12–3pm and 1.4 for Fri 12–3pm, but from only 2 and 3 posts.",
+          "hypothesis": "On Mondays and Fridays, posting at 12:30pm ET gets more impressions than 11am."
+        }
+      ],
+      "generatedAt": "2026-09-26T03:20:37.019Z"
+    },
+    {
+      "fix": [
+        {
+          "point": "On @arqentia.inc, carousels barely reach existing followers, and the 7 a.m. single-industry ones do worst.",
+          "evidence": "'Una silla vacía no es…' (dental, Sep 9) reached 13, 'Lunes, 7:45 a.m.' (botica, Sep 10) 19, 'Cada negocio mira números distintos' 21 and '7 of 10 after-hours calls' 34. All four went out at 7 a.m. Median reach is 23 for carousels (7 posts) and 118 for Reels. The two carousels that got real reach were written for any business owner and posted outside 7–8 a.m.: 'La meta no es trabajar más horas' (Sat 4pm, 546) and 'Cuatro negocios distintos' (156)."
+        },
+        {
+          "point": "The late-August research-story Reels on @arqentia.inc underperformed. Their hook style and posting time changed at the same moment, so the data can't separate the two causes.",
+          "evidence": "'I read 88 complaints' got 142 reach, 4 engagements and 0 shares. 'I scraped the reviews on 10 body shops' got 60 reach and 5 engagements, 'Una empresa de envíos en Doral' 66 and 7, and 'Five numbers every HVAC owner' 120 and 4. All four are below the 9-engagement median. All 13 posts from Aug 13 to Sep 12 went out at 7–8 a.m."
+        },
+        {
+          "point": "The calls to action on @arqentia.inc are not producing comments, saves or shares.",
+          "evidence": "In the last 30 days, 8 posts with 1,004 total reach got 0 comments, 1 save and 4 shares. That includes 'Coméntalo' on 'La meta no es…' and 'Escríbenos' on three posts. All-time, 9 of the 16 comments came from the Jul 25 intro Reel, and there are only 8 saves across 55 posts. The Reel offering 'la guía completa' ('Es lunes a las 9…') got 3 comments and 1 save, the best CTA result outside that intro Reel."
+        },
+        {
+          "point": "Both accounts are posting much less.",
+          "evidence": "@arqentia.inc posted 15–17 times a month from June to August, then 5 times in September, with nothing since Sep 19. Its reach per post fell from 221 to 126; without the Sep 19 carousel it is 65. @rgschwart has not posted since Aug 26."
+        }
+      ],
+      "agent": "instagram-specialist",
+      "model": "Claude Opus (local Claude Code)",
+      "actions": [
+        {
+          "title": "Write 3 Reels using the early-August hook pattern",
+          "detail": "In each Reel, put one line on screen in the first 2 seconds. Make it a reframe ('No tienes un problema de software, tienes un problema de arquitectura'), a clock-time scene ('Son las 8:40 p.m. y sigues cotizando') or a specific big number. Then explain one mechanism, and end with 'Sigue a @arqentia.inc' or a single comment keyword. Build on topics that already got engagement: 'En la mayoría de negocios la plata no se pierde…' (11 engagements) and 'Hay una parte de tu negocio que no está escrita' (9 engagements, 2 shares).",
+          "effort": "medium",
+          "impact": "high",
+          "account": "arqentia.inc",
+          "evidence": "The Reels that followed this pattern reached 767, 724, 535 and 303, against a Reel median of 118. The 13 posts from Aug 13 to Sep 12 reached 13–142."
+        },
+        {
+          "title": "Stop posting at 7–8 a.m.",
+          "detail": "Schedule this week's posts for Sat 3–6pm, Tue 6–9pm and Wed 6–9pm (New York time). Keep at most one post at 7 a.m. as a comparison, so you can see whether the posting time or the content caused the drop.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia.inc",
+          "evidence": "All 13 posts from Aug 13 to Sep 12 went out at 7–8 a.m., and none passed 142 reach. The median reach is 113 for Reels posted at 7–8 a.m. (13 posts) and 138 for Reels posted 2–8 p.m. (18 posts). Slot lifts: Sat 3–6pm 1.5 (3 posts), Tue 6–9pm 1.2 (4 posts), Wed 6–9pm 1.1 (2 posts)."
+        },
+        {
+          "title": "Replace the single-industry carousels with one broad Saturday carousel",
+          "detail": "Post one carousel a week in the Sat 3–6pm slot. Write it for any business owner, like 'La meta no es trabajar más horas', and use a checklist or before/after format. Pause the 7 a.m. botica, dental and other single-industry carousels, or turn their scenes into Reel scripts.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia.inc",
+          "evidence": "Four 7 a.m. carousels reached 13–34. The two broad carousels, 'La meta no es trabajar más horas' (Sat 4pm) and 'Cuatro negocios distintos', reached 546 and 156. Median reach is 23 for carousels and 118 for Reels."
+        },
+        {
+          "title": "Give every CTA one keyword and a named file",
+          "detail": "Replace 'Escríbenos' and 'Coméntalo' with one keyword and a specific file, for example 'Comenta PROCESO y te mando la plantilla para escribir tu proceso'. Set up the auto-DM before the post goes live. Judge these posts on shares and saves per reach as well as comments, because a keyword CTA inflates comments.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia.inc",
+          "evidence": "In the last 30 days, 8 posts got 0 comments even with 'Coméntalo' and 'Escríbenos' CTAs. The Reel that offered 'la guía completa' ('Es lunes a las 9…') got 3 comments and 1 save on 535 reach. All-time saves are 8 across 55 posts."
+        },
+        {
+          "title": "Post one personal update on @rgschwart",
+          "detail": "There has been no post since Aug 26. Post a personal carousel in the voice of the Aug 26 post: real moments from this year of building, plus one line that mentions Arqentia and tags @arqentia.inc. Lead with the personal side. Post on a weekend afternoon or a Wednesday morning.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "rgschwart",
+          "evidence": "'This has been one of the busiest summers' got 176 engagements and 20 comments on 1,347 reach, the best of the 5 posts. The most business-focused post, 'Quick Business Trip to the Windy City', had the lowest engagement (89) and the lowest engagement rate on reach (6.0%, against a 9.7% median). This rests on 5 posts, so treat it as a test."
+        }
+      ],
+      "cadence": "@arqentia.inc: 4 posts a week (3 Reels and 1 carousel), moving back toward the June–August pace of 15–17 posts a month. September has 5 posts, none since Sep 19. Put the carousel or the strongest Reel in Sat 3–6pm (lift 1.5, 3 posts). Put the other Reels in Tue 6–9pm (1.2, 4 posts), Wed 6–9pm (1.1, 2 posts) or Thu 12–3pm (1.0, 3 posts). Post less on Fridays (weekday lift 0.8 across 10 posts), and keep one 7 a.m. post as a comparison. @rgschwart: one post every 2–3 weeks. Its best posts went out Wed 10am (176 engagements), Sat 2pm (125) and Sat 7pm (129). The best-time table combines both accounts and has only 2–4 posts per slot, so use it as a starting schedule. All times are New York time.",
+      "working": [
+        {
+          "point": "On @arqentia.inc, Reels that open on one short, specific line (a reframe, a clock-time scene or a big number) are the only posts that reach well beyond the 120 followers.",
+          "evidence": "'Your business doesn't have a software problem' (Jul 25): 767 reach, 58 engagements, 9 comments. 'OpenAI y Anthropic pagan $287.000' (Aug 6): 724 reach, 49 engagements, 5 shares. 'Es lunes a las 9 y estás comprando leads' (Aug 8): 535 reach, 31 engagements. 'It's 8:40 at night' (Aug 7): 303 reach. Across 55 posts the account median is 110 reach and 9 engagements; the median for the 39 Reels is 118 reach."
+        },
+        {
+          "point": "Saturday afternoon is the most reliable slot for @arqentia.inc.",
+          "evidence": "Sat 3–6pm has a 1.5 lift, and all 3 posts in that slot beat the 9-engagement median: 'Es lunes a las 9' (31), 'La meta no es trabajar más horas' (27) and 'You didn't start this business' (10). Saturday as a whole has a 1.4 lift across 9 posts. The Sat 6–9am lift of 1.5 comes mostly from one post (58 engagements); the other two posts in that slot got 9 and 4."
+        },
+        {
+          "point": "Spanish Reels turn reach into engagement better than English Reels.",
+          "evidence": "Since Aug 6, the 8 Spanish Reels have a median of 10 engagements on 89 reach. The 7 English Reels in the same period have a median of 5 engagements on 120 reach. Two of the account's top three Reels by reach are in Spanish. These samples are small, so keep posting in both languages."
+        },
+        {
+          "point": "On @rgschwart, personal reflections on the year get the most engagement and comments.",
+          "evidence": "'This has been one of the busiest summers' (Aug 26) got 176 engagements and 20 comments on 1,347 reach, the best of the 5 posts. 'Last few months dump' (Jul 25) got 129. The 2 posts in the last 90 days averaged 152.5 engagements, against 126.6 all-time. With only 5 posts, treat this as a direction, not proof."
+        }
+      ],
+      "headline": "On @arqentia.inc, return to the Reels that open on one short, specific line, which reached 535–767 accounts between Jul 25 and Aug 8. Also stop posting at 7–8 a.m.: all 13 posts from Aug 13 to Sep 12 went out then and none reached more than 142 accounts.",
+      "platform": "instagram",
+      "diagnosis": "@arqentia.inc's reach per post fell from 221 in the previous 30 days (12 posts) to 126 in the last 30 days (8 posts). One carousel produced 546 of the 1,004 total; the other seven posts averaged 65 reach, and none of the eight got a comment. The account's three largest Reels (535–767 reach, or 4–6× its 120 followers) ran Jul 25–Aug 8 and opened with a reframe, a clock-time scene or a big number. The 13 posts from Aug 13 to Sep 12 all went out at 7–8 a.m., were mostly research stories and single-industry carousels, and reached 13–142. @rgschwart reaches about 12× more people per post (median 1,347 vs 110), but it has only 5 posts and none since Aug 26, so its advice is written as tests. The brief's per-post engagementRate is engagements ÷ impressions, not reach, and its period totals combine both accounts, so every figure here is recalculated per account on reach.",
+      "dataQuality": "good",
+      "experiments": [
+        {
+          "test": "Post an English version of that Reel on @arqentia.inc with the same hook and edit, in the Sat 3–6pm or Tue 6–9pm slot. Change nothing else.",
+          "metric": "Reach compared with the 110 account median and the original's 724, and shares per 100 reach compared with the original's 0.7.",
+          "hypothesis": "The Reel 'OpenAI y Anthropic pagan $287.000' reached 724 because of its angle, not because it was in Spanish."
+        },
+        {
+          "test": "Publish one Reel from @arqentia.inc, with @rgschwart accepted as collaborator, in which Rafael explains why he started Arqentia. Post it Sat 3–6pm.",
+          "metric": "Reach compared with 110 (@arqentia.inc median) and 1,347 (@rgschwart median), follows gained by @arqentia.inc within 48 hours, and engagement rate on reach compared with @rgschwart's 9.7% median.",
+          "hypothesis": "A founder Reel posted as a Collab between @arqentia.inc and @rgschwart reaches part of Rafael's audience (median 1,347 reach per post) and converts some of those viewers into @arqentia.inc followers."
+        },
+        {
+          "test": "End 2 of the next 4 @arqentia.inc Reels with 'Mándaselo a quien lleva la operación contigo' or 'Send this to your ops lead', both on screen and in the caption. Post the other 2 without it.",
+          "metric": "Shares per 100 reach, compared with 0.4 for the last 30 days (4 shares on 1,004 reach) and 0.6 all-time.",
+          "hypothesis": "Ending a Reel by naming who to send it to raises shares. Right now 20 of @arqentia.inc's 49 all-time shares come from a single Reel, 'Most of the time, the problem is within the process design'."
+        }
+      ],
+      "generatedAt": "2026-09-26T03:20:02.014Z"
+    }
+  ],
   "accounts": [
     {
       "key": "instagram-arqentia-inc",
