@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-26T12:40:56.020Z",
+  "generatedAt": "2026-09-26T13:02:47.024Z",
   "timeZone": "America/New_York",
-  "lastSyncedAt": "2026-09-26T12:37:51.019Z",
+  "lastSyncedAt": "2026-09-26T12:55:56.287Z",
   "connections": [
     {
       "key": "linkedin-rafael-schwart-pmp",
@@ -104,324 +104,324 @@
     {
       "fix": [
         {
-          "point": "Posting has stalled.",
-          "evidence": "11 of the 13 posts went out Aug 12–27, then 2 in September (“A sales call should not end…” on Sep 8, “An invoice should not be paid…” on Sep 11), and none from Sep 12 to Sep 26. The queue can clearly publish daily: Aug 24, 25, 26 and 27 were four weekdays in a row. The only failure in 14 attempts was a reply. So the gap looks like the queue running out of drafts, not a tool problem."
+          "point": "No engagement data exists.",
+          "evidence": "dataNotes says post analytics is OFF for @arqentia. allTime, last30Days and last90Days all show 0 posts and null impressions, engagements and ER, while publishingLog shows 13 published posts. Nothing about copy, timing or format can be judged on results yet."
         },
         {
-          "point": "Nothing is measured.",
-          "evidence": "With analytics off, every period shows 0 posts with metrics, impressions and engagement rate are null, and bestTimes has a sample of 0. There is no way to tell whether the invoice, HVAC, support or data-pipeline posts work best."
+          "point": "Posting stopped.",
+          "evidence": "11 of the 13 posts were published between Aug 12 and Aug 27. September has only Sep 8 ('A sales call should not end…') and Sep 11 ('An invoice should not be paid…'), and there has been nothing since: 15 days of silence as of Sep 26. Early reply activity can't start on posts that don't exist."
         },
         {
-          "point": "Replies to other accounts are being sent through the API, which X now blocks.",
-          "evidence": "The one failure in the 90-day log is a reply to another account, rejected under X's February 2026 rule. For a 321-follower account, replies to larger accounts are the main way to grow, and they now have to be written by hand in the X app."
+          "point": "Every post uses the same format and opening, and none visibly asks for a reply.",
+          "evidence": "All 13 are single posts with one image, and none is a thread. 8 of 13 open with the same 'X should not / should never' frame (for example 'A sales call should not end as loose notes', 'An HVAC quote should never disappear'). The log shows about the first 200 characters of each post, and none of those excerpts contains a question. Replies are the heaviest ranking signal."
         },
         {
-          "point": "Most posts use the same opening and none asks the reader anything.",
-          "evidence": "8 of 13 posts open with “[thing] should not/never…”, for example “Your weekly report should not start…” and “An HVAC quote should never disappear…”. None of the visible text asks the reader a question. The log cuts posts at about 200 characters, so check whether the full endings do."
+          "point": "Only the brand account posts, and the one API reply to another account failed.",
+          "evidence": "The brief contains only @arqentia; no account for Rafael is connected. The single failed post was a reply to another account, rejected by X's February 2026 rule on API replies, so replies to other accounts have to be made by hand. All 13 posts are in English, while the audience includes Latin America and Spanish."
         }
       ],
       "agent": "x-specialist",
       "model": "Claude Opus (local Claude Code)",
       "actions": [
         {
-          "title": "Turn on X analytics for @arqentia and set a spend cap",
-          "detail": "In Zernio, switch analytics on for @arqentia and set a monthly X spend cap at the same time. Rough math at X's rates: 40 posts a month, each read 3 times, is 120 reads × $0.005 = $0.60, plus 40 × $0.015 = $0.60 to publish. A cap of about $5 leaves room. Check actual spend after the first week, because it depends on how often Zernio pulls metrics. You can handle replies to your own posts in the X app at no API cost.",
+          "title": "Turn on X analytics for @arqentia with a monthly spend cap",
+          "detail": "In Zernio, switch on post analytics for @arqentia and set a monthly X spend cap at the same time. At $0.005 per metrics read, 40 posts a month read 3 times each would cost about $0.60, plus about $0.60 to publish them. A cap of $5 to $10 leaves plenty of room. Check Zernio usage after week one to see how many reads actually happen, then adjust the cap.",
           "effort": "low",
           "impact": "high",
           "account": "arqentia",
-          "evidence": "Every engagement field in the brief is null and the best-time sample is 0 because analytics are off. The 13 logged posts cannot be compared with each other."
+          "evidence": "dataNotes: analytics is OFF. Every impression, engagement and ER field is null, and the 13 published posts in publishingLog have no metrics."
         },
         {
-          "title": "Restart posting: one post every weekday, queued two weeks ahead",
-          "detail": "Write 10 posts this week and load them into the Zernio queue so the account doesn't go quiet again. Keep what already works: one image, no link in the main post. Reuse the themes from the log (invoice matching, sales-call notes, supplier delays, support triage, data-pipeline failures) but change the angle: a before/after, a mistake you've seen at a client, a short checklist. Publishing cost: 10 × $0.015 = $0.15.",
+          "title": "Start posting again with at least one post every weekday",
+          "detail": "Queue at least one post for each weekday of the next two weeks in Zernio. Reuse the existing topics with new angles: invoice matching, sales calls into the CRM, supplier delays, removing access when staff change roles, idempotency, schema drift, HVAC scheduling. Keep links out of the main post.",
+          "effort": "low",
+          "impact": "high",
+          "account": "arqentia",
+          "evidence": "The last post was Sep 11, 15 days before this brief. 11 of the 13 posts in the 90-day log landed between Aug 12 and Aug 27. Four weekdays in a row were covered Aug 24–27."
+        },
+        {
+          "title": "Reply to larger accounts by hand every day",
+          "detail": "Spend 20 minutes a day in the X app replying to 5 to 10 recent posts, ideally under an hour old, from larger AI, automation and operator accounts. Add one specific practice from Arqentia's work, such as the human approval step or idempotency keys, instead of just agreeing. The API can't do this, so it has to be manual.",
           "effort": "medium",
           "impact": "high",
           "account": "arqentia",
-          "evidence": "13 posts in 90 days, 11 of them Aug 12–27, none since Sep 11 (15 days). Aug 24–27 shows four weekday posts in a row went out with no failures."
+          "evidence": "The only failed post in the log was an API reply to another account, rejected by X's February 2026 rule. No data in this brief measures how much reply activity grows an account; this is a practitioner heuristic."
         },
         {
-          "title": "Spend 15–20 minutes a day replying by hand in the X app",
-          "detail": "Pick 10–15 larger accounts your operators and founders follow: AI automation builders, finance and operations voices, field-service software people. Reply within 30–60 minutes of their posts with a specific point from your own work, such as matching invoices to purchase orders and receiving records, or the idempotency-key point from Aug 12. Write these replies by hand. Do not send replies to other accounts through Zernio. Also answer every reply on your own posts within the first hour.",
+          "title": "Connect Rafael's personal X account and post the same material as the founder",
+          "detail": "Connect Rafael's personal X account to Zernio. Post the same frameworks in first person (for example 'We connected supplier invoices to POs for a client and…'), and have @arqentia repost or quote those posts. Do the daily manual replies from Rafael's account where you can.",
           "effort": "medium",
           "impact": "high",
-          "account": "arqentia",
-          "evidence": "The only failure in the 90-day log is an API reply to another account, rejected under the February 2026 rule. The ranking X published in 2023 weighted replies, especially ones the author answers, far above likes. There is no @arqentia engagement data yet to confirm this for the account."
-        },
-        {
-          "title": "Connect Rafael's personal X account and post as the founder",
-          "detail": "Connect Rafael's personal account to Zernio. Rafael posts the first-person version: what he saw at a client, what broke, what he would do again. @arqentia reposts or quotes those and keeps the workflow posts. Where it fits, Rafael writes the manual replies from his own account, since replies from a person usually get a better reception than replies from a company logo.",
-          "effort": "medium",
-          "impact": "medium",
           "account": null,
-          "evidence": "No personal X account is connected yet, and the brief names Rafael Schwart as the personal brand. The idea that founder accounts outperform brand accounts is a practitioner rule of thumb. There is no data here to confirm it for this audience."
+          "evidence": "audienceContext describes Rafael Schwart's personal brand, but the brief includes only @arqentia (321 followers). No data here compares founder and brand reach; this is based on the general pattern on X."
         },
         {
-          "title": "Rewrite posts to invite replies: vary the opening and end with a question",
-          "detail": "Drop the “X should not…” opening for at least half the posts. Rotate in other openings: a number from a client job, a short story, or a contrarian line like “Most service businesses don’t have a lead problem.” End each post with one specific question operators can answer from experience, for example “Who approves invoice exceptions on your team today?” Once a week, turn one workflow into a 4–5 post thread using self-replies, which Zernio still supports. Put any link in the last reply.",
+          "title": "Close alternate posts with a narrow question and answer replies in the first hour",
+          "detail": "End every other post with a specific question. For example, after 'An invoice should not be paid because it reached the right inbox…', ask 'What does your team check before approving an invoice today?'. Stay on X for 30 to 60 minutes after each post and answer every reply, because replies the author engages with carry the most ranking weight.",
           "effort": "low",
           "impact": "medium",
           "account": "arqentia",
-          "evidence": "8 of 13 logged posts open with “[thing] should not/never…”, and no visible text asks a question (the log cuts posts at about 200 characters). Self-replies are not affected by the February 2026 API rule."
+          "evidence": "8 of 13 posts open with the same 'should not / should never' statement, and none of the roughly 200-character excerpts in the log contains a question. The log cuts the text off and analytics is off, so the endings and reply counts can't be seen."
+        },
+        {
+          "title": "Turn one topic a week into a thread",
+          "detail": "Each week, expand one topic into a 4 to 6 post thread through Zernio (self-replies still work through the API): the problem, the rule, the fields or controls needed, how it fails, and the approval step. If you link a resource, put it in the last reply, and remember that reply is billed at the $0.20 link rate.",
+          "effort": "medium",
+          "impact": "medium",
+          "account": "arqentia",
+          "evidence": "All 13 posts are single posts with one image, and no threads appear in the log. Several excerpts are cut off in the middle of a step list, such as 'Every call, form, and chat needs four controls…' and 'Every booking should carry three fields…', which would work well as threads."
         }
       ],
-      "cadence": "No best-time data backs this (the best-time sample is 0 and every weekday value is null), so it is a starting schedule to test. For the first two weeks, publish 1 original post every weekday (5 a week) from the Zernio queue. Once the queue holds two weeks of drafts, move to 2 a day on weekdays (10 a week), including one thread a week built from self-replies. Rotate the posting time between 9:00 ET (used for 8 of the 13 past posts), 12:00 ET and 17:00 ET. Never publish two posts in the same hour: both Aug 12 posts (“Retries are necessary…” and “Schema drift should fail loudly…”) went out at 12:00. Add 15–20 minutes a day of manual replies in the X app, and answer replies on your own posts within the first hour. At 10 posts a week, publishing costs about $0.15 a week without links, versus $2.00 if every post had a link, so links go in a reply.",
+      "cadence": "There is no best-time data: the bestTimes sample is 0 and every weekday lift is null, so these slots are a starting point, not a finding. Weeks 1–2: one @arqentia post each weekday (5 a week) at 9:00 ET, where 8 of the 13 logged posts went out, plus one thread a week and 20 minutes a day of manual replies in the X app. From week 3, if you've kept up the weekday posts, add a second daily post that alternates between 12:00 ET (used Aug 12) and 17:00 ET (close to the Aug 14 and Aug 15 posts) to build a timing comparison. Stay on X for 30 to 60 minutes after each post to answer replies. Review timing once analytics has about 20 to 30 posts of data. At 10 posts a week with no links, publishing costs about $0.15 a week.",
       "working": [
         {
           "point": "Links stay out of the main post.",
-          "evidence": "None of the 13 logged posts has a link. At X's rates each one cost $0.015 instead of $0.20, about $0.20 in total instead of $2.60. Links also tend to cost reach, but there is no reach data here to confirm that part."
+          "evidence": "All 13 logged posts have hasLink false. That avoids the reach penalty links tend to carry and the $0.20 link fee. Publishing all 13 cost about $0.20 in total (13 × $0.015). This is a process strength only, because no reach data exists to confirm it."
         },
         {
-          "point": "Every post includes an image.",
-          "evidence": "All 13 posts have one image, for example “An invoice should not be paid…” (Sep 11) and “Retries are necessary…” (Aug 12). Images are thought to keep people on a post longer, but with analytics off no number shows whether they helped."
+          "point": "Every post carries native media.",
+          "evidence": "All 13 posts have mediaCount 1. Images can add dwell time on X, but with analytics off there is no way to tell whether these did."
         },
         {
-          "point": "The posts take a clear, specific position that suits operators.",
-          "evidence": "Each post names a real failure, a fix and a human check: “A sales call should not end as loose notes…” (Sep 8), “An AI agent should not run support from a shared inbox…” (Aug 24), “Most service businesses don’t have a lead problem…” (Aug 14). This fits the operator and founder audience in the brief. Whether it earns engagement is unknown because there are no post metrics."
+          "point": "Topics are specific and aimed at operators.",
+          "evidence": "Posts name concrete controls. Examples: 'Retries are necessary. Duplicate actions are not.' (idempotency keys) and 'An invoice should not be paid because it reached the right inbox' (matching invoices to purchase orders, with a person approving). This fits the stated audience of operators and founders adopting AI, but no engagement numbers show it lands."
+        },
+        {
+          "point": "A weekday rhythm has been done before.",
+          "evidence": "From Aug 24 to Aug 27 there was a post on four weekdays in a row, all at 9:00 ET ('An AI agent should not run support…', 'Your weekly report should not start…', 'When someone changes roles…', 'A supplier delay should not live…'). A weekday cadence is achievable."
         }
       ],
-      "headline": "Turn on post analytics for @arqentia with a monthly spend cap, and start posting every day again this week: the account has posted nothing since Sep 11, and none of its 13 posts from the last 90 days can be measured.",
+      "headline": "Turn on post analytics for @arqentia in Zernio with a monthly spend cap, and start posting again: 13 posts went out in the last 90 days with no engagement data behind any of them, and nothing has been published since Sep 11.",
       "platform": "twitter",
-      "diagnosis": "There is no engagement data here. Analytics are switched off in Zernio for @arqentia (321 followers), so every metric in the brief is null and the best-time table has a sample of 0. Treat this as a starting playbook built from the publishing log, not a data finding. The log shows 13 posts in 90 days, each with one image and no link. But 11 of them went out between Aug 12 and Aug 27, only 2 in September (Sep 8 and Sep 11), and none in the 15 days since. That averages about one post a week, far below the several posts a day X tends to reward, and the one reply the account tried was rejected under X's February 2026 API rule.",
+      "diagnosis": "This brief has no engagement data. Analytics is off in Zernio, so @arqentia (321 followers) shows 0 tracked posts and null impressions, engagements and ER in every period, even though the publishing log lists 13 published posts and 1 failed post in the last 90 days. All 13 posts went out between Aug 12 and Sep 11, with 11 of them between Aug 12 and Aug 27. Nothing has been published in the 15 days since Sep 11, and nothing before Aug 12 appears in the 90-day window. The copy, format and timing notes below come from the publishing log and general X mechanics, so treat them as a starting playbook, not findings from engagement data.",
       "dataQuality": "none",
       "experiments": [
         {
-          "test": "For 2 weeks after analytics are on, alternate: 5 posts ending in a question and 5 ending in a statement, all at the same time slot with the same format (one image, no link).",
-          "metric": "Replies per post and engagement rate on impressions. Compare the typical (median) post in each group, not single posts.",
-          "hypothesis": "Posts that end with a specific question get more replies than posts that end on a statement."
+          "test": "For two weeks, alternate posts from the same topic families: one ending on a statement, the next ending on a specific question. Keep both in the same 9:00 ET slot, and answer every reply within 60 minutes.",
+          "metric": "Replies per post and engagement rate on impressions (needs analytics on).",
+          "hypothesis": "Posts that end with a narrow question get more replies than posts that end on a statement."
         },
         {
-          "test": "Rotate 9:00, 12:00 and 17:00 ET across weekdays for 3 weeks so each slot gets at least 5 posts.",
-          "metric": "Impressions per post in the first 24 hours. Then let the dashboard rebuild its best-time table from real data.",
-          "hypothesis": "9:00 ET, used for 8 of the 13 posts, may not be the best slot for a US and Latin American audience."
+          "test": "For three weeks, keep 9:00 ET on Mon/Wed/Fri. Move the Tue/Thu posts, alternating between 12:00 and 17:00 ET, until each slot has at least 5 posts.",
+          "metric": "Impressions and engagements per post by slot, which will also fill the brief's bestTimes table (its sample is 0 today).",
+          "hypothesis": "9:00 ET is just the slot that has been used so far, not a proven best time."
         },
         {
-          "test": "Over 4 weeks, publish 4 workflow topics as threads and 4 as single posts, pairing them by topic type.",
-          "metric": "Bookmarks and impressions per post. For threads, count the whole thread.",
-          "hypothesis": "A thread (an opening post plus 3–4 self-replies walking through the workflow) gets more bookmarks than the same content as a single post."
+          "test": "For three weeks, publish 2 Spanish versions per week of that week's topics, adapted rather than translated word for word.",
+          "metric": "Engagement rate and replies per Spanish post compared with English posts in the same weeks, plus follower change from the 321 baseline.",
+          "hypothesis": "Spanish posts reach the Latin American part of the audience, which English-only posting misses."
         }
       ],
-      "generatedAt": "2026-09-26T12:40:17.780Z"
+      "generatedAt": "2026-09-26T12:58:23.454Z"
     },
     {
       "fix": [
         {
-          "point": "Image posts stopped getting shown in September.",
-          "evidence": "The 13 September image posts had a median of 33 impressions. The 3 September text posts had a median of 136: 'You are pasting the summary into Claude' (323), 'How much of your process is anyone actually working on?' (136) and 'Revoking an agent's access' (81). Six image posts got only 23 to 33 impressions each, e.g. 'An automation does not break. It drifts.' (33) and '75% of companies say their AI agents are secure' (23). The Sep 24 and 25 posts are still collecting impressions."
+          "point": "Engagement per post has fallen every month while the same template keeps repeating.",
+          "evidence": "Engagements per post were 2.0 in July, 1.6 in August and 1.2 in September. The line '8+ years shipping hardware programs inside a Fortune 500' appears in 16 posts between Jul 11 and Aug 10. After that come variants such as 'Ten years on factory floors', Boeing and NPI. The 'Five mistakes... and the fix for each' format ran 6 times, most recently in 'The AI demo you are watching was built to work' on Sep 23. The data does not prove the template caused the drop, but it is the main part of the content that has stayed the same."
         },
         {
-          "point": "The same template keeps repeating, and the repeat posts got no engagement.",
-          "evidence": "The line '8+ years shipping hardware programs inside a Fortune 500' appears in at least 15 posts between Jul 11 and Aug 10. Three follow-ups that re-used earlier posts ('I published my ... on this feed') got 0 engagements between them: 'Every readiness checklist gets run top to bottom' (Aug 24, 102 impressions), 'Who picked the process you are automating' (Aug 25, 79) and 'Nobody's AI automation fails in the chat window' (Aug 26, 76)."
+          "point": "Readers are not replying.",
+          "evidence": "There were 22 comments across 97 posts, and only 5 comments on the 22 posts of the last 30 days. Shares were 0 in the last 30 days, against 1 in the 30 days before. 29 of 97 posts got no engagement. The 8 posts that drew 2 or more comments also averaged 3.5 likes, saves and shares each, against 1.5 for the account."
         },
         {
-          "point": "Video is your weakest format.",
-          "evidence": "Your 19 videos average 1.4 engagements per post, with a median of 62 impressions, the lowest of the four formats. The last 6 videos (Aug 14 to Sep 22, e.g. 'You do not know which steps of your automation are safe to run twice') got 39 to 63 impressions each and 3 engagements between them."
+          "point": "Video is the weakest format on this profile.",
+          "evidence": "The 19 videos averaged 36 reach and 1.4 engagements per post. The 6 videos posted since Aug 14 reached 218 people in total and earned 3 engagements. Examples: 'The automation that breaks is not the one that costs you' reached 51 people with 0 engagements, and 'You do not know which steps of your automation are safe to run twice' reached 42 with 0."
         },
         {
-          "point": "Your posts start almost no conversation.",
-          "evidence": "97 posts drew 22 comments and 8 shares in total. The last 30 days had 23 posts, 5 comments and 0 shares. 29 of the 97 posts (30%) got no engagement at all."
+          "point": "Posts written in Arqentia's company voice got almost no distribution.",
+          "evidence": "13 posts in Arqentia's voice were all published on days with 2 or 3 posts. They averaged 16 impressions, against 127 for the account. Examples: 'Build or buy is the wrong first question' (12 impressions), 'Kenco put six AI agents' (17) and 'Standing access gives an AI agent...' (18 impressions, 1 reach). 'One clean AI run proves possibility' (Sep 6, 9am) shows 0 impressions."
         }
       ],
       "agent": "linkedin-specialist",
       "model": "Claude Opus (local Claude Code)",
       "actions": [
         {
-          "title": "Post twice a week about AI skills for operators who aren't developers",
-          "detail": "Write about what an operator or owner should learn, which parts of a job AI changes, and what the Claude certification paths mean for a team. Frame each post around a buyer's decision, such as what your team should learn first or what should stay with a person, so the posts reach Arqentia's buyers and not only job seekers. When Anthropic or another vendor announces something about skills or certification, post about it within 24 hours.",
+          "title": "Write two career-and-skill posts a week",
+          "detail": "Each week, write two posts that take a position on what an operator should learn, skip or change in their own job with AI. Model them on 'The most valuable AI skill right now is not prompting' and the 30-day plan in 'You do not need a CS degree to become an AI architect'. Tell the reader what to do, not only what you learned: 'AI is not coming for your job' was about your own career change, reached 217 people and got 0 engagements. Use factory examples as proof inside the post, not as the opening line.",
           "effort": "low",
           "impact": "high",
           "account": "Rafael Schwart , PMP",
-          "evidence": "The 7 posts on AI skills and careers had a median of 255 impressions and 3.9 engagements per post. The account median is about 85 impressions and 1 engagement. The Jul 10 certification post alone got 2,197 impressions. The last post on this topic was Aug 10."
+          "evidence": "The 6 career and skill posts averaged 4.2 engagements per post, against 1.7 for the account. Leaving out Jul 10, they averaged 118 reach per post, against 78. The group includes both the top post by reach (Jul 10, 1,580 reach) and the top post by engagement (Aug 10, 10 engagements)."
         },
         {
-          "title": "Open with your position, not a survey stat or your credentials",
-          "detail": "Make the first line a claim about a decision the reader faces, as in 'The most valuable AI skill right now is not prompting. It is knowing what to leave alone.' Mention your hardware background in one line in the middle of the post, and word it differently each time. Stop re-posting earlier frameworks as 'I published my ... on this feed' posts. If a framework deserves a second run, rebuild it as a document post.",
+          "title": "End each post with a question and reply to comments in the first hour",
+          "detail": "End every post with one question that a reader can answer in a single line from their own work, for example 'Which step in your process would you never hand to a model?'. Reply to every comment within the hour it arrives. Before each post goes live, spend 15 minutes leaving real comments on posts by the operators and AI buyers you want to reach. That last step is a common LinkedIn practice, not something this data tested.",
+          "effort": "low",
+          "impact": "high",
+          "account": "Rafael Schwart , PMP",
+          "evidence": "There were only 22 comments across 97 posts, 5 of them in the last 30 days, and 0 shares in the last 30 days. The 8 posts with 2 or more comments averaged 3.5 likes, saves and shares each, against 1.5 for the account. Examples: 'The most valuable AI skill...' (4 comments, 10 engagements), 'Small businesses do not need an AI employee' (2 comments, 7 engagements) and 'Who runs your AI automation when you are not there?' (2 comments, 6 engagements)."
+        },
+        {
+          "title": "Pause video for four weeks and use those slots for text-only posts",
+          "detail": "Take the ideas planned as videos and publish them as text-only posts. Keep a single image only for frameworks and checklists, where images turn reach into engagement better.",
           "effort": "low",
           "impact": "medium",
           "account": "Rafael Schwart , PMP",
-          "evidence": "The Aug 10 post that opened with a position got 10 engagements and 4 comments. Nine posts that opened with a statistic ('87% of AI decision-makers', '75% of companies say', '32% of AI agent conversations', etc.) had a median of 78 impressions and 1.4 engagements each. The Aug 24–26 re-runs got 0 engagements."
+          "evidence": "Video averaged 36 reach and 1.4 engagements per post, and the last 6 videos earned 3 engagements in total. Text averaged 106 reach per post (125 in September) and accounts for 6 of the 12 highest-reach posts."
         },
         {
-          "title": "Post your best work Friday to Monday, and never more than once a day",
-          "detail": "Keep posting at 11am ET. Put the week's AI-skills post on Saturday or Sunday, post on Friday and Monday, and use only one day from Tuesday to Thursday. Don't add a second post on the same day.",
+          "title": "Stop posting at 11am every day: post Friday to Monday around midday and skip Tuesday and Thursday",
+          "detail": "Change the Zernio queue slots to Mon 12–3pm, Fri 12–3pm, Sat 9am–12pm and Sunday morning, plus an optional Wed 12–3pm. Drop Tuesday and Thursday, and spend that time replying to comments.",
           "effort": "low",
           "impact": "medium",
           "account": "Rafael Schwart , PMP",
-          "evidence": "Weekday lift (1.0 = average): Sat 1.3 (12 posts), Sun 1.2 (13), Fri and Mon 1.0, Wed 0.9, Tue and Thu 0.8. 7 of the 9 posts with 5 or more engagements went out Friday to Sunday. Second posts on the same day often got few impressions: 'Standing access gives an AI agent' got 18, posted an hour after a 261-impression post; 'AI can be a liability' got 23; and 'Kenco put six AI agents' (17) and the Spanish Arqentia post (20) went out 2–3 hours after a 141-impression post on Aug 6."
+          "evidence": "26 of the 30 posts since Aug 20 went out at 11am. The best time slots are Mon 12–3pm (lift 1.6, 2 posts), Fri 12–3pm (1.4, 3 posts) and Sat 9am–12pm (1.3, 8 posts). By day, Tue and Thu both sit at 0.8. 7 of the 9 posts with 5 or more engagements went out Friday to Sunday. Each slot rests on only 2–8 posts, so check again after four weeks."
         },
         {
-          "title": "Stop posting native video on LinkedIn and turn the scripts into text posts",
-          "detail": "Post each video's script as a text-only post, with the first two lines as the hook. Go back to video only if a test beats the text median.",
+          "title": "Post once a day at most, in the first person, and move company posts to the Arqentia page",
+          "detail": "Put 'we' and Arqentia announcements, such as 'Arqentia amplía su cobertura...' and 'At Arqentia, we would define...', on the company page. If one needs to appear here, reshare it with a one-line personal comment. Also open the Sep 6, 9am post 'One clean AI run proves possibility': it shows 0 impressions, so check that it actually published.",
           "effort": "low",
-          "impact": "medium",
+          "impact": "low",
           "account": "Rafael Schwart , PMP",
-          "evidence": "Video averages 1.4 engagements per post, with a median of 62 impressions across 19 posts. The last 6 videos got 3 engagements between them. The text median is 136 impressions."
-        },
-        {
-          "title": "End each post with a question readers can answer from their own work, and reply to every comment the same day",
-          "detail": "Ask for a specific answer, such as 'Which step in your process would you never automate?', rather than a general 'Thoughts?'. Replying the same day keeps threads going while the post is still being shown.",
-          "effort": "low",
-          "impact": "medium",
-          "account": "Rafael Schwart , PMP",
-          "evidence": "97 posts drew 22 comments in total. The last 30 days had 23 posts, 5 comments and 0 shares. The most-commented posts asked for a judgment readers could make from their own experience: 'The most valuable AI skill right now is not prompting' (4 comments) and 'Who runs your AI automation when you are not there?' (2)."
+          "evidence": "The 13 company-voice posts, all on days with 2–3 posts, averaged 16 impressions against 127 for the account. 'How are you today? Tell us what you want to hear from us' got 81 impressions and 0 engagements."
         }
       ],
-      "cadence": "5 posts a week, one per day, at 11am ET: Friday, Saturday, Sunday, Monday and one day from Tuesday to Thursday. Weekday lift is highest on Saturday (1.3, 12 posts) and Sunday (1.2, 13 posts) and lowest on Tuesday and Thursday (0.8). Saturday 9am–12pm, where your 11am Saturday posts land, is the best time slot with a real sample (lift 1.3 over 8 posts). Put the week's AI-skills post on Saturday or Sunday. Before moving Monday and Friday posts to 12:30pm, test it: Mon 12–3pm shows a lift of 1.6 and Fri 12–3pm 1.4, but from only 2 and 3 posts. Don't post twice on the same day.",
+      "cadence": "Post 4–5 times a week, never more than once a day, always in the first person. Use Mon 12–3pm (lift 1.6, 2 posts) and Fri 12–3pm (1.4, 3 posts) for the two career and skill posts. Add Sat 9am–12pm (1.3, 8 posts), which has the most posts behind it of any slot, and Sunday (day lift 1.2 across 13 posts; no single Sunday slot stands out, so keep it late morning). Add an optional Wed 12–3pm post to test whether weak midweek results (Tue 0.8, Wed 0.9, Thu 0.8) come from the day itself or from the 11am time used on 26 of the last 30 posts. Each slot's lift rests on only 2–8 posts, so check again after four weeks.",
       "working": [
         {
-          "point": "Posts about AI skills and careers for non-developers are your strongest topic.",
-          "evidence": "7 posts: 'Anthropic is turning Claude into a career ladder' (Jul 10, 2,197 impressions, 18% of all tracked impressions), 'AI is not coming for your job' (326), 'You do not need a CS degree to become an AI architect' (261, 6 engagements), 'You picked your workflow' (255), 'Ten years on factory floors taught me more about AI' (241), 'The most valuable AI skill right now is not prompting' (132, 10 engagements) and 'Everyone is asking what new skill to learn' (94). Median 255 impressions (248 without the outlier) and 3.9 engagements per post. The account median is about 85 impressions and 1 engagement."
+          "point": "Posts that tell operators what to learn or skip in their own AI career get read and answered.",
+          "evidence": "Six posts fit this pattern: 'Anthropic is turning Claude into a career ladder', 'You do not need a CS degree to become an AI architect', 'You picked your workflow...', 'AI is not coming for your job', 'Everyone is asking what new skill to learn' and 'The most valuable AI skill right now is not prompting'. Together they earned 25 engagements, or 4.2 per post against 1.7 for the account. Without the Jul 10 breakout they still averaged 118 reach per post, against 78 for the account. The group includes the biggest post by reach (Jul 10: 2,197 impressions and 1,580 reach, 21% of all-time reach) and the top post by engagement (Aug 10: 10 engagements from 5 likes, 4 comments and 1 save)."
         },
         {
-          "point": "Taking a clear position on a decision operators face gets people to respond.",
-          "evidence": "Your top post by engagements, 'The most valuable AI skill right now is not prompting. It is knowing what to leave alone' (Aug 10), had 10 engagements, including 4 comments: a 7.6% engagement rate on 132 impressions. Next were 'Small businesses do not need an AI employee' (7, including 2 comments and 1 share) and 'Who runs your AI automation when you are not there?' (6, including 2 comments)."
+          "point": "Text-only posts get the widest distribution.",
+          "evidence": "The 17 text posts averaged 106 reach. Images averaged 57 (leaving out Jul 10), the 4 carousels 87 and video 36. Six of the 12 highest-reach posts are text, including 'You are pasting the summary into Claude' (231), 'AI is not coming for your job' (217) and 'You can build a working AI automation in Claude in one afternoon' (198). In September, text posts averaged 125 reach against about 50 for images. One caveat: images turn reach into engagement better, 3.1% against 1.4% on reach (leaving out Jul 10)."
         },
         {
-          "point": "Text-only posts reach the most people.",
-          "evidence": "Median impressions: text 136 (17 posts), image 83 (57 posts), video 62 (19 posts). Text is 18% of your posts but 6 of the 12 highest-impression posts, e.g. 'AI is not coming for your job' (326), 'You are pasting the summary into Claude' (323) and 'You can build a working AI automation in Claude in one afternoon' (318). Images still get slightly more engagements per post than text: 1.9 vs 1.5."
-        },
-        {
-          "point": "You were right to stop the generic company-voice posts.",
-          "evidence": "14 posts were written as Arqentia or general business advice with no personal story, e.g. 'Build or buy is the wrong first question', 'Kenco put six AI agents into production' and 'Your dashboard is not the system'. All stayed at 27 impressions or fewer, with 9 engagements between them. None has run since Aug 7."
+          "point": "Posts published Friday through Monday do best.",
+          "evidence": "7 of the 9 posts with 5 or more engagements went out Friday to Sunday. One went out on a Monday (Aug 10, 1pm) and one on a Wednesday. None went out on a Tuesday or Thursday. By day, the lift is Sat 1.3 (12 posts) and Sun 1.2 (13 posts), against Tue 0.8 (11 posts) and Thu 0.8 (16 posts)."
         }
       ],
-      "headline": "Go back to posts about AI skills and careers for non-developers. Your 7 posts on that topic had a median of 255 impressions and 3.9 engagements each. You haven't posted one since Aug 10, and impressions per post fell to 80 in September.",
+      "headline": "Replace the daily 11am factory-lesson post with 4–5 posts a week that tell operators what to learn or skip in their own AI work and ask them to answer. The six posts that did this averaged 4.2 engagements, against 1.7 for the account overall and 1.2 in the last 30 days.",
       "platform": "linkedin",
-      "diagnosis": "Results per post have dropped three months in a row. Impressions per post went from 181 in July (128 without the 2,197-impression 'Anthropic is turning Claude into a career ladder' post) to 105 in August and 80 in September. Engagements per post went from 2.0 to 1.6 to 1.2, and the last 30 days had 0 shares. Post count fell over the same months (39, then 31, then 19 so far in September), so posting less has not helped per-post results on its own. What changed is the mix, which narrowed to agent governance told through factory-floor examples, mostly as image posts. The data is partial because only posts published through Zernio are tracked, and the median post gets about 85 impressions and 1 engagement, so rely on impressions more than engagements and don't read much into gaps between single posts.",
-      "dataQuality": "limited",
+      "diagnosis": "The profile posts almost every day (89 posts in 90 days; 26 of the 30 posts since Aug 20 went out at 11am). Even so, a typical post reaches about 50 people, which is under 2% of 3,566 followers, and gets 1 engagement (median). 29 of the 97 posts got no engagement at all. Two things are falling together. Reach per post went from 70 in July (leaving out the Jul 10 breakout) to 69 in August and 58 in September. Engagements per reach went from 2.7% to 2.3% to 2.0%. As a result, engagements per post fell from 2.0 to 1.6 to 1.2, no post has passed 3 engagements since Aug 15, and shares were 0 in the last 30 days. Distribution figures here are calculated on reach, while the brief's own rates use impressions. Only posts published through Zernio are counted, and per-post numbers are small, so the patterns below rely on groups of posts, not single posts.",
+      "dataQuality": "good",
       "experiments": [
         {
-          "test": "For the next 10 posts, alternate text-only posts and single-image posts on similar topics, all at 11am ET.",
-          "metric": "Impressions and engagements per post 72 hours after posting. Baseline: September medians of 136 impressions for text and 33 for images.",
-          "hypothesis": "Text-only posts reach more people than similar posts with an image, without losing engagements."
+          "test": "For 4 weeks, alternate two kinds of posts in the same time slots. Half open with one specific incident (a date, a number, what broke, what it cost) and have no credential line in the first three lines. The other half keep the current opening.",
+          "metric": "Engagements per reach and comments per post for each kind, compared with the September baseline of 2.0% on reach and 0.26 comments per post.",
+          "hypothesis": "The repeated opening (a factory credential in the first lines, or 'Five mistakes... and the fix for each') is part of why engagement per post fell from 2.0 to 1.2."
         },
         {
-          "test": "Turn the First-Automation Test and the Payoff Test into 6 to 8 page document posts and publish them on two Saturdays.",
-          "metric": "Impressions, saves and engagements, compared with the image median of 83 impressions and the image average of 1.9 engagements per post. Of your 4 carousels so far, 'Cisco just cut 4,000 jobs' got 394 impressions and '95% of enterprise AI pilots failed' got 269.",
-          "hypothesis": "Frameworks posted as PDF documents (carousels) reach more people than single-image posts."
+          "test": "For the next 8 posts, alternate text-only and text-with-image versions of the same kinds of post (career or skill takes, and frameworks), in the same time slots.",
+          "metric": "Median reach per post and engagements per post. Baseline: text 106 reach and 1.5 engagements; image 57 reach and 1.8 engagements (leaving out Jul 10).",
+          "hypothesis": "On this profile, a text-only post reaches about twice as many people as the same kind of post with an image, and gets at least as many engagements in total."
         },
         {
-          "test": "For the next 4 Mondays and 4 Fridays, alternate between 11am and 12:30pm ET.",
-          "metric": "Impressions 72 hours after posting, for each time slot. The best-times table shows a lift of 1.6 for Mon 12–3pm and 1.4 for Fri 12–3pm, but from only 2 and 3 posts.",
-          "hypothesis": "On Mondays and Fridays, posting at 12:30pm ET gets more impressions than 11am."
+          "test": "Over two weeks, publish 2 first-person posts ('I', not 'we'), each about one concrete workflow such as lead intake, invoices or dispatch. Make each the only post that day, in the Fri 12–3pm or Sat 9am–12pm slot.",
+          "metric": "Reach, and engagements per reach, compared with three earlier posts: 'Small businesses do not need an AI employee' (7 engagements on 24 reach), 'Most businesses do not need an AI accountant' (4 on 25) and 'Most small businesses do not lose because they lack leads' (6 on 25). Those three combined converted 23% of reach, against 2.2% for the account.",
+          "hypothesis": "First-person posts about one broken small-business workflow already turn reach into engagement unusually well, and will also reach more people when published alone in a top slot."
         }
       ],
-      "generatedAt": "2026-09-26T03:20:37.019Z"
+      "generatedAt": "2026-09-26T13:02:33.436Z"
     },
     {
       "fix": [
         {
-          "point": "On @arqentia.inc, carousels barely reach existing followers, and the 7 a.m. single-industry ones do worst.",
-          "evidence": "'Una silla vacía no es…' (dental, Sep 9) reached 13, 'Lunes, 7:45 a.m.' (botica, Sep 10) 19, 'Cada negocio mira números distintos' 21 and '7 of 10 after-hours calls' 34. All four went out at 7 a.m. Median reach is 23 for carousels (7 posts) and 118 for Reels. The two carousels that got real reach were written for any business owner and posted outside 7–8 a.m.: 'La meta no es trabajar más horas' (Sat 4pm, 546) and 'Cuatro negocios distintos' (156)."
+          "point": "@arqentia.inc posted less in September and its reach fell",
+          "evidence": "5 posts in September against 15–17 in each of June, July and August, and nothing since Sep 19. Median reach in the last 30 days was 73 (7 posts), down from 120 in the 30 days before (13 Arqentia posts). Engagements per post fell from 13.6 to 8.1 and comments fell to 0."
         },
         {
-          "point": "The late-August research-story Reels on @arqentia.inc underperformed. Their hook style and posting time changed at the same moment, so the data can't separate the two causes.",
-          "evidence": "'I read 88 complaints' got 142 reach, 4 engagements and 0 shares. 'I scraped the reviews on 10 body shops' got 60 reach and 5 engagements, 'Una empresa de envíos en Doral' 66 and 7, and 'Five numbers every HVAC owner' 120 and 4. All four are below the 9-engagement median. All 13 posts from Aug 13 to Sep 12 went out at 7–8 a.m."
+          "point": "On @arqentia.inc, single-industry content does worse, and in September it made up most of the posts",
+          "evidence": "By my read of the captions, 12 Reels are built around one industry (HVAC, gym, restaurant, body shop, therapy, shipping, among others). Their median is 6 engagements, against 11 for the 27 owner-level Reels, and none passed 300 reach. September's 'Una silla vacía…' (dental, reach 13) and 'Lunes, 7:45 a.m.…' (pharmacy, reach 19) are the two lowest-reach posts in the account's history."
         },
         {
-          "point": "The calls to action on @arqentia.inc are not producing comments, saves or shares.",
-          "evidence": "In the last 30 days, 8 posts with 1,004 total reach got 0 comments, 1 save and 4 shares. That includes 'Coméntalo' on 'La meta no es…' and 'Escríbenos' on three posts. All-time, 9 of the 16 comments came from the Jul 25 intro Reel, and there are only 8 saves across 55 posts. The Reel offering 'la guía completa' ('Es lunes a las 9…') got 3 comments and 1 save, the best CTA result outside that intro Reel."
+          "point": "On @arqentia.inc, 'comment' calls to action aren't producing comments, and saves are near zero",
+          "evidence": "16 comments across 55 posts, 9 of them on 'Your business doesn't have a software problem…' (Jul 25). 'La meta no es trabajar más horas… Coméntalo' got 0 comments on 548 reach. The guide offer in 'Es lunes a las 9…' got 3 comments on 537 reach. Saves total 8, or 0.10% of reach."
         },
         {
-          "point": "Both accounts are posting much less.",
-          "evidence": "@arqentia.inc posted 15–17 times a month from June to August, then 5 times in September, with nothing since Sep 19. Its reach per post fell from 221 to 126; without the Sep 19 carousel it is 65. @rgschwart has not posted since Aug 26."
+          "point": "@rgschwart, the account with the reach, is idle and has never posted a Reel",
+          "evidence": "0 posts in the last 30 days and 5 posts since Nov 2025: 4 carousels and 1 image. Its one work-focused post, 'Quick Business Trip to the Windy City…' (Nov 14), had its lowest engagement (89, 6.0% of reach). That is a single post, so read it as a caution, not a rule."
         }
       ],
       "agent": "instagram-specialist",
       "model": "Claude Opus (local Claude Code)",
       "actions": [
         {
-          "title": "Write 3 Reels using the early-August hook pattern",
-          "detail": "In each Reel, put one line on screen in the first 2 seconds. Make it a reframe ('No tienes un problema de software, tienes un problema de arquitectura'), a clock-time scene ('Son las 8:40 p.m. y sigues cotizando') or a specific big number. Then explain one mechanism, and end with 'Sigue a @arqentia.inc' or a single comment keyword. Build on topics that already got engagement: 'En la mayoría de negocios la plata no se pierde…' (11 engagements) and 'Hay una parte de tu negocio que no está escrita' (9 engagements, 2 shares).",
-          "effort": "medium",
+          "title": "Write the next 6 Reels as owner-level reframes, not industry case studies",
+          "detail": "Over the next two weeks, open each Reel with one claim any owner recognizes, shown as on-screen text in the first 2 seconds and repeated in the caption's first line. Then state the cost, then the fix, the way 'Your business doesn't have a software problem…' and 'OpenAI y Anthropic pagan…' do. Use industries only as examples inside the Reel, never as the hook. Keep posting in both Spanish and English. Before copying the top four, check whether any of them was boosted. The brief doesn't say, and their impressions-to-reach ratios (1.8–3.0) are higher than a typical Reel's (about 1.2–1.5).",
+          "effort": "low",
           "impact": "high",
           "account": "arqentia.inc",
-          "evidence": "The Reels that followed this pattern reached 767, 724, 535 and 303, against a Reel median of 118. The 13 posts from Aug 13 to Sep 12 reached 13–142."
+          "evidence": "Owner-level Reels have a median of 11 engagements (27 posts) against 6 for single-industry Reels (12 posts), and all four posts above 500 reach used an owner-level hook. The Sep 9 dental and Sep 10 pharmacy posts reached 13 and 19 accounts."
         },
         {
-          "title": "Stop posting at 7–8 a.m.",
-          "detail": "Schedule this week's posts for Sat 3–6pm, Tue 6–9pm and Wed 6–9pm (New York time). Keep at most one post at 7 a.m. as a comparison, so you can see whether the posting time or the content caused the drop.",
+          "title": "Co-publish Arqentia Reels as Collab posts with @rgschwart",
+          "detail": "Add @rgschwart as collaborator on 1 Arqentia Reel a week, with Rafael on camera speaking in the first person. Start by re-cutting the topic of 'Your business doesn't have a software problem' or 'OpenAI y Anthropic pagan $287.000'. Stop after 2 if engagement on them falls well below @rgschwart's median of 125; its one work-only post got 89.",
           "effort": "low",
-          "impact": "medium",
+          "impact": "high",
           "account": "arqentia.inc",
-          "evidence": "All 13 posts from Aug 13 to Sep 12 went out at 7–8 a.m., and none passed 142 reach. The median reach is 113 for Reels posted at 7–8 a.m. (13 posts) and 138 for Reels posted 2–8 p.m. (18 posts). Slot lifts: Sat 3–6pm 1.5 (3 posts), Tue 6–9pm 1.2 (4 posts), Wed 6–9pm 1.1 (2 posts)."
+          "evidence": "@rgschwart's median reach is 1,347 per post (5 posts), against 110 for @arqentia.inc (55 posts), and it has 3,232 followers against 121. Collab posts have never been tried on either account, so the reach gain is unproven."
         },
         {
-          "title": "Replace the single-industry carousels with one broad Saturday carousel",
-          "detail": "Post one carousel a week in the Sat 3–6pm slot. Write it for any business owner, like 'La meta no es trabajar más horas', and use a checklist or before/after format. Pause the 7 a.m. botica, dental and other single-industry carousels, or turn their scenes into Reel scripts.",
-          "effort": "low",
-          "impact": "medium",
-          "account": "arqentia.inc",
-          "evidence": "Four 7 a.m. carousels reached 13–34. The two broad carousels, 'La meta no es trabajar más horas' (Sat 4pm) and 'Cuatro negocios distintos', reached 546 and 156. Median reach is 23 for carousels and 118 for Reels."
-        },
-        {
-          "title": "Give every CTA one keyword and a named file",
-          "detail": "Replace 'Escríbenos' and 'Coméntalo' with one keyword and a specific file, for example 'Comenta PROCESO y te mando la plantilla para escribir tu proceso'. Set up the auto-DM before the post goes live. Judge these posts on shares and saves per reach as well as comments, because a keyword CTA inflates comments.",
-          "effort": "low",
-          "impact": "medium",
-          "account": "arqentia.inc",
-          "evidence": "In the last 30 days, 8 posts got 0 comments even with 'Coméntalo' and 'Escríbenos' CTAs. The Reel that offered 'la guía completa' ('Es lunes a las 9…') got 3 comments and 1 save on 535 reach. All-time saves are 8 across 55 posts."
-        },
-        {
-          "title": "Post one personal update on @rgschwart",
-          "detail": "There has been no post since Aug 26. Post a personal carousel in the voice of the Aug 26 post: real moments from this year of building, plus one line that mentions Arqentia and tags @arqentia.inc. Lead with the personal side. Post on a weekend afternoon or a Wednesday morning.",
+          "title": "Post on @rgschwart every two weeks and let the work show",
+          "detail": "Post next by Oct 4. Follow the shape of the Aug 26 post: photos from the last two weeks plus 2–3 lines on what you're building and what's hard. Don't pitch. One mention of the work is enough; leave the business explainers to Arqentia.",
           "effort": "low",
           "impact": "medium",
           "account": "rgschwart",
-          "evidence": "'This has been one of the busiest summers' got 176 engagements and 20 comments on 1,347 reach, the best of the 5 posts. The most business-focused post, 'Quick Business Trip to the Windy City', had the lowest engagement (89) and the lowest engagement rate on reach (6.0%, against a 9.7% median). This rests on 5 posts, so treat it as a test."
+          "evidence": "0 posts in the last 30 days and 2 in the last 90. Engagement went 89, 114, 125, 129, 176. 'This has been one of the busiest summers…' got 176 engagements and 7 shares, while the work-only Windy City post got 89. With only 5 posts, treat this as a direction, not a finding."
+        },
+        {
+          "title": "Stop single-image posts and cap carousels at one a week",
+          "detail": "Move image slots to Reels. Keep one carousel a week, built like 'La meta no es trabajar más horas' (broad claim, then the cost, then 'tú solo apruebas') and posted Saturday afternoon, as a test of whether Sep 19 repeats. Don't post more single-industry carousels (dental, pharmacy, the AC checklist) until then.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia.inc",
+          "evidence": "Images: 9 posts, median reach 34. Carousels: 7 posts, median reach 23, including the broad 'Most teams do not have a reporting problem…' (23) and '7 of 10 after-hours calls…' (34). Only Sep 19 broke out, at 548."
+        },
+        {
+          "title": "Ask for shares, not comments, on the reach posts",
+          "detail": "End owner-level Reels by asking viewers to send the post on, for example 'Mándaselo a tu socio' or 'Send this to whoever runs your ops'. Keep the comment-KEYWORD call to action for one lead-magnet post a week. Judge that post on shares, saves, reach and the DMs it produces (tracked outside this brief), not on comment count.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia.inc",
+          "evidence": "0 comments across 7 posts in the last 30 days. 'Coméntalo' on the Sep 19 post got 0 comments on 548 reach. The one post that stated a principle, 'Most of the time, the problem is within the process design…', drew 20 of the account's 49 all-time shares."
         }
       ],
-      "cadence": "@arqentia.inc: 4 posts a week (3 Reels and 1 carousel), moving back toward the June–August pace of 15–17 posts a month. September has 5 posts, none since Sep 19. Put the carousel or the strongest Reel in Sat 3–6pm (lift 1.5, 3 posts). Put the other Reels in Tue 6–9pm (1.2, 4 posts), Wed 6–9pm (1.1, 2 posts) or Thu 12–3pm (1.0, 3 posts). Post less on Fridays (weekday lift 0.8 across 10 posts), and keep one 7 a.m. post as a comparison. @rgschwart: one post every 2–3 weeks. Its best posts went out Wed 10am (176 engagements), Sat 2pm (125) and Sat 7pm (129). The best-time table combines both accounts and has only 2–4 posts per slot, so use it as a starting schedule. All times are New York time.",
+      "cadence": "@arqentia.inc: 4 posts a week (3 Reels, 1 carousel), up from 5 posts in all of September and none since Sep 19. Slots: Sat 3–6pm (lift 1.5 on 3 posts: 'Es lunes a las 9…' 31, 'La meta no es…' 27, 'You didn't start this business' 10, all at or above the median of 9), Tue 6–9pm (lift 1.2, 4 posts), Wed 6–9pm (1.1, 2 posts) and Thu 12–3pm (1.0, 3 posts). Sat 6–9am also shows 1.5, but that rests on the Jul 25 post alone; the other two there got 9 and 4. Skip Friday (0.8 over 10 posts). The hour matters less than the hook here: 7–8am Reels had a median reach of 113, against 120 at other hours. @rgschwart: 1 post every two weeks. Its two Saturday posts landed at its median (125, 129) and its best post went out Wed 10am (176), so either slot works. The best-time table pools both accounts with only 2–4 posts per slot, so re-check it after 4 weeks.",
       "working": [
         {
-          "point": "On @arqentia.inc, Reels that open on one short, specific line (a reframe, a clock-time scene or a big number) are the only posts that reach well beyond the 120 followers.",
-          "evidence": "'Your business doesn't have a software problem' (Jul 25): 767 reach, 58 engagements, 9 comments. 'OpenAI y Anthropic pagan $287.000' (Aug 6): 724 reach, 49 engagements, 5 shares. 'Es lunes a las 9 y estás comprando leads' (Aug 8): 535 reach, 31 engagements. 'It's 8:40 at night' (Aug 7): 303 reach. Across 55 posts the account median is 110 reach and 9 engagements; the median for the 39 Reels is 118 reach."
+          "point": "On @arqentia.inc, owner-level reframe hooks are what reach beyond the followers",
+          "evidence": "All four posts above 500 reach open on a claim any owner recognizes: 'Your business doesn't have a software problem…' (Jul 25: 767 reach, 58 engagements, 6.4x the median of 9), 'OpenAI y Anthropic pagan $287.000…' (Aug 6: 724, 49), 'La meta no es trabajar más horas…' (Sep 19: 548, 27) and 'Es lunes a las 9 y estás comprando leads…' (Aug 8: 537, 31). Together they produced 2,576 of the account's 7,683 all-time reach. Three of the four are in Spanish, though only 13 of the 55 posts are."
         },
         {
-          "point": "Saturday afternoon is the most reliable slot for @arqentia.inc.",
-          "evidence": "Sat 3–6pm has a 1.5 lift, and all 3 posts in that slot beat the 9-engagement median: 'Es lunes a las 9' (31), 'La meta no es trabajar más horas' (27) and 'You didn't start this business' (10). Saturday as a whole has a 1.4 lift across 9 posts. The Sat 6–9am lift of 1.5 comes mostly from one post (58 engagements); the other two posts in that slot got 9 and 4."
+          "point": "On @arqentia.inc, Reels are the only format that regularly gets past the 121 followers",
+          "evidence": "39 Reels: median reach 118, median 9 engagements. 7 carousels: median reach 23, median 5 engagements. 9 images: median reach 34, median 7 engagements."
         },
         {
-          "point": "Spanish Reels turn reach into engagement better than English Reels.",
-          "evidence": "Since Aug 6, the 8 Spanish Reels have a median of 10 engagements on 89 reach. The 7 English Reels in the same period have a median of 5 engagements on 120 reach. Two of the account's top three Reels by reach are in Spanish. These samples are small, so keep posting in both languages."
+          "point": "On @arqentia.inc, a post that states a principle earned shares (sends), the signal Instagram weights most for reaching non-followers",
+          "evidence": "'Most of the time, the problem is within the process design…' (Jun 16) got 20 shares on 118 reach, or 17% sends per reach. That is 20 of the account's 49 all-time shares. Without it, the account's share rate is 0.38% of reach."
         },
         {
-          "point": "On @rgschwart, personal reflections on the year get the most engagement and comments.",
-          "evidence": "'This has been one of the busiest summers' (Aug 26) got 176 engagements and 20 comments on 1,347 reach, the best of the 5 posts. 'Last few months dump' (Jul 25) got 129. The 2 posts in the last 90 days averaged 152.5 engagements, against 126.6 all-time. With only 5 posts, treat this as a direction, not proof."
+          "point": "@rgschwart's engagement rises with every post",
+          "evidence": "Engagements went 89, 114, 125, 129, 176 across its 5 posts (Nov 2025 to Aug 2026). 'This has been one of the busiest summers…' (Aug 26) got 176 engagements, which is 1.4x its median of 125 and 13.1% of reach. It also got 7 of the account's 16 all-time shares. Median reach is 1,347, or 42% of 3,232 followers."
         }
       ],
-      "headline": "On @arqentia.inc, return to the Reels that open on one short, specific line, which reached 535–767 accounts between Jul 25 and Aug 8. Also stop posting at 7–8 a.m.: all 13 posts from Aug 13 to Sep 12 went out then and none reached more than 142 accounts.",
+      "headline": "On @arqentia.inc, go back to owner-level reframe Reels and stop leading with a single industry: all four posts that passed 500 reach opened on a claim any owner recognizes, while September's dental and pharmacy carousels reached 13 and 19 accounts.",
       "platform": "instagram",
-      "diagnosis": "@arqentia.inc's reach per post fell from 221 in the previous 30 days (12 posts) to 126 in the last 30 days (8 posts). One carousel produced 546 of the 1,004 total; the other seven posts averaged 65 reach, and none of the eight got a comment. The account's three largest Reels (535–767 reach, or 4–6× its 120 followers) ran Jul 25–Aug 8 and opened with a reframe, a clock-time scene or a big number. The 13 posts from Aug 13 to Sep 12 all went out at 7–8 a.m., were mostly research stories and single-industry carousels, and reached 13–142. @rgschwart reaches about 12× more people per post (median 1,347 vs 110), but it has only 5 posts and none since Aug 26, so its advice is written as tests. The brief's per-post engagementRate is engagements ÷ impressions, not reach, and its period totals combine both accounts, so every figure here is recalculated per account on reach.",
-      "dataQuality": "good",
+      "diagnosis": "@arqentia.inc depends on a few owner-level posts. Four of its 55 posts produced 34% of its 7,683 all-time reach, and the rest sit near the median reach of 110, which is close to its 121 followers. In September that went the wrong way: the account posted 5 times (it had posted 15–17 times in each of June, July and August), leaned on single-industry Peru content and carousels, and saw median reach fall from 120 to 73 and comments fall to 0. @rgschwart is the opposite: it has 27x the followers, a median reach of 1,347 per post and engagement that rises with every post (89 to 176), but it hasn't posted since Aug 26 and has never posted a Reel. Rates here are on reach (Arqentia 8.2%, @rgschwart 9.8% all-time) rather than the brief's impressions basis (6.5%, 3.3%), because @rgschwart's carousels log about 3.3 impressions per account reached. The brief has no watch time, no follower-vs-non-follower split and no follower growth, and @rgschwart has only 5 posts, so data quality is limited.",
+      "dataQuality": "limited",
       "experiments": [
         {
-          "test": "Post an English version of that Reel on @arqentia.inc with the same hook and edit, in the Sat 3–6pm or Tue 6–9pm slot. Change nothing else.",
-          "metric": "Reach compared with the 110 account median and the original's 724, and shares per 100 reach compared with the original's 0.7.",
-          "hypothesis": "The Reel 'OpenAI y Anthropic pagan $287.000' reached 724 because of its angle, not because it was in Spanish."
+          "test": "Over the next 2 weeks, publish 2 Collab Reels with owner-level hooks and Rafael on camera, Saturday 3–6pm. Publish 2 solo Arqentia Reels in the same weeks to compare against.",
+          "metric": "Reach against 110 (Arqentia median) and 1,347 (@rgschwart median); shares per reach; new @arqentia.inc followers in the 48 hours after each post.",
+          "hypothesis": "Arqentia Reels posted as Collab posts with @rgschwart will reach well above Arqentia's median of 110 without falling far below @rgschwart's usual engagement."
         },
         {
-          "test": "Publish one Reel from @arqentia.inc, with @rgschwart accepted as collaborator, in which Rafael explains why he started Arqentia. Post it Sat 3–6pm.",
-          "metric": "Reach compared with 110 (@arqentia.inc median) and 1,347 (@rgschwart median), follows gained by @arqentia.inc within 48 hours, and engagement rate on reach compared with @rgschwart's 9.7% median.",
-          "hypothesis": "A founder Reel posted as a Collab between @arqentia.inc and @rgschwart reaches part of Rafael's audience (median 1,347 reach per post) and converts some of those viewers into @arqentia.inc followers."
+          "test": "Publish 2 Spanish carousels with the same structure (broad claim, cost, 'tú solo apruebas') on Saturday 3–6pm on consecutive weeks.",
+          "metric": "Reach against the carousel median of 23; impressions-to-reach ratio (Sep 19 was 2.97, a sign Instagram showed it again); saves plus shares per reach.",
+          "hypothesis": "The Sep 19 carousel's 548 reach came from its broad claim and its Saturday-afternoon slot, not from chance."
         },
         {
-          "test": "End 2 of the next 4 @arqentia.inc Reels with 'Mándaselo a quien lleva la operación contigo' or 'Send this to your ops lead', both on screen and in the caption. Post the other 2 without it.",
-          "metric": "Shares per 100 reach, compared with 0.4 for the last 30 days (4 shares on 1,004 reach) and 0.6 all-time.",
-          "hypothesis": "Ending a Reel by naming who to send it to raises shares. Right now 20 of @arqentia.inc's 49 all-time shares come from a single Reel, 'Most of the time, the problem is within the process design'."
+          "test": "Publish 1 personal Reel (15–30 seconds, a real workday, hook as on-screen text in the first 2 seconds) within the next 2 weeks, in place of one carousel.",
+          "metric": "Reach against the median of 1,347; engagements against the median of 125; follows gained.",
+          "hypothesis": "A Reel on @rgschwart will reach past the 1,300–1,500 accounts its carousels reach, because Reels are shown to non-followers."
         }
       ],
-      "generatedAt": "2026-09-26T03:20:02.014Z"
+      "generatedAt": "2026-09-26T13:01:46.498Z"
     }
   ],
   "accounts": [
-    {
-      "key": "instagram-arqentia-inc",
-      "platform": "instagram",
-      "brand": "arqentia",
-      "handle": "arqentia.inc",
-      "displayName": "Arqentia | Business Automation & AI Integration",
-      "followers": 121
-    },
     {
       "key": "instagram-rgschwart",
       "platform": "instagram",
@@ -431,20 +431,28 @@
       "followers": 3232
     },
     {
-      "key": "linkedin-rafael-schwart-pmp",
-      "platform": "linkedin",
-      "brand": "personal",
-      "handle": "Rafael Schwart , PMP",
-      "displayName": "Rafael Schwart , PMP",
-      "followers": 3566
-    },
-    {
       "key": "twitter-arqentia",
       "platform": "twitter",
       "brand": "arqentia",
       "handle": "arqentia",
       "displayName": "Arqentia Inc",
       "followers": 321
+    },
+    {
+      "key": "instagram-arqentia-inc",
+      "platform": "instagram",
+      "brand": "arqentia",
+      "handle": "arqentia.inc",
+      "displayName": "Arqentia | Business Automation & AI Integration",
+      "followers": 121
+    },
+    {
+      "key": "linkedin-rafael-schwart-pmp",
+      "platform": "linkedin",
+      "brand": "personal",
+      "handle": "Rafael Schwart , PMP",
+      "displayName": "Rafael Schwart , PMP",
+      "followers": 3566
     }
   ],
   "posts": [
@@ -459,15 +467,15 @@
       "thumbnailUrl": "/thumbs/8db4474bb742492a.png",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7509269490669600769/",
       "href": null,
-      "impressions": 30,
-      "reach": 19,
+      "impressions": 32,
+      "reach": 20,
       "views": 0,
       "likes": 1,
       "comments": 0,
       "shares": 0,
       "saves": 0,
       "engagements": 1,
-      "engagementRate": 0.0333,
+      "engagementRate": 0.0313,
       "score": 0.832175122141636
     },
     {
@@ -481,8 +489,8 @@
       "thumbnailUrl": "/thumbs/4ea8ebe93a867b06.png",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7508907445608464384/",
       "href": null,
-      "impressions": 29,
-      "reach": 22,
+      "impressions": 31,
+      "reach": 23,
       "views": 0,
       "likes": 0,
       "comments": 0,
@@ -503,15 +511,15 @@
       "thumbnailUrl": null,
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7508544744655089665/",
       "href": null,
-      "impressions": 66,
-      "reach": 45,
+      "impressions": 68,
+      "reach": 46,
       "views": 0,
       "likes": 1,
       "comments": 2,
       "shares": 0,
       "saves": 0,
       "engagements": 3,
-      "engagementRate": 0.0455,
+      "engagementRate": 0.0441,
       "score": 0.9111950246919787
     },
     {
@@ -588,18 +596,18 @@
       "publishedAt": "2026-09-19T20:41:43.000Z",
       "text": "La meta no es trabajar más horas. Es que el negocio funcione el día que tú no estás. Si el lunes que no vas se cae la agenda, la caja o la cobranza, no tienes un sistema. Tienes tu memoria haciendo de sistema. Se escrib…",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/d0dade67b8d15b8a.jpg",
+      "thumbnailUrl": "/thumbs/26d31bd714233db9.jpg",
       "url": "https://www.instagram.com/p/Dde5ITEFxEH/",
       "href": null,
-      "impressions": 1618,
-      "reach": 546,
-      "views": 1618,
+      "impressions": 1625,
+      "reach": 548,
+      "views": 1625,
       "likes": 25,
       "comments": 0,
       "shares": 2,
       "saves": 0,
       "engagements": 27,
-      "engagementRate": 0.0167,
+      "engagementRate": 0.0166,
       "score": 0.3551421582965313
     },
     {
@@ -742,7 +750,7 @@
       "publishedAt": "2026-09-12T11:02:12.000Z",
       "text": "Hay una parte de tu negocio que no está escrita en ningún lado. Vive en un cuaderno, en una nota de voz y en la cabeza de una sola persona. Casi siempre, esa persona eres tú. Y lo que no está escrito no se puede delegar…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/98bf5cc9486b555e.jpg",
+      "thumbnailUrl": "/thumbs/c370354f18522d37.jpg",
       "url": "https://www.instagram.com/reel/DdL1LiQgAy_/",
       "href": null,
       "impressions": 87,
@@ -786,7 +794,7 @@
       "publishedAt": "2026-09-11T11:03:35.000Z",
       "text": "Mismas 16 horas. Dos versiones del mismo día. En la primera, el negocio te interrumpe 33 veces: llamadas, WhatsApp, papeles, caja. Tú eres el sistema. En la segunda, todo entra y todo se ordena solo. Tú solo apruebas. L…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/697b82c9dbc2c851.jpg",
+      "thumbnailUrl": "/thumbs/db7305f9ebf70412.jpg",
       "url": "https://www.instagram.com/reel/DdJQlI0myqb/",
       "href": null,
       "impressions": 104,
@@ -808,7 +816,7 @@
       "publishedAt": "2026-09-10T11:02:34.000Z",
       "text": "Lunes, 7:45 a.m. Nueve lotes por vencer ya tienen una acción asignada: promoción, devolución o retiro. Todo antes de la primera venta del día. Lo que cambió no fue el software. Fue el proceso. Cada lote con fecha visibl…",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/c68527906d6964d6.jpg",
+      "thumbnailUrl": "/thumbs/3e4b6e7336f56741.jpg",
       "url": "https://www.instagram.com/p/DdGrmgaDkwy/",
       "href": null,
       "impressions": 55,
@@ -852,7 +860,7 @@
       "publishedAt": "2026-09-09T11:02:06.000Z",
       "text": "Una silla vacía no es \"un paciente que no vino\". Es una hora que ya pagaste. Así se ve una clínica dental cuando la agenda se confirma sola, los huecos se llenan con la lista de espera y cada cobro está en su lugar. ¿Ti…",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/d5de4d4db65fa06b.jpg",
+      "thumbnailUrl": "/thumbs/5d80c61a18df7824.jpg",
       "url": "https://www.instagram.com/p/DdEG1NzkWOq/",
       "href": null,
       "impressions": 35,
@@ -965,7 +973,7 @@
       "thumbnailUrl": null,
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7502019107605880833/",
       "href": null,
-      "impressions": 323,
+      "impressions": 324,
       "reach": 231,
       "views": 0,
       "likes": 2,
@@ -1028,7 +1036,7 @@
       "publishedAt": "2026-08-29T11:02:37.000Z",
       "text": "I read 88 complaints about air conditioning companies in Miami, expecting silence from the owners. I was wrong. 73 had a personal reply from the owner. That is 83 percent. They are listening. Some wrote paragraphs. Then…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/311aa39c202f63a3.jpg",
+      "thumbnailUrl": "/thumbs/e30236e60ad39873.jpg",
       "url": "https://www.instagram.com/reel/DcnyFZ-AC3i/",
       "href": null,
       "impressions": 165,
@@ -1072,7 +1080,7 @@
       "publishedAt": "2026-08-28T11:03:13.000Z",
       "text": "Una empresa de envíos en Doral está buscando gente a $16 la hora. La función, textual: procesar guías y actualizar sistema de tracking. Léelo otra vez. Actualizar el tracking. A mano. Una persona metiéndole al sistema t…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/31593068e1e19794.jpg",
+      "thumbnailUrl": "/thumbs/17e6f1da21c47983.jpg",
       "url": "https://www.instagram.com/reel/DclNZ6ijKb3/",
       "href": null,
       "impressions": 89,
@@ -1116,7 +1124,7 @@
       "publishedAt": "2026-08-27T11:03:30.000Z",
       "text": "I scraped the reviews on 10 body shops in Miami this week. Just under 4,000 of them. Two shops sit at a perfect 5.0. About 95 percent of customers are happy. So the work is good. Now read the one in nineteen who is not.…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/b3cf8450eb2c8585.jpg",
+      "thumbnailUrl": "/thumbs/9050448e826e0923.jpg",
       "url": "https://www.instagram.com/reel/Dcioj68CniS/",
       "href": null,
       "impressions": 82,
@@ -1160,7 +1168,7 @@
       "publishedAt": "2026-08-26T14:42:47.000Z",
       "text": "This has been one of the busiest summers I had ever, but that doesn’t mean I don’t get to enjoy it a little. A lot of work ahead but very happy of seeing progress in the things im doing. Keep moving forward with GOD fir…",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/32ed6f4c05339ecf.jpg",
+      "thumbnailUrl": "/thumbs/7610018bb6f5e133.jpg",
       "url": "https://www.instagram.com/p/Dcgc_o0ES4l/",
       "href": null,
       "impressions": 4136,
@@ -1182,7 +1190,7 @@
       "publishedAt": "2026-08-26T11:03:13.000Z",
       "text": "En la mayoría de negocios la plata no se pierde en el trabajo. Se pierde en el handoff: cada vez que el trabajo sale de una persona y entra a otra. En tu negocio pasa al menos cuatro veces. De la venta a operaciones, y …",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/c899341905b747c7.jpg",
+      "thumbnailUrl": "/thumbs/f0008e27fc3499e6.jpg",
       "url": "https://www.instagram.com/reel/DcgDyAbFXUP/",
       "href": null,
       "impressions": 122,
@@ -1248,7 +1256,7 @@
       "publishedAt": "2026-08-24T12:01:21.000Z",
       "text": "A therapy practice in Miami is hiring at $15 an hour. The duties, word for word: keep two systems consistent. Catch missing information. Catch inconsistencies before they become problems. That is not a job. That is a da…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/28d073c97806386e.jpg",
+      "thumbnailUrl": "/thumbs/6077cf70873b9698.jpg",
       "url": "https://www.instagram.com/reel/DcbA2N_ATmq/",
       "href": null,
       "impressions": 152,
@@ -1358,7 +1366,7 @@
       "publishedAt": "2026-08-20T11:58:19.000Z",
       "text": "Cada negocio mira números distintos. Ninguno debería tener que buscarlos. Un servicio de HVAC necesita saber qué técnico está dónde y qué orden se atrasa. Una distribuidora, qué ruta se movió y a quién hay que avisar. U…",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/86ba3ca132a4ae05.jpg",
+      "thumbnailUrl": "/thumbs/2005f59c6074a621.jpg",
       "url": "https://www.instagram.com/p/DcQtYq1DgWx/",
       "href": null,
       "impressions": 61,
@@ -1666,7 +1674,7 @@
       "publishedAt": "2026-08-11T04:38:11.000Z",
       "text": "Cuatro negocios distintos. El mismo arreglo. 01 · Un restaurante que sabía cuánto vendía, pero no cuánto ganaba por plato. 02 · Una distribuidora con tres almacenes y tres inventarios que nunca cuadraban. 03 · Un transp…",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/342e232b2cc80be6.jpg",
+      "thumbnailUrl": "/thumbs/5954c9bcb1d0d0e3.jpg",
       "url": "https://www.instagram.com/p/Db4v3Qtl-Z4/",
       "href": null,
       "impressions": 268,
@@ -1732,18 +1740,18 @@
       "publishedAt": "2026-08-08T19:40:55.000Z",
       "text": "Es lunes a las 9 y estás comprando leads. Esos mismos leads los compraron otras cuatro compañías en tu nicho. Dejé de comprarlos y construí mi propio motor: Búsqueda → ICP Score → Secuencia. Un filtro arma la lista, cad…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/23630d388258b99d.jpg",
+      "thumbnailUrl": "/thumbs/82ab9d92ca2ddd05.jpg",
       "url": "https://www.instagram.com/reel/Dbyowt4AZDw/",
       "href": null,
-      "impressions": 942,
-      "reach": 535,
-      "views": 942,
+      "impressions": 945,
+      "reach": 537,
+      "views": 945,
       "likes": 25,
       "comments": 3,
       "shares": 2,
       "saves": 1,
       "engagements": 31,
-      "engagementRate": 0.0329,
+      "engagementRate": 0.032799999999999996,
       "score": 0.38984374450680526
     },
     {
@@ -1820,7 +1828,7 @@
       "publishedAt": "2026-08-07T14:44:37.716Z",
       "text": "Build or buy is the wrong first question. The better question is simpler: What part of the workflow should the AI own? This matters for home service businesses. A scheduling agent should not become a second CRM or dispa…",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/901b10a9a226839c.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7491504580929871875",
       "href": null,
       "impressions": 12,
@@ -1864,7 +1872,7 @@
       "publishedAt": "2026-08-06T18:10:10.680Z",
       "text": "Arqentia amplía su cobertura para negocios hispanos en Latinoamérica, Miami y España. Vamos a trabajar con pequeñas empresas que necesitan reducir el costo de ejecutar su operación. No vendiendo más software. Simplifica…",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/c25c865133d45d34.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7491193921314766852",
       "href": null,
       "impressions": 20,
@@ -1886,7 +1894,7 @@
       "publishedAt": "2026-08-06T17:25:26.237Z",
       "text": "Kenco put six AI agents into production in three months. It plans to scale to 20 within a year. The trend is not “more agents.” It is managing agents as an operating portfolio. When one agent becomes 20, the problem cha…",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/c61208fcc536666a.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7491182659793211392",
       "href": null,
       "impressions": 17,
@@ -2150,7 +2158,7 @@
       "publishedAt": "2026-07-25T23:41:46.000Z",
       "text": "Last few months dump. Good First half of the year so far, even with the struggles",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/12f75abb50013462.jpg",
+      "thumbnailUrl": "/thumbs/dee48bada637d6c5.jpg",
       "url": "https://www.instagram.com/p/DbPBPOHFNy6/",
       "href": null,
       "impressions": 2850,
@@ -2260,7 +2268,7 @@
       "publishedAt": "2026-07-23T20:38:35.363Z",
       "text": "Voice is becoming a business interface. Most companies are still treating it like a chatbot. Anthropic expanded Claude voice mode to Opus and Sonnet, with beta integrations across Gmail, Calendar, Slack, Canva, and Noti…",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/f42397ac9479f354.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7486157837157564416",
       "href": null,
       "impressions": 13,
@@ -2436,7 +2444,7 @@
       "publishedAt": "2026-07-17T21:19:59.289Z",
       "text": "Standing access gives an AI agent more authority than the task requires. That is a permissions problem, not a model problem. Before an agent touches a CRM, inbox, ERP, file store, or payment system, we define an access …",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/15ebcadcb9e7de65.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7483993931022532608",
       "href": null,
       "impressions": 18,
@@ -2502,7 +2510,7 @@
       "publishedAt": "2026-07-16T23:57:03.393Z",
       "text": "AI memory is not a single database. It is a stack. Obsidian and Graphify can absolutely give an AI system persistent context. But they solve different parts of the memory problem. Obsidian is strong for human-readable k…",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/a58fca5e2af2136f.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7483671070827425792",
       "href": null,
       "impressions": 14,
@@ -2590,7 +2598,7 @@
       "publishedAt": "2026-07-14T23:34:20.688Z",
       "text": "Most businesses should not start with an AI agent. They should start by proving the workflow needs autonomy at all. Before choosing a model, answer one question: \"Can the next step already be defined?\" If the path is kn…",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/05e5df2fb972bb6a.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7482940577504755712",
       "href": null,
       "impressions": 27,
@@ -2722,7 +2730,7 @@
       "publishedAt": "2026-07-13T14:51:11.785Z",
       "text": "Your next customer may not call you. Their AI agent will. AI is starting to sit between the customer and the business. It can search, compare, ask questions, and choose who gets the job. At the same time, AI receptionis…",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/fd7ca2cbfc165d10.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7482446534169731092",
       "href": null,
       "impressions": 17,
@@ -2788,7 +2796,7 @@
       "publishedAt": "2026-07-12T19:05:35.260Z",
       "text": "Most businesses do not need an “AI accountant.” They need one broken invoice workflow fixed. The expensive part of accounts payable is rarely typing data into a system. It is the exception path: • An invoice arrives wit…",
       "mediaType": "video",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/6a146b31cc613b52.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7482148168252469249",
       "href": null,
       "impressions": 64,
@@ -2832,7 +2840,7 @@
       "publishedAt": "2026-07-11T21:19:51.000Z",
       "text": "You didn't start this business to work for free. But look at your week: invoices after dinner, payroll on Sunday, chasing payments between customers. On average you lose two full days a month to financial admin — that's…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/061c5c8176af9552.jpg",
+      "thumbnailUrl": "/thumbs/618cc1ad8ff92286.jpg",
       "url": "https://www.instagram.com/reel/Daqt0WuElfZ/",
       "href": null,
       "impressions": 157,
@@ -2854,7 +2862,7 @@
       "publishedAt": "2026-07-11T18:21:28.459Z",
       "text": "Small businesses do not need an “AI employee.” They need one broken revenue workflow fixed. The AI employee conversation is getting attention again. But for most home service businesses, the opportunity is much more pra…",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/8cb9bbf41070d40f.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7481774679280562176",
       "href": null,
       "impressions": 59,
@@ -2986,7 +2994,7 @@
       "publishedAt": "2026-07-09T17:51:31.000Z",
       "text": "Data reporting gets repeated on Businesses constantly, and most of the time it gets transferred incorrectly. This is called the Swivel-Chair Effect. At Arqentia we design systems that prevent this. Live Audits, end to e…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/0c04601ea3a70407.jpg",
+      "thumbnailUrl": "/thumbs/93799db14080dda9.jpg",
       "url": "https://www.instagram.com/reel/DalMNKhsxHz/",
       "href": null,
       "impressions": 170,
@@ -3008,7 +3016,7 @@
       "publishedAt": "2026-07-09T16:49:45.312Z",
       "text": "Your last big decision used a number nobody verified. 58% of leaders admit making key decisions on bad data. Inventory data errors alone cost small businesses an estimated $394,000 a year. Here is how it happens: - the …",
       "mediaType": "video",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/a6726335c0aedb37.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7481026821380231169",
       "href": null,
       "impressions": 13,
@@ -3052,7 +3060,7 @@
       "publishedAt": "2026-07-08T23:55:34.341Z",
       "text": "Your best operator takes one week off. Output drops. That is not a people problem. It is a documentation problem. The process lives in one person’s head: • which vendor to call when a batch fails • the real order the st…",
       "mediaType": "carousel",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/8b3993faaa36f923.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7480771594613731329",
       "href": null,
       "impressions": 7,
@@ -3096,7 +3104,7 @@
       "publishedAt": "2026-07-07T22:57:17.000Z",
       "text": "Your Team Loses 60% of your day on meetings. AI is not the botteneck #operations #businessautomation #automation #aiops #businessoperations",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/19ff9ca24dcdaed5.jpg",
+      "thumbnailUrl": "/thumbs/d8181e14f1f57a27.jpg",
       "url": "https://www.instagram.com/reel/Daglokuv5XV/",
       "href": null,
       "impressions": 178,
@@ -3140,7 +3148,7 @@
       "publishedAt": "2026-07-06T20:06:24.000Z",
       "text": "Following Invoices can cost your business money. Automating these type of workflows is simple but powerful. #automation #aiops #businessautomation #operations #businessoperations",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/5d21e5c03cf7e8d6.jpg",
+      "thumbnailUrl": "/thumbs/d990cb8e16bec74c.jpg",
       "url": "https://www.instagram.com/reel/DadtYAPPByk/",
       "href": null,
       "impressions": 201,
@@ -3206,7 +3214,7 @@
       "publishedAt": "2026-07-03T15:23:11.000Z",
       "text": "Your Handoff are what is slowing down your business. #ai #automation #businessautomation",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/ad86201b8f120c52.jpg",
+      "thumbnailUrl": "/thumbs/92b9c1fabdcabc08.jpg",
       "url": "https://www.instagram.com/reel/DaVegg7Mri3/",
       "href": null,
       "impressions": 129,
@@ -3228,7 +3236,7 @@
       "publishedAt": "2026-07-02T21:51:53.000Z",
       "text": "Is your business still depending on spreadsheets? Spreadsheets have 88% of at least one error across different use cases. Yours is not the exception. Leverage automated systems to gather real data, live. #arqentia #ai #…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/fe77eba341b6f67a.jpg",
+      "thumbnailUrl": "/thumbs/f744f7f8f6078784.jpg",
       "url": "https://www.instagram.com/reel/DaTmI7LzIcf/",
       "href": null,
       "impressions": 248,
@@ -3250,7 +3258,7 @@
       "publishedAt": "2026-07-01T22:28:11.000Z",
       "text": "Your Operation is Leaking Money and you may not know it. #businessoperations #aioptimization #workflowautomation #aitools",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/c67c0a94d27da08d.jpg",
+      "thumbnailUrl": "/thumbs/45613e4b08eb9a20.jpg",
       "url": "https://www.instagram.com/reel/DaRFlkyvSuJ/",
       "href": null,
       "impressions": 311,
@@ -3272,7 +3280,7 @@
       "publishedAt": "2026-06-26T21:55:36.000Z",
       "text": "Most companies do not have a dashboard problem. They have an operating-system problem. The report is late because the workflow is manual. The number is wrong because three tools disagree. The team is confused because no…",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/e279d4c4db5df122.jpg",
+      "thumbnailUrl": "/thumbs/99ea303d0cb82a7a.jpg",
       "url": "https://www.instagram.com/reel/DaEJ_jvgp_i/",
       "href": null,
       "impressions": 163,
@@ -3294,7 +3302,7 @@
       "publishedAt": "2026-06-26T21:47:03.494Z",
       "text": "Your dashboard is not the system. It is the screen at the end of the system. The real work happens underneath: - Which tools send the data. - Which fields are trusted. - Which exceptions get flagged. - Which approvals a…",
       "mediaType": "video",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/24d5836d42b31823.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7476390598195879937",
       "href": null,
       "impressions": 3,
@@ -3316,7 +3324,7 @@
       "publishedAt": "2026-06-26T21:37:41.046Z",
       "text": "Your dashboard is not the system. It is the screen at the end of the system. The real work happens underneath: - Which tools send the data. - Which fields are trusted. - Which exceptions get flagged. - Which approvals a…",
       "mediaType": "video",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/9082d46eac5e72d6.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7476388239055093760",
       "href": null,
       "impressions": 8,
@@ -3338,7 +3346,7 @@
       "publishedAt": "2026-06-24T19:51:40.592Z",
       "text": "Most teams don’t have a dashboard problem. They have a trust problem. The CRM says one number. Finance says another. The spreadsheet has a third version. And the meeting turns into 30 minutes of reconciliation before an…",
       "mediaType": "video",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/016bfc438e57d80f.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7475636785847447552",
       "href": null,
       "impressions": 62,
@@ -3360,7 +3368,7 @@
       "publishedAt": "2026-06-24T17:02:52.000Z",
       "text": "Most teams do not have a reporting problem. They have a source-of-truth problem. If sales, finance, ops, and the CRM all show different numbers, the team stops deciding and starts reconciling. That is not fixed by a pre…",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/d8ad35b6c5bbccc5.jpg",
+      "thumbnailUrl": "/thumbs/f3e3fd5e1b6aa5bf.jpg",
       "url": "https://www.instagram.com/p/DZ-e8kdlOuz/",
       "href": null,
       "impressions": 65,
@@ -3382,7 +3390,7 @@
       "publishedAt": "2026-06-22T17:52:08.705Z",
       "text": "Its Important to know traceability behind the systems you implement. Scaling and AI agent with a shaky operations layer can affect your business negatively. {hashtag|\\#|ai} {hashtag|\\#|aiworkflows} {hashtag|\\#|traceabil…",
       "mediaType": "carousel",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/419e6449f0b9f6b4.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7474881929314635776",
       "href": null,
       "impressions": 76,
@@ -3404,7 +3412,7 @@
       "publishedAt": "2026-06-22T16:59:33.000Z",
       "text": "Lack of Traceability is Operational Risk. AI is designed to prevent the risks, not enhaced it. The key is behind workflow design. #automation #aitools #aiworkflow",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/a758f89e9033a8d0.jpg",
+      "thumbnailUrl": "/thumbs/26889afbc0104f77.jpg",
       "url": "https://www.instagram.com/reel/DZ5UxaUsaOn/",
       "href": null,
       "impressions": 218,
@@ -3426,7 +3434,7 @@
       "publishedAt": "2026-06-21T14:20:46.000Z",
       "text": "Missed Calls are Lost Leads. Missed Comments as well. Workflow automations fix this. Is your business taken care of? #aitool #aiworfklows #aiautomation",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/bcc89cd5b11e4165.jpg",
+      "thumbnailUrl": "/thumbs/dc3e56e01b5de86f.jpg",
       "url": "https://www.instagram.com/reel/DZ2d9vZgT2j/",
       "href": null,
       "impressions": 86,
@@ -3448,7 +3456,7 @@
       "publishedAt": "2026-06-20T18:38:21.000Z",
       "text": "Lately. Always looking for whats next.",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/1965dbd2a05e09b3.jpg",
+      "thumbnailUrl": "/thumbs/dcda0ec87c0f9219.jpg",
       "url": "https://www.instagram.com/p/DZ0Wj5RBsPy/",
       "href": null,
       "impressions": 3423,
@@ -3470,7 +3478,7 @@
       "publishedAt": "2026-06-20T00:59:30.830Z",
       "text": "Most small businesses do not lose because they lack leads. They lose because the next action has no owner. A call comes in. A quote goes out. The CRM says “open.” The buyer waits. The team assumes someone else followed …",
       "mediaType": "video",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/ca2512e109c75dce.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7473902316358799361",
       "href": null,
       "impressions": 102,
@@ -3492,7 +3500,7 @@
       "publishedAt": "2026-06-20T00:41:28.909Z",
       "text": "How are you today? Tell us what you want to hear from us. If you want to stay up-to-date with us, follow our Page.",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/7b10060a92bc7e99.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7473897778801369088",
       "href": null,
       "impressions": 81,
@@ -3514,7 +3522,7 @@
       "publishedAt": "2026-06-19T22:44:57.000Z",
       "text": "Leads are not the problem, the follow up is. #automation #operations #businessautomation",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/e72fcbd10b1f9e33.jpg",
+      "thumbnailUrl": "/thumbs/009882c5b888e98e.jpg",
       "url": "https://www.instagram.com/reel/DZyN9MOPgbV/",
       "href": null,
       "impressions": 270,
@@ -3558,7 +3566,7 @@
       "publishedAt": "2026-06-18T18:29:13.000Z",
       "text": "The Worflow comes first, everything else comes after. You can never automate things you do not understand. #ai #operating #operations #automations",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/2e54b43494740465.jpg",
+      "thumbnailUrl": "/thumbs/85c1287008262d47.jpg",
       "url": "https://www.instagram.com/reel/DZvLyD3JFRG/",
       "href": null,
       "impressions": 369,
@@ -3580,7 +3588,7 @@
       "publishedAt": "2026-06-18T17:44:16.000Z",
       "text": "Most businesses don’t have an ops problem. They have a “too many tools, too little time” problem. Arqentia builds the engineering layer that makes your business run itself , so the busywork disappears and the wheel stay…",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/fb8554d3b662f1d6.jpg",
+      "thumbnailUrl": "/thumbs/b84bfaca9434fcaf.jpg",
       "url": "https://www.instagram.com/p/DZvGxtKsspo/",
       "href": null,
       "impressions": 85,
@@ -3602,7 +3610,7 @@
       "publishedAt": "2026-06-16T22:03:13.000Z",
       "text": "Most of the time, the problem is within the process design within the business. Fix that first, the rest comes later #automation #aioperations",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/6da42d1e4ff69e5e.jpg",
+      "thumbnailUrl": "/thumbs/b0a918a31c2f64ed.jpg",
       "url": "https://www.instagram.com/reel/DZqaadYv90E/",
       "href": null,
       "impressions": 190,
@@ -3624,7 +3632,7 @@
       "publishedAt": "2026-06-16T18:35:05.000Z",
       "text": "Your ops, on autopilot. ✈️ Reports that write themselves. Errors caught before they cost you. The repetitive work your team hates — handled by AI, supervised by engineers. No hype. Just engineering. What’s the one task …",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/88b890b0ff6ba158.jpg",
+      "thumbnailUrl": "/thumbs/641f17b6df4038d6.jpg",
       "url": "https://www.instagram.com/p/DZqDFlSJEyK/",
       "href": null,
       "impressions": 89,
@@ -3646,7 +3654,7 @@
       "publishedAt": "2026-06-15T17:06:08.000Z",
       "text": "One Dashboard is all it takes to see your complete Business. Simple. Transparent. #aioperations #businessautomation",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/a9674ac0c4a02abc.jpg",
+      "thumbnailUrl": "/thumbs/5c41ccb6748012dd.jpg",
       "url": "https://www.instagram.com/p/DZnTqqaMxLk/",
       "href": null,
       "impressions": 76,
@@ -3668,7 +3676,7 @@
       "publishedAt": "2026-06-15T16:36:21.000Z",
       "text": "Most Teams Dont Need an App. They need a working system, alive. Arqentia provides customized solutions that matter and refresh in real time. DM us for an Audit ⚡️",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/7b31178a2e9b1769.jpg",
+      "thumbnailUrl": "/thumbs/a16238629f7ac1cf.jpg",
       "url": "https://www.instagram.com/reel/DZnQnH4srLN/",
       "href": null,
       "impressions": 42,
@@ -3690,7 +3698,7 @@
       "publishedAt": "2026-06-10T21:26:52.000Z",
       "text": "How we work: we connect your tools. 🔗 Your ERP, your bank, your CRM, your e-commerce, the tax authority — finally talking to each other. One source of truth. No more copy-paste between systems. 🔗 arqentia.com #integra…",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/349c8028865ce950.jpg",
+      "thumbnailUrl": "/thumbs/f20a86663ccbf2c7.jpg",
       "url": "https://www.instagram.com/p/DZa5mqkJlXE/",
       "href": null,
       "impressions": 73,
@@ -3712,7 +3720,7 @@
       "publishedAt": "2026-06-10T20:58:14.024Z",
       "text": "Most operations don't break loudly. They erode. An hour reconciling accounts. A day rebuilding a report someone already built last month. A week swallowed by month-end close. Arqentia is an engineering firm for AI ops. …",
       "mediaType": "image",
-      "thumbnailUrl": null,
+      "thumbnailUrl": "/thumbs/7277c25144620614.jpg",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7470580105023684608",
       "href": null,
       "impressions": 63,
@@ -3734,7 +3742,7 @@
       "publishedAt": "2026-06-09T01:30:22.000Z",
       "text": "Arqentia gives you visibility, and visibility avoids business losses. #automation #aiops #engineering #ai",
       "mediaType": "video",
-      "thumbnailUrl": "/thumbs/ee4aa80ac9a4e138.jpg",
+      "thumbnailUrl": "/thumbs/9e23e19e05816e4d.jpg",
       "url": "https://www.instagram.com/reel/DZWMDUmtU9f/",
       "href": null,
       "impressions": 159,
@@ -3756,7 +3764,7 @@
       "publishedAt": "2026-06-09T01:24:08.000Z",
       "text": "A. ⎯ for Arqentia. An engineering firm for AI ops. We build the systems, then we operate them with you. Bilingual. Audit-grade. Built to last. 🔗 arqentia.com #branding #AIops #engineering #automation",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/1d5703959f8dfbd6.jpg",
+      "thumbnailUrl": "/thumbs/da9482a193e58caf.jpg",
       "url": "https://www.instagram.com/p/DZWLhJPt0ww/",
       "href": null,
       "impressions": 71,
@@ -3778,7 +3786,7 @@
       "publishedAt": "2026-06-05T20:49:07.000Z",
       "text": "We automate the busywork. ⚙️ Monthly close: 8 days → 14 minutes. Tax filings: manual → automatic. Inventory alerts: daily → real-time. Bank reconciliation: 2 days → overnight. The repetitive stuff your team dreads — gon…",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/469228a4c868d2db.jpg",
+      "thumbnailUrl": "/thumbs/de12a78bbba35645.jpg",
       "url": "https://www.instagram.com/p/DZN9kSavlF8/",
       "href": null,
       "impressions": 75,
@@ -3800,7 +3808,7 @@
       "publishedAt": "2026-06-05T02:28:32.000Z",
       "text": "AI agents that actually work. 🤖 Bilingual. Audit-grade. They read your data, write the brief, and propose the next move — with the receipts. “Why is margin down in Q2?” → Cost-of-goods up 6.4% on 12 SKUs. Recommend sup…",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/0b5c4d57b77f9d9b.jpg",
+      "thumbnailUrl": "/thumbs/3a67e46dd66e1794.jpg",
       "url": "https://www.instagram.com/p/DZL_o9KNNIi/",
       "href": null,
       "impressions": 81,
@@ -3822,7 +3830,7 @@
       "publishedAt": "2026-06-02T02:21:41.000Z",
       "text": "Proof, not promises. 🧾 A holding group used to close their books in 8 days. Now they close in 14 minutes. Same data. Auditor-ready. This is what AI ops looks like when engineers build it properly. What would you do wit…",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/5f2ff9af3ee48cb6.jpg",
+      "thumbnailUrl": "/thumbs/0938bcfe2715dfbd.jpg",
       "url": "https://www.instagram.com/p/DZEQkV8t8Rn/",
       "href": null,
       "impressions": 76,
@@ -3844,7 +3852,7 @@
       "publishedAt": "2026-05-31T00:23:27.000Z",
       "text": "Coming Soon.",
       "mediaType": "image",
-      "thumbnailUrl": "/thumbs/99af9a0df47f51cd.jpg",
+      "thumbnailUrl": "/thumbs/dc7e1afc1baa2ecc.jpg",
       "url": "https://www.instagram.com/p/DY-5dIAJgbb/",
       "href": null,
       "impressions": 233,
@@ -3866,7 +3874,7 @@
       "publishedAt": "2026-01-21T01:52:57.000Z",
       "text": "#anotherone Great Birthday for the Books. Thank You Everyone for the Wishes #33",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/c0325dfbfe38d1b2.jpg",
+      "thumbnailUrl": "/thumbs/df104bc12349d662.jpg",
       "url": "https://www.instagram.com/p/DTwUZVvjK2f/",
       "href": null,
       "impressions": 4476,
@@ -3888,7 +3896,7 @@
       "publishedAt": "2025-11-14T18:18:35.000Z",
       "text": "Quick Business Trip to the Windy City 💨🌃🌆🥶 Always a pleasure to visit factories across the country ⚙️",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/3f8331ef99638722.jpg",
+      "thumbnailUrl": "/thumbs/d7cd5921501aab17.jpg",
       "url": "https://www.instagram.com/p/DRC_I0hkWkg/",
       "href": null,
       "impressions": 6164,
