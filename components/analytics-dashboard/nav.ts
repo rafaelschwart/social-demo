@@ -1,4 +1,4 @@
-import { CalendarClock, LayoutDashboard, Sparkles, UsersRound } from "lucide-react";
+import { CalendarClock, LayoutDashboard, Sparkles, UsersRound, Workflow } from "lucide-react";
 import { InstagramGlyph, LinkedInGlyph, XGlyph } from "./platform-icons";
 
 export interface AnalyticsNavItem {
@@ -32,6 +32,10 @@ export const ANALYTICS_SECTIONS: { title: string; items: AnalyticsNavItem[] }[] 
   {
     title: "Accounts",
     items: [{ slug: "accounts", label: "Connected accounts", icon: UsersRound }],
+  },
+  {
+    title: "Orchestration",
+    items: [{ slug: "engines", label: "Engines", icon: Workflow }],
   },
 ];
 

@@ -138,3 +138,20 @@ export const BRAND_META: Record<Brand, { label: string; blurb: string }> = {
   personal: { label: "Personal", blurb: "Rafael Schwart" },
   arqentia: { label: "Arqentia", blurb: "Company accounts" },
 };
+
+/** An execution engine the orchestrator feeds (config/engines.json), with its last export. */
+export interface EngineStatus {
+  id: string;
+  name: string;
+  /** Local folder — omitted from the public demo. */
+  folder?: string;
+  executor: string;
+  lanes: { platform: string; brand: string; label: string }[];
+  connected: boolean;
+  lastExportAt: string | null;
+  dataAsOf: string | null;
+  accounts: number;
+  posts90: number;
+  engineActivityAt: string | null;
+  error: string | null;
+}

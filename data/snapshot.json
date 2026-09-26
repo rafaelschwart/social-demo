@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-26T13:28:38.462Z",
+  "generatedAt": "2026-09-26T15:22:12.466Z",
   "timeZone": "America/New_York",
-  "lastSyncedAt": "2026-09-26T13:22:08.521Z",
+  "lastSyncedAt": "2026-09-26T15:03:59.810Z",
   "connections": [
     {
       "key": "linkedin-rafael-schwart-pmp",
@@ -48,7 +48,7 @@
       "status": "connected",
       "health": "healthy",
       "inAnalytics": true,
-      "postsTracked": 0,
+      "postsTracked": 19,
       "analyticsOff": false
     },
     {
@@ -121,115 +121,111 @@
     {
       "fix": [
         {
-          "point": "No engagement data exists.",
-          "evidence": "dataNotes says post analytics is OFF for @arqentia. allTime, last30Days and last90Days all show 0 posts and null impressions, engagements and ER, while publishingLog shows 13 published posts. Nothing about copy, timing or format can be judged on results yet."
+          "point": "The account has no conversation at all.",
+          "evidence": "All 19 posts have 0 comments, including both direct questions ('Good Morning. What are you automating today?' and 'Good Afternoon. What are you currently building?'). The ranking X open-sourced in 2023 weighted replies, and replies the author answers, far above likes. The account has none."
         },
         {
-          "point": "Posting stopped.",
-          "evidence": "11 of the 13 posts were published between Aug 12 and Aug 27. September has only Sep 8 ('A sales call should not end…') and Sep 11 ('An invoice should not be paid…'), and there has been nothing since: 15 days of silence as of Sep 26. Early reply activity can't start on posts that don't exist."
+          "point": "The 'X should not…' workflow formula is not getting responses.",
+          "evidence": "9 posts use it ('An HVAC quote should never…', 'An AI agent should not run support…', 'A sales call should not end as loose notes…', 'An invoice should not be paid…' and others) and earned 4 engagements, or 0.44 per post. Both September posts in this format got 0. They read like process specs: no number, no cost, nothing to disagree with."
         },
         {
-          "point": "Every post uses the same format and opening, and none visibly asks for a reply.",
-          "evidence": "All 13 are single posts with one image, and none is a thread. 8 of 13 open with the same 'X should not / should never' frame (for example 'A sales call should not end as loose notes', 'An HVAC quote should never disappear'). The log shows about the first 200 characters of each post, and none of those excerpts contains a question. Replies are the heaviest ranking signal."
+          "point": "Greetings that give readers nothing to respond to, and long silent gaps.",
+          "evidence": "'Good Morning Everyone. Happy Tuesday.' (Sep 15) and 'Good Afternoon. What are you currently building?' (Aug 27) both got 0. Publishing has stopped twice: 59 days from Jun 14 to Aug 12, and 11 days so far since Sep 15."
         },
         {
-          "point": "Only the brand account posts, and the one API reply to another account failed.",
-          "evidence": "The brief contains only @arqentia; no account for Rafael is connected. The single failed post was a reply to another account, rejected by X's February 2026 rule on API replies, so replies to other accounts have to be made by hand. All 13 posts are in English, while the audience includes Latin America and Spanish."
+          "point": "Images show no engagement advantage.",
+          "evidence": "12 image posts and 7 text posts both average 0.6 engagements per post. With no impression or bookmark data, we can't see whether images add dwell time. For now they cost production time with no visible return."
         }
       ],
       "agent": "x-specialist",
       "model": "Claude Opus (local Claude Code)",
       "actions": [
         {
-          "title": "Turn on X analytics for @arqentia with a monthly spend cap",
-          "detail": "In Zernio, switch on post analytics for @arqentia and set a monthly X spend cap at the same time. At $0.005 per metrics read, 40 posts a month read 3 times each would cost about $0.60, plus about $0.60 to publish them. A cap of $5 to $10 leaves plenty of room. Check Zernio usage after week one to see how many reads actually happen, then adjust the cap.",
-          "effort": "low",
-          "impact": "high",
-          "account": "arqentia",
-          "evidence": "dataNotes: analytics is OFF. Every impression, engagement and ER field is null, and the 13 published posts in publishingLog have no metrics."
-        },
-        {
-          "title": "Start posting again with at least one post every weekday",
-          "detail": "Queue at least one post for each weekday of the next two weeks in Zernio. Reuse the existing topics with new angles: invoice matching, sales calls into the CRM, supplier delays, removing access when staff change roles, idempotency, schema drift, HVAC scheduling. Keep links out of the main post.",
-          "effort": "low",
-          "impact": "high",
-          "account": "arqentia",
-          "evidence": "The last post was Sep 11, 15 days before this brief. 11 of the 13 posts in the 90-day log landed between Aug 12 and Aug 27. Four weekdays in a row were covered Aug 24–27."
-        },
-        {
-          "title": "Reply to larger accounts by hand every day",
-          "detail": "Spend 20 minutes a day in the X app replying to 5 to 10 recent posts, ideally under an hour old, from larger AI, automation and operator accounts. Add one specific practice from Arqentia's work, such as the human approval step or idempotency keys, instead of just agreeing. The API can't do this, so it has to be manual.",
+          "title": "Reply by hand to larger accounts for 20–30 minutes each weekday",
+          "detail": "Pick 15–20 active accounts in AI, automation and operations that are bigger than @arqentia. Reply within their posts' first hour with a specific point from Arqentia's work, such as a routing rule, an approval step or a failure mode, not 'great post'. This has to be done in the X app: since February 2026 the API, and so Zernio, rejects replies to accounts that have not mentioned or quoted you. Keep a weekly count of replies sent and followers, because this brief does not measure replies you send.",
           "effort": "medium",
           "impact": "high",
           "account": "arqentia",
-          "evidence": "The only failed post in the log was an API reply to another account, rejected by X's February 2026 rule. No data in this brief measures how much reply activity grows an account; this is a practitioner heuristic."
+          "evidence": "0 replies on all 19 posts and 0.6 engagements per post at 321 followers suggest the account's own posts are not reaching past its current followers. The expected lift from reply-led growth comes from the practitioner model; this brief does not measure it."
         },
         {
-          "title": "Connect Rafael's personal X account and post the same material as the founder",
-          "detail": "Connect Rafael's personal X account to Zernio. Post the same frameworks in first person (for example 'We connected supplier invoices to POs for a client and…'), and have @arqentia repost or quote those posts. Do the daily manual replies from Rafael's account where you can.",
+          "title": "Restart posting and keep two weeks queued in Zernio",
+          "detail": "Queue 1–2 posts per weekday (7–10 a week) so the account doesn't go quiet again. At $0.015 per post without a link, 10 posts cost about $0.15 a week.",
           "effort": "medium",
           "impact": "high",
+          "account": "arqentia",
+          "evidence": "Nothing has gone out since Sep 15. August's 12 posts brought 9 of the 11 all-time engagements; September's 3 posts brought 0. There was also a 59-day gap from Jun 14 to Aug 12."
+        },
+        {
+          "title": "Replace the 'X should not…' formula and plain greetings with contrarian hooks that name a cost",
+          "detail": "Open with the 'Most X don't have a Y problem. They have a Z problem.' pattern. Follow with one concrete scenario and a real cost from client work (hours lost, jobs double-booked, invoices paid twice); don't make numbers up. Move the step-by-step workflow detail into a self-reply thread under the post, which still works through Zernio. Drop greetings like 'Good Morning Everyone. Happy Tuesday.'",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia",
+          "evidence": "The 4 'Most…' posts earned 5 engagements (1.25 per post). The 9 'X should not…' posts earned 4 (0.44 per post). 'Good Morning Everyone. Happy Tuesday.' got 0."
+        },
+        {
+          "title": "Ask narrow questions, then stay online to answer every reply",
+          "detail": "Replace broad prompts like 'What are you currently building?' with questions that are easy to answer, for example 'Which handoff in your business still lives in one person's inbox?' Post them when someone can watch the app for the next 60 minutes and answer every reply. If it's quiet after 10 minutes, have Rafael add the first answer by hand.",
+          "effort": "low",
+          "impact": "medium",
+          "account": "arqentia",
+          "evidence": "'Good Morning. What are you automating today?' earned 2 engagements (tied best) but 0 replies. 'Good Afternoon. What are you currently building?' got 0 of anything."
+        },
+        {
+          "title": "Put Rafael's own account in front, with @arqentia reposting",
+          "detail": "Post the contrarian takes and the daily replies from Rafael's personal X account, and have @arqentia repost or quote the best ones. Connect that account to Zernio with analytics on so it shows up in this brief.",
+          "effort": "medium",
+          "impact": "medium",
           "account": null,
-          "evidence": "audienceContext describes Rafael Schwart's personal brand, but the brief includes only @arqentia (321 followers). No data here compares founder and brand reach; this is based on the general pattern on X."
+          "evidence": "The brief's audience context names Rafael's personal brand, but only @arqentia's data is here, at 0.6 engagements per post. The idea that founder accounts beat brand accounts on X is a practitioner heuristic. This data doesn't show it."
         },
         {
-          "title": "Close alternate posts with a narrow question and answer replies in the first hour",
-          "detail": "End every other post with a specific question. For example, after 'An invoice should not be paid because it reached the right inbox…', ask 'What does your team check before approving an invoice today?'. Stay on X for 30 to 60 minutes after each post and answer every reply, because replies the author engages with carry the most ranking weight.",
+          "title": "Set the X spend cap and keep links out of the main post",
+          "detail": "Set a monthly X spend cap in the Zernio dashboard, sized to your planned posts plus metric reads at $0.005 each. When a post needs a link, put it in a self-reply. A post with a link costs $0.20 against $0.015 without one, and main-post links tend to cut reach.",
           "effort": "low",
-          "impact": "medium",
+          "impact": "low",
           "account": "arqentia",
-          "evidence": "8 of 13 posts open with the same 'should not / should never' statement, and none of the roughly 200-character excerpts in the log contains a question. The log cuts the text off and analytics is off, so the endings and reply counts can't be seen."
-        },
-        {
-          "title": "Turn one topic a week into a thread",
-          "detail": "Each week, expand one topic into a 4 to 6 post thread through Zernio (self-replies still work through the API): the problem, the rule, the fields or controls needed, how it fails, and the approval step. If you link a resource, put it in the last reply, and remember that reply is billed at the $0.20 link rate.",
-          "effort": "medium",
-          "impact": "medium",
-          "account": "arqentia",
-          "evidence": "All 13 posts are single posts with one image, and no threads appear in the log. Several excerpts are cut off in the middle of a step list, such as 'Every call, form, and chat needs four controls…' and 'Every booking should carry three fields…', which would work well as threads."
+          "evidence": "The data notes say analytics are ON and the spend cap is unset. The one post with a link marker, 'La segunda vuelta en Perú…' (Jun 10), got 0 engagements. That is one post, and it can't separate the link's effect from the Spanish language's."
         }
       ],
-      "cadence": "There is no best-time data: the bestTimes sample is 0 and every weekday lift is null, so these slots are a starting point, not a finding. Weeks 1–2: one @arqentia post each weekday (5 a week) at 9:00 ET, where 8 of the 13 logged posts went out, plus one thread a week and 20 minutes a day of manual replies in the X app. From week 3, if you've kept up the weekday posts, add a second daily post that alternates between 12:00 ET (used Aug 12) and 17:00 ET (close to the Aug 14 and Aug 15 posts) to build a timing comparison. Stay on X for 30 to 60 minutes after each post to answer replies. Review timing once analytics has about 20 to 30 posts of data. At 10 posts a week with no links, publishing costs about $0.15 a week.",
+      "cadence": "Post 1–2 times each weekday (7–10 a week) and send 15–20 hand-written replies a day to larger accounts. The best-time table can't pick slots yet: it covers 19 posts, lifts only range from 0.9 to 1.2, and each top slot rests on 1–3 posts (Wed 9am–12pm at 1.2 on 2 posts; Mon 9am–12pm and Fri 3–6pm at 1.0 on 2 each; Saturday at 1.2 on 1 post). Keep one anchor post at 9–10am ET Mon–Wed, where most of the history sits. Test a second slot at 5–7pm ET and one Saturday post. Do the reply block in the hour after each post goes live. This plan comes from engagement counts only, since X returns no impressions here.",
       "working": [
         {
-          "point": "Links stay out of the main post.",
-          "evidence": "All 13 logged posts have hasLink false. That avoids the reach penalty links tend to carry and the $0.20 link fee. Publishing all 13 cost about $0.20 in total (13 × $0.015). This is a process strength only, because no reach data exists to confirm it."
+          "point": "Contrarian 'Most X don't…' openers do best.",
+          "evidence": "Four posts open this way: 'Most business owners don't need more software…' (Aug 15, 2 likes), 'Most service businesses don't have a lead problem…' (Aug 14, 1 like), 'Most operational failures aren't people problems…' (Jun 10, 1 repost) and 'Most people are still thinking in “jobs.”' (Jun 14, 1 like). Together they have 5 engagements, or 1.25 per post, about double the account's 0.6. Four posts are too few to call this proven."
         },
         {
-          "point": "Every post carries native media.",
-          "evidence": "All 13 posts have mediaCount 1. Images can add dwell time on X, but with analytics off there is no way to tell whether these did."
+          "point": "A plain, open question tied for the best post.",
+          "evidence": "'Good Morning. What are you automating today?' (Wed Aug 26, 10am ET) got 2 engagements (1 like, 1 repost), tied for the account's highest. It still drew 0 replies."
         },
         {
-          "point": "Topics are specific and aimed at operators.",
-          "evidence": "Posts name concrete controls. Examples: 'Retries are necessary. Duplicate actions are not.' (idempotency keys) and 'An invoice should not be paid because it reached the right inbox' (matching invoices to purchase orders, with a person approving). This fits the stated audience of operators and founders adopting AI, but no engagement numbers show it lands."
-        },
-        {
-          "point": "A weekday rhythm has been done before.",
-          "evidence": "From Aug 24 to Aug 27 there was a post on four weekdays in a row, all at 9:00 ET ('An AI agent should not run support…', 'Your weekly report should not start…', 'When someone changes roles…', 'A supplier delay should not live…'). A weekday cadence is achievable."
+          "point": "Steady posting is when all the real engagement came.",
+          "evidence": "August had 12 posts and 9 engagements (0.8 per post), June had 4 posts and 2 engagements, and September has 3 posts and 0 engagements. 9 of the account's 11 all-time engagements came during the Aug 12–27 run."
         }
       ],
-      "headline": "Turn on post analytics for @arqentia in Zernio with a monthly spend cap, and start posting again: 13 posts went out in the last 90 days with no engagement data behind any of them, and nothing has been published since Sep 11.",
+      "headline": "@arqentia's 19 posts have drawn 0 replies and 11 engagements in total, so make a daily block of hand-written replies to larger AI and automation accounts the main growth activity, and restart posting, which stopped on Sep 15.",
       "platform": "twitter",
-      "diagnosis": "This brief has no engagement data. Analytics is off in Zernio, so @arqentia (321 followers) shows 0 tracked posts and null impressions, engagements and ER in every period, even though the publishing log lists 13 published posts and 1 failed post in the last 90 days. All 13 posts went out between Aug 12 and Sep 11, with 11 of them between Aug 12 and Aug 27. Nothing has been published in the 15 days since Sep 11, and nothing before Aug 12 appears in the 90-day window. The copy, format and timing notes below come from the publishing log and general X mechanics, so treat them as a starting playbook, not findings from engagement data.",
-      "dataQuality": "none",
+      "diagnosis": "@arqentia has 321 followers and 19 posts with 11 engagements in total (8 likes, 3 reposts, 0 replies), which is 0.6 per post, and 10 of the 19 posts got nothing. The only steady stretch was August (12 posts, 9 engagements, 0.8 per post). September has 3 posts and 0 engagements, and nothing has gone out since Sep 15. That follows an earlier 59-day gap (Jun 14 to Aug 12). X returns no impressions here, so we can't tell whether posts go unseen or are seen and skipped. Every comparison below rests on counts of 0 to 2 per post and only points in a direction.",
+      "dataQuality": "limited",
       "experiments": [
         {
-          "test": "For two weeks, alternate posts from the same topic families: one ending on a statement, the next ending on a specific question. Keep both in the same 9:00 ET slot, and answer every reply within 60 minutes.",
-          "metric": "Replies per post and engagement rate on impressions (needs analytics on).",
-          "hypothesis": "Posts that end with a narrow question get more replies than posts that end on a statement."
+          "test": "For 3 weeks, alternate the two formats on the same topics in the same 9–10am ET slot, with at least 6 posts of each. Leave images off both so the format is the only difference.",
+          "metric": "Engagements per post (likes + replies + reposts), since impressions are not available. Current baselines: 1.25 for 'Most…' posts and 0.44 for 'X should not…' posts.",
+          "hypothesis": "Contrarian 'Most X don't have a Y problem' hooks earn more engagement than the 'X should not…' workflow format."
         },
         {
-          "test": "For three weeks, keep 9:00 ET on Mon/Wed/Fri. Move the Tue/Thu posts, alternating between 12:00 and 17:00 ET, until each slot has at least 5 posts.",
-          "metric": "Impressions and engagements per post by slot, which will also fill the brief's bestTimes table (its sample is 0 today).",
-          "hypothesis": "9:00 ET is just the slot that has been used so far, not a proven best time."
+          "test": "For 3 weeks, split posts between 9–10am ET and 5–7pm ET. So far 10 of the 19 posts went out at 8–9am and average 0.5 engagements per post. The two evening posts, 'Most business owners…' (Sat 6pm) and 'Most service businesses…' (Fri 5pm), got 3 between them.",
+          "metric": "Engagements per post in each slot. Re-check the best-time table once each slot has at least 8 posts.",
+          "hypothesis": "Early-evening posts do better than the 9am default."
         },
         {
-          "test": "For three weeks, publish 2 Spanish versions per week of that week's topics, adapted rather than translated word for word.",
-          "metric": "Engagement rate and replies per Spanish post compared with English posts in the same weeks, plus follower change from the 321 baseline.",
-          "hypothesis": "Spanish posts reach the Latin American part of the audience, which English-only posting misses."
+          "test": "Run 2 question posts a week for 3 weeks (6 in total). Tie each question to one workflow, have Rafael seed an answer within 10 minutes, and answer every reply within the hour.",
+          "metric": "Replies per post (currently 0 on all 19 posts) and how many reply threads the account answers.",
+          "hypothesis": "A narrow, easy-to-answer question with a seeded first answer will get the account's first replies."
         }
       ],
-      "generatedAt": "2026-09-26T12:58:23.454Z"
+      "generatedAt": "2026-09-26T15:18:16.422Z"
     },
     {
       "fix": [
@@ -496,7 +492,7 @@
       "thumbnailUrl": "/thumbs/8db4474bb742492a.png",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7509269490669600769/",
       "href": null,
-      "impressions": 32,
+      "impressions": 34,
       "reach": 20,
       "views": 0,
       "likes": 1,
@@ -504,7 +500,7 @@
       "shares": 0,
       "saves": 0,
       "engagements": 1,
-      "engagementRate": 0.0313,
+      "engagementRate": 0.0294,
       "score": 0.832175122141636
     },
     {
@@ -518,7 +514,7 @@
       "thumbnailUrl": "/thumbs/4ea8ebe93a867b06.png",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7508907445608464384/",
       "href": null,
-      "impressions": 31,
+      "impressions": 33,
       "reach": 23,
       "views": 0,
       "likes": 0,
@@ -625,12 +621,12 @@
       "publishedAt": "2026-09-19T20:41:43.000Z",
       "text": "La meta no es trabajar más horas. Es que el negocio funcione el día que tú no estás. Si el lunes que no vas se cae la agenda, la caja o la cobranza, no tienes un sistema. Tienes tu memoria haciendo de sistema. Se escrib…",
       "mediaType": "carousel",
-      "thumbnailUrl": "/thumbs/09b77edf9429d51d.jpg",
+      "thumbnailUrl": "/thumbs/12844d3e100d059c.jpg",
       "url": "https://www.instagram.com/p/Dde5ITEFxEH/",
       "href": null,
-      "impressions": 1625,
-      "reach": 548,
-      "views": 1625,
+      "impressions": 1626,
+      "reach": 550,
+      "views": 1626,
       "likes": 25,
       "comments": 0,
       "shares": 2,
@@ -704,6 +700,28 @@
       "engagements": 1,
       "engagementRate": 0.0118,
       "score": 0.5973960913426042
+    },
+    {
+      "id": "950424cbb88c",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-09-15T12:57:35.000Z",
+      "text": "Good Morning Everyone. Happy Tuesday.",
+      "mediaType": "text",
+      "thumbnailUrl": null,
+      "url": "https://twitter.com/i/web/status/2099845081352032628",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
     },
     {
       "id": "3bf047404a97",
@@ -836,6 +854,28 @@
       "engagements": 1,
       "engagementRate": 0.0118,
       "score": 0.597396092094919
+    },
+    {
+      "id": "4f338a8a3ab7",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-09-11T13:30:06.000Z",
+      "text": "An invoice should not be paid because it reached the right inbox. Connect supplier invoices to purchase orders and receiving records. AI matches price, quantity, and delivery; a person approves exceptions. The decision …",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/e30baef9dd7f5c7d.png",
+      "url": "https://twitter.com/i/web/status/2098403715942174879",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
     },
     {
       "id": "f1353197a03f",
@@ -990,6 +1030,28 @@
       "engagements": 1,
       "engagementRate": 0.0078000000000000005,
       "score": 0.5147998819593822
+    },
+    {
+      "id": "3dca5db351d2",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-09-08T13:30:16.000Z",
+      "text": "A sales call should not end as loose notes. Send the transcript to the CRM. AI structures needs, risks, and next steps; the rep approves the record before any follow-up is created.",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/cd77664c815bb816.png",
+      "url": "https://twitter.com/i/web/status/2097316592296083721",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
     },
     {
       "id": "eebf79434ce3",
@@ -1344,6 +1406,28 @@
       "score": 0.732854958901048
     },
     {
+      "id": "ae05f062ae21",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-27T18:25:16.000Z",
+      "text": "Good Afternoon. What are you currently building?",
+      "mediaType": "text",
+      "thumbnailUrl": null,
+      "url": "https://twitter.com/i/web/status/2093042177022574909",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
+    },
+    {
       "id": "a96cb7d15637",
       "accountKey": "linkedin-rafael-schwart-pmp",
       "platform": "linkedin",
@@ -1364,6 +1448,28 @@
       "engagements": 0,
       "engagementRate": 0,
       "score": 0.4221533500705904
+    },
+    {
+      "id": "c4227c583182",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-27T13:31:02.000Z",
+      "text": "A supplier delay should not live in one buyer’s inbox. Connect vendor email to purchasing, inventory, and work orders. AI maps affected jobs; an owner approves the revised plan. Record every change against the job.",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/359aecb5db897ad2.png",
+      "url": "https://twitter.com/i/web/status/2092968129970278834",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 1,
+      "engagementRate": null,
+      "score": null
     },
     {
       "id": "1dcf08cb1144",
@@ -1442,16 +1548,60 @@
       "thumbnailUrl": "/thumbs/7610018bb6f5e133.jpg",
       "url": "https://www.instagram.com/p/Dcgc_o0ES4l/",
       "href": null,
-      "impressions": 4136,
+      "impressions": 4144,
       "reach": 1347,
-      "views": 4136,
+      "views": 4144,
       "likes": 149,
       "comments": 20,
       "shares": 7,
       "saves": 0,
       "engagements": 176,
-      "engagementRate": 0.0426,
+      "engagementRate": 0.0425,
       "score": 0.8388266708610185
+    },
+    {
+      "id": "103a11997f87",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-26T14:30:59.000Z",
+      "text": "Good Morning. What are you automating today?",
+      "mediaType": "text",
+      "thumbnailUrl": null,
+      "url": "https://twitter.com/i/web/status/2092620831503368302",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 1,
+      "comments": 0,
+      "shares": 1,
+      "saves": null,
+      "engagements": 2,
+      "engagementRate": null,
+      "score": null
+    },
+    {
+      "id": "b4848ce30956",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-26T13:30:21.000Z",
+      "text": "When someone changes roles or leaves, access should not depend on a checklist. Connect the staff roster to email, CRM, and accounting. AI maps affected accounts; a manager approves privileged removals. Every change is w…",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/b8429c4c16f2e438.png",
+      "url": "https://twitter.com/i/web/status/2092605569051815943",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 1,
+      "engagementRate": null,
+      "score": null
     },
     {
       "id": "bd0f512d0f8f",
@@ -1520,6 +1670,28 @@
       "score": 0.4221533503599422
     },
     {
+      "id": "51b773692b40",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-25T13:30:38.000Z",
+      "text": "Your weekly report should not start with someone copying numbers into a spreadsheet. When an invoice is paid, send the event into one data pipeline. AI flags missing or mismatched records. A person resolves exceptions; …",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/2c47dc3ef6d7c2b5.png",
+      "url": "https://twitter.com/i/web/status/2092243255874203829",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
+    },
+    {
       "id": "963c9a6fd0e8",
       "accountKey": "linkedin-arqentia",
       "platform": "linkedin",
@@ -1564,6 +1736,28 @@
       "score": 0.4221533505335533
     },
     {
+      "id": "dfc9485e5d90",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-24T13:31:04.000Z",
+      "text": "An AI agent should not run support from a shared inbox. New messages should create a ticket, match the customer record, draft a reply, and pause for human approval on refunds or account changes. Every action belongs in …",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/c79b4da8bf359190.png",
+      "url": "https://twitter.com/i/web/status/2091880976251019373",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
+    },
+    {
       "id": "09007c7f3a47",
       "accountKey": "linkedin-arqentia",
       "platform": "linkedin",
@@ -1597,7 +1791,7 @@
       "url": "https://www.instagram.com/reel/DcbA2N_ATmq/",
       "href": null,
       "impressions": 152,
-      "reach": 113,
+      "reach": 114,
       "views": 152,
       "likes": 9,
       "comments": 0,
@@ -1693,6 +1887,28 @@
       "saves": 0,
       "engagements": 0,
       "engagementRate": 0,
+      "score": null
+    },
+    {
+      "id": "dd9afd0bc17b",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-21T19:06:26.000Z",
+      "text": "An HVAC repair should not be scheduled because a part appears in inventory. Reserve the exact part to the work order, decrement stock when used, and release it if the visit moves. Otherwise two jobs can depend on one co…",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/cd054db00542633d.png",
+      "url": "https://twitter.com/i/web/status/2090878208426102892",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
       "score": null
     },
     {
@@ -1806,6 +2022,28 @@
       "score": 0.42215335134373855
     },
     {
+      "id": "23802cc5ca28",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-18T13:30:57.000Z",
+      "text": "An open calendar slot does not mean the right HVAC technician is available. Every booking should carry three fields: job type, required skill, and estimated duration. Match those against technician capacity before confi…",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/16cd560301be6227.png",
+      "url": "https://twitter.com/i/web/status/2089706620313899430",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 1,
+      "saves": null,
+      "engagements": 1,
+      "engagementRate": null,
+      "score": null
+    },
+    {
       "id": "1408ef5c5271",
       "accountKey": "linkedin-arqentia",
       "platform": "linkedin",
@@ -1870,6 +2108,28 @@
       "engagements": 0,
       "engagementRate": 0,
       "score": 0.4221533515173496
+    },
+    {
+      "id": "53fe39aa4d0f",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-17T13:30:50.000Z",
+      "text": "An HVAC quote should never disappear into a text thread. When a technician changes scope or price, route it through one approval rule: threshold, owner, timestamp, reason. The customer gets a clear answer. The business …",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/703dd979446de49b.png",
+      "url": "https://twitter.com/i/web/status/2089344199749501384",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 1,
+      "engagementRate": null,
+      "score": null
     },
     {
       "id": "326e89c8b30a",
@@ -1960,6 +2220,28 @@
       "score": null
     },
     {
+      "id": "cdcf0f4862fb",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-15T22:44:15.000Z",
+      "text": "Most business owners don’t need more software. They need one simple system built around how the business actually works: orders, customers, schedules, and follow-ups. Your software should fit your business. Not the othe…",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/c61f8b3c4d529cd0.png",
+      "url": "https://twitter.com/i/web/status/2088758698545918182",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 2,
+      "engagementRate": null,
+      "score": null
+    },
+    {
       "id": "a786cfc5410a",
       "accountKey": "linkedin-rafael-schwart-pmp",
       "platform": "linkedin",
@@ -2001,6 +2283,28 @@
       "saves": 0,
       "engagements": 0,
       "engagementRate": 0,
+      "score": null
+    },
+    {
+      "id": "7971564acf44",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-14T21:50:42.000Z",
+      "text": "Most service businesses don’t have a lead problem. They have a routing problem. Every call, form, and chat needs four controls: an owner, a response timer, a next action, and an escalation rule. If a lead can sit unowne…",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/5c2df3da22f39afc.png",
+      "url": "https://twitter.com/i/web/status/2088382832557060561",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 1,
+      "engagementRate": null,
       "score": null
     },
     {
@@ -2112,6 +2416,28 @@
       "engagements": 4,
       "engagementRate": 0.023799999999999998,
       "score": 0.2670772624711279
+    },
+    {
+      "id": "d5744e924423",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-08-12T16:41:19.000Z",
+      "text": "Schema drift should fail loudly. If a source renames a field and the pipeline silently writes nulls, the dashboard stays green while decisions degrade. Validate at ingestion, quarantine bad records, alert the owner.",
+      "mediaType": "image",
+      "thumbnailUrl": "/thumbs/c16665ff9bd14066.png",
+      "url": "https://twitter.com/i/web/status/2087580197209924011",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
     },
     {
       "id": "67e26712e060",
@@ -2432,9 +2758,9 @@
       "thumbnailUrl": "/thumbs/1444b2ccdc134142.jpg",
       "url": "https://www.instagram.com/reel/Dbt8YShk4I4/",
       "href": null,
-      "impressions": 1392,
+      "impressions": 1393,
       "reach": 724,
-      "views": 1392,
+      "views": 1393,
       "likes": 43,
       "comments": 0,
       "shares": 5,
@@ -2740,15 +3066,15 @@
       "thumbnailUrl": "/thumbs/dee48bada637d6c5.jpg",
       "url": "https://www.instagram.com/p/DbPBPOHFNy6/",
       "href": null,
-      "impressions": 2850,
+      "impressions": 2852,
       "reach": 832,
-      "views": 2850,
+      "views": 2852,
       "likes": 109,
       "comments": 18,
       "shares": 2,
       "saves": 0,
       "engagements": 129,
-      "engagementRate": 0.0453,
+      "engagementRate": 0.0452,
       "score": 0.9136049238658528
     },
     {
@@ -2784,15 +3110,15 @@
       "thumbnailUrl": "/thumbs/15af2895afd43032.jpg",
       "url": "https://www.instagram.com/reel/DbNqXLyD_Gf/",
       "href": null,
-      "impressions": 1440,
+      "impressions": 1443,
       "reach": 767,
-      "views": 1440,
+      "views": 1443,
       "likes": 45,
       "comments": 9,
-      "shares": 2,
+      "shares": 3,
       "saves": 2,
-      "engagements": 58,
-      "engagementRate": 0.0403,
+      "engagements": 59,
+      "engagementRate": 0.0409,
       "score": 0.5242746983449011
     },
     {
@@ -4038,9 +4364,9 @@
       "thumbnailUrl": "/thumbs/dcda0ec87c0f9219.jpg",
       "url": "https://www.instagram.com/p/DZ0Wj5RBsPy/",
       "href": null,
-      "impressions": 3423,
+      "impressions": 3425,
       "reach": 1292,
-      "views": 3423,
+      "views": 3425,
       "likes": 92,
       "comments": 29,
       "shares": 4,
@@ -4270,6 +4596,28 @@
       "score": null
     },
     {
+      "id": "9317f11a3ddd",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-06-14T13:33:04.000Z",
+      "text": "Most people are still thinking in “jobs.” AI is changing “tasks.”",
+      "mediaType": "text",
+      "thumbnailUrl": null,
+      "url": "https://twitter.com/i/web/status/2066151939700666563",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 1,
+      "engagementRate": null,
+      "score": null
+    },
+    {
       "id": "91dbafb71673",
       "accountKey": "instagram-arqentia-inc",
       "platform": "instagram",
@@ -4311,6 +4659,72 @@
       "saves": 0,
       "engagements": 2,
       "engagementRate": 0.0317,
+      "score": null
+    },
+    {
+      "id": "ad978bc9f5c0",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-06-10T19:17:15.000Z",
+      "text": "La segunda vuelta en Perú mueve el dólar, la demanda y las decisiones de cada pequeño negocio. Por eso construimos un motor de IA que analiza el conteo en tiempo real. La incertidumbre también es un problema operativo. …",
+      "mediaType": "text",
+      "thumbnailUrl": null,
+      "url": "https://twitter.com/i/web/status/2064789006378766532",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
+    },
+    {
+      "id": "d9d5da5bae73",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-06-10T17:46:33.000Z",
+      "text": "La mayoría de las fallas operativas no son problemas de gente. Son problemas de arquitectura — handoffs rotos, datos ciegos, parches manuales sosteniendo los sistemas. Arqentia existe para corregir eso. Ya estamos en lí…",
+      "mediaType": "text",
+      "thumbnailUrl": null,
+      "url": "https://twitter.com/i/web/status/2064766181441950043",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "saves": null,
+      "engagements": 0,
+      "engagementRate": null,
+      "score": null
+    },
+    {
+      "id": "aaac45da1ff3",
+      "accountKey": "twitter-arqentia",
+      "platform": "twitter",
+      "brand": "arqentia",
+      "publishedAt": "2026-06-10T17:46:07.000Z",
+      "text": "Most operational failures aren't people problems. They're architecture problems — broken handoffs, blind data, manual patches holding systems together. Arqentia exists to fix that. We're live.",
+      "mediaType": "text",
+      "thumbnailUrl": null,
+      "url": "https://twitter.com/i/web/status/2064766071744205119",
+      "href": null,
+      "impressions": null,
+      "reach": null,
+      "views": null,
+      "likes": 0,
+      "comments": 0,
+      "shares": 1,
+      "saves": null,
+      "engagements": 1,
+      "engagementRate": null,
       "score": null
     },
     {
@@ -4478,9 +4892,9 @@
       "thumbnailUrl": "/thumbs/d7cd5921501aab17.jpg",
       "url": "https://www.instagram.com/p/DRC_I0hkWkg/",
       "href": null,
-      "impressions": 6164,
-      "reach": 1491,
-      "views": 6164,
+      "impressions": 6166,
+      "reach": 1493,
+      "views": 6166,
       "likes": 78,
       "comments": 9,
       "shares": 1,
