@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+/*
+  Command Center design system — "Instrument" (Finance Engine × Citi Zero).
+
+  Palette + type + depth come from the Finance Engine system (Rafael Schwart
+  brand): warm ink / warm paper planes, one beacon-blue accent, honest semantic
+  colors (jade / brass / signal), Satoshi for words and IBM Plex Mono for every
+  number. Structure comes from the Citi Zero ops dashboard (shadcn admin
+  template): sticky breadcrumb header, icon nav rail, KPI cards with trend
+  pills, one big activity chart, hairline tables.
+
+  Two modes driven entirely by tokens on :root[data-theme]; components never
+  hard-code color. Default follows the OS until the operator picks one.
+*/
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-num);
+}
+
+/* ---------- dark (default) — warm ink ---------- */
+:root {
+  --font-body: "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-num: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  /* planes: canvas → chassis (sidebar) → card → nested → pop */
+  --color-bg: #0a0a09;
+  --color-sidebar: #111110;
+  --color-surface: #161614;
+  --color-surface-2: #1d1d1a;
+  --color-elevated: #252521;
+  --color-well: #121211;
+  --color-border: #2a2a26;
+  --color-border-strong: #3a3a34;
+
+  /* text — the site's paper cream becomes ink-mode text */
+  --color-text: #f5f3ec;
+  --color-text-2: #cfccc2;
+  --color-muted: #9b978c;
+  --color-faint: #86837a;
+
+  /* the one accent — beacon blue */
+  --color-accent: #5d84ff;
+  --color-accent-hover: #7596ff;
+  --color-accent-text: #7f9cff;
+  --color-accent-2: #3d63e8;
+  --color-accent-soft: rgba(93, 132, 255, 0.14);
+  --color-on-accent: #fdfdfe;
+
+  /* semantics — never change meaning with theme */
+  --color-positive: #43bd5f;
+  --color-positive-soft: rgba(67, 189, 95, 0.13);
+  --color-warning: #d9a84e;
+  --color-warning-soft: rgba(217, 168, 78, 0.13);
+  --color-danger: #e8695a;
+  --color-danger-soft: rgba(232, 105, 90, 0.13);
+
+  --color-chart-grid: #262622;
+  --color-chart-tick: #7f7c72;
+
+  /* platform identity (charts, dots) */
+  --color-platform-x: #e8e6df;
+  --color-platform-linkedin: #5d84ff;
+  --color-platform-instagram: #e07ba0;
+
+  /* geometry — sharp, engineered */
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --radius-chip: 4px;
+
+  /* depth vocabulary */
+  --edge-light: inset 0 1px 0 rgba(245, 243, 236, 0.045);
+  --inset-well: inset 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-card: var(--edge-light), 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-pop: var(--edge-light), 0 12px 32px rgba(0, 0, 0, 0.45);
+  --glow-hero: 0 0 0 1px rgba(93, 132, 255, 0.22), 0 8px 28px rgba(93, 132, 255, 0.1);
+  --scrim-topbar: rgba(10, 10, 9, 0.8);
+  --canvas-bg: radial-gradient(1200px 520px at 60% -220px, rgba(245, 243, 236, 0.035), transparent 70%),
+    var(--color-bg);
+
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+
+  color-scheme: dark;
+}
+
+/* ---------- light — warm paper planes, lit from above (never white) ---------- */
+:root[data-theme="light"] {
+  --color-bg: #e1ded7;
+  --color-sidebar: #d8d5cd;
+  --color-surface: #f1efe9;
+  --color-surface-2: #e7e4dd;
+  --color-elevated: #f6f5f1;
+  --color-well: #e4e1da;
+  --color-border: #cbc7bd;
+  --color-border-strong: #b9b4a8;
+
+  --color-text: #0a0a0a;
+  --color-text-2: #353535;
+  --color-muted: #57534b;
+  --color-faint: #67635a;
+
+  --color-accent: #3664ff;
+  --color-accent-hover: #2a55f0;
+  --color-accent-text: #2348d4;
+  --color-accent-2: #2348d4;
+  --color-accent-soft: rgba(54, 100, 255, 0.11);
+  --color-on-accent: #ffffff;
+
+  --color-positive: #1c7a24;
+  --color-positive-soft: rgba(38, 153, 38, 0.11);
+  --color-warning: #9a5d05;
+  --color-warning-soft: rgba(161, 98, 7, 0.11);
+  --color-danger: #c9301f;
+  --color-danger-soft: rgba(207, 51, 37, 0.1);
+
+  --color-chart-grid: #d5d1c8;
+  --color-chart-tick: #6f6a5e;
+
+  --color-platform-x: #1f1e1b;
+  --color-platform-linkedin: #3664ff;
+  --color-platform-instagram: #c2416e;
+
+  --edge-light: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  --inset-well: inset 0 1px 2px rgba(24, 20, 12, 0.14), inset 0 0 0 1px rgba(24, 20, 12, 0.03);
+  --shadow-card: var(--edge-light), 0 1px 2px rgba(24, 20, 12, 0.1), 0 4px 12px rgba(24, 20, 12, 0.06);
+  --shadow-pop: var(--edge-light), 0 2px 4px rgba(24, 20, 12, 0.1), 0 16px 36px rgba(24, 20, 12, 0.16);
+  --glow-hero: 0 0 0 1px rgba(54, 100, 255, 0.22), 0 10px 30px rgba(54, 100, 255, 0.1);
+  --scrim-topbar: rgba(225, 222, 215, 0.86);
+  --canvas-bg: radial-gradient(1400px 560px at 50% -160px, #ecebe5 0%, rgba(236, 235, 229, 0) 70%),
+    var(--color-bg);
+
+  color-scheme: light;
+}
+
+/* In the base layer so border-color utilities (tinted chips, focus edges) still win. */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+}
+
+html,
+body {
+  background: var(--canvas-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+h1,
+h2 {
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 24%, transparent);
+  color: var(--color-text);
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 99px;
+  border: 3px solid var(--color-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-faint);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- shell: collapsible sidebar (icon rail) ---------- */
+.app-sidebar {
+  width: 248px;
+  transition: width 200ms var(--ease-out);
+}
+html[data-sidebar="collapsed"] .app-sidebar {
+  width: 60px;
+}
+html[data-sidebar="collapsed"] .app-sidebar .rail-hide {
+  display: none;
+}
+html[data-sidebar="collapsed"] .app-sidebar .rail-center {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@keyframes live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-positive) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer utilities {
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+  .card-hover {
+    transition:
+      border-color 150ms var(--ease-out),
+      box-shadow 150ms var(--ease-out);
+  }
+  .card-hover:hover {
+    border-color: var(--color-border-strong);
+  }
+  .glow {
+    box-shadow: var(--glow-hero);
+  }
+  /* Retired gradient text — the system has one accent, used as solid text. */
+  .text-gradient {
+    color: var(--color-accent-text);
+  }
+  .grid-faint {
+    background-image:
+      linear-gradient(var(--color-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+  }
+  /* Small-caps section label above a title. */
+  .eyebrow {
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  /* Every number: mono + tabular. */
+  .num {
+    font-family: var(--font-num);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+  /* Recessed well — inputs, glyph tiles, rail tracks. */
+  .well {
+    background: var(--color-well);
+    box-shadow: var(--inset-well);
+  }
+  .live-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: var(--color-positive);
+    animation: live-pulse 2s var(--ease-out) infinite;
+  }
+  .rise-in {
+    animation: rise-in 420ms var(--ease-out) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot,
+  .rise-in {
+    animation: none;
+  }
+  .app-sidebar {
+    transition: none;
+  }
+}
