@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-26T03:26:21.777Z",
+  "generatedAt": "2026-09-26T12:40:56.020Z",
   "timeZone": "America/New_York",
-  "lastSyncedAt": "2026-09-26T01:48:06.830Z",
+  "lastSyncedAt": "2026-09-26T12:37:51.019Z",
   "connections": [
     {
       "key": "linkedin-rafael-schwart-pmp",
@@ -9,14 +9,15 @@
       "brand": "personal",
       "handle": "Rafael Schwart , PMP",
       "displayName": "Rafael Schwart , PMP",
-      "avatarUrl": "/avatars/899b485c22da99bd.jpg",
+      "avatarUrl": "/avatars/894b0f9a6caabccd.jpg",
       "profileUrl": "https://www.linkedin.com/in/rafaelschwart/",
-      "followers": 3564,
-      "followersUpdatedAt": "2026-09-25T03:35:25.539Z",
+      "followers": 3566,
+      "followersUpdatedAt": "2026-09-26T03:37:46.175Z",
       "status": "connected",
       "health": "healthy",
       "inAnalytics": true,
-      "postsTracked": 97
+      "postsTracked": 97,
+      "analyticsOff": false
     },
     {
       "key": "instagram-rgschwart",
@@ -24,14 +25,15 @@
       "brand": "personal",
       "handle": "rgschwart",
       "displayName": "Rafa Schwart",
-      "avatarUrl": "/avatars/b57cdb6d0aece66a.jpg",
+      "avatarUrl": "/avatars/4c469d901118c39e.jpg",
       "profileUrl": "https://instagram.com/rgschwart",
-      "followers": 3233,
-      "followersUpdatedAt": "2026-09-25T03:30:33.477Z",
+      "followers": 3232,
+      "followersUpdatedAt": "2026-09-26T03:32:31.287Z",
       "status": "connected",
       "health": "healthy",
       "inAnalytics": true,
-      "postsTracked": 5
+      "postsTracked": 5,
+      "analyticsOff": false
     },
     {
       "key": "twitter-arqentia",
@@ -41,12 +43,13 @@
       "displayName": "Arqentia Inc",
       "avatarUrl": "/avatars/54fa9fe1028eb6bf.jpg",
       "profileUrl": "https://x.com/arqentia",
-      "followers": 326,
-      "followersUpdatedAt": "2026-09-25T04:24:27.168Z",
+      "followers": 321,
+      "followersUpdatedAt": "2026-09-26T04:38:02.179Z",
       "status": "connected",
       "health": "healthy",
       "inAnalytics": true,
-      "postsTracked": 0
+      "postsTracked": 0,
+      "analyticsOff": true
     },
     {
       "key": "instagram-arqentia-inc",
@@ -54,14 +57,15 @@
       "brand": "arqentia",
       "handle": "arqentia.inc",
       "displayName": "Arqentia | Business Automation & AI Integration",
-      "avatarUrl": "/avatars/a6bba4788b4e9bcb.jpg",
+      "avatarUrl": "/avatars/0c3ebc8b79d18d01.jpg",
       "profileUrl": "https://instagram.com/arqentia.inc",
-      "followers": 120,
-      "followersUpdatedAt": "2026-09-25T03:30:31.981Z",
+      "followers": 121,
+      "followersUpdatedAt": "2026-09-26T03:32:28.996Z",
       "status": "connected",
       "health": "healthy",
       "inAnalytics": true,
-      "postsTracked": 55
+      "postsTracked": 55,
+      "analyticsOff": false
     },
     {
       "key": "tiktok-rafa-flows",
@@ -69,14 +73,15 @@
       "brand": "personal",
       "handle": "rafa.flows",
       "displayName": "rafa.flows",
-      "avatarUrl": "/avatars/b56b6cf356be5aa2.jpg",
+      "avatarUrl": "/avatars/fa46b8225a0053ad.jpg",
       "profileUrl": "https://tiktok.com/@rafa.flows",
       "followers": 68,
-      "followersUpdatedAt": "2026-09-25T03:30:32.052Z",
+      "followersUpdatedAt": "2026-09-26T03:32:29.388Z",
       "status": "connected",
       "health": "healthy",
       "inAnalytics": false,
-      "postsTracked": 16
+      "postsTracked": 16,
+      "analyticsOff": false
     },
     {
       "key": "facebook-arqentia",
@@ -84,117 +89,118 @@
       "brand": "arqentia",
       "handle": "Arqentia",
       "displayName": "Arqentia",
-      "avatarUrl": "/avatars/a70fe949b91be2e9.jpg",
+      "avatarUrl": "/avatars/afbd2a97024f8158.jpg",
       "profileUrl": "https://facebook.com/1166731903190824",
       "followers": 2,
-      "followersUpdatedAt": "2026-09-25T03:30:36.362Z",
+      "followersUpdatedAt": "2026-09-26T03:32:33.238Z",
       "status": "connected",
       "health": "healthy",
       "inAnalytics": false,
-      "postsTracked": 27
+      "postsTracked": 27,
+      "analyticsOff": false
     }
   ],
   "recommendations": [
     {
       "fix": [
         {
-          "point": "There is no post-level data, so we can't tell whether the account is inactive or just not syncing.",
-          "evidence": "Posts are 0 across allTime, last30Days, last90Days and previous30Days. Engagements, impressions and avgEngagementRate are all null. The data note says 'Zernio returns no posts for this account (followers only)'."
+          "point": "Posting has stalled.",
+          "evidence": "11 of the 13 posts went out Aug 12–27, then 2 in September (“A sales call should not end…” on Sep 8, “An invoice should not be paid…” on Sep 11), and none from Sep 12 to Sep 26. The queue can clearly publish daily: Aug 24, 25, 26 and 27 were four weekdays in a row. The only failure in 14 attempts was a reply. So the gap looks like the queue running out of drafts, not a tool problem."
         },
         {
-          "point": "There is no timing data to schedule against.",
-          "evidence": "The bestTimes sample is 0, topSlots is empty, and lift is null for all 7 weekdays."
+          "point": "Nothing is measured.",
+          "evidence": "With analytics off, every period shows 0 posts with metrics, impressions and engagement rate are null, and bestTimes has a sample of 0. There is no way to tell whether the invoice, HVAC, support or data-pipeline posts work best."
         },
         {
-          "point": "There is no format or language split, so we can't compare text, threads or video, or English against Spanish.",
-          "evidence": "byFormat is [], byMonth is [] and the posts array is empty."
+          "point": "Replies to other accounts are being sent through the API, which X now blocks.",
+          "evidence": "The one failure in the 90-day log is a reply to another account, rejected under X's February 2026 rule. For a 321-follower account, replies to larger accounts are the main way to grow, and they now have to be written by hand in the X app."
+        },
+        {
+          "point": "Most posts use the same opening and none asks the reader anything.",
+          "evidence": "8 of 13 posts open with “[thing] should not/never…”, for example “Your weekly report should not start…” and “An HVAC quote should never disappear…”. None of the visible text asks the reader a question. The log cuts posts at about 200 characters, so check whether the full endings do."
         }
       ],
       "agent": "x-specialist",
       "model": "Claude Opus (local Claude Code)",
       "actions": [
         {
-          "title": "Confirm whether @arqentia posts on X, and fix the sync if it does",
-          "detail": "Open the @arqentia X profile and count the posts from the last 90 days. If there are posts, reconnect the X account in Zernio or publish future posts through Zernio so post metrics flow into the dashboard. If there are none, go straight to the next action.",
+          "title": "Turn on X analytics for @arqentia and set a spend cap",
+          "detail": "In Zernio, switch analytics on for @arqentia and set a monthly X spend cap at the same time. Rough math at X's rates: 40 posts a month, each read 3 times, is 120 reads × $0.005 = $0.60, plus 40 × $0.015 = $0.60 to publish. A cap of about $5 leaves room. Check actual spend after the first week, because it depends on how often Zernio pulls metrics. You can handle replies to your own posts in the X app at no API cost.",
           "effort": "low",
           "impact": "high",
           "account": "arqentia",
-          "evidence": "All period post counts are 0, and the data note says Zernio returns followers only, so the dashboard can't tell 'no posts' from 'no data'."
+          "evidence": "Every engagement field in the brief is null and the best-time sample is 0 because analytics are off. The 13 logged posts cannot be compared with each other."
         },
         {
-          "title": "Publish 5 tracked posts a week, Monday to Friday",
-          "detail": "Schedule every post through Zernio so it gets measured. Suggested weekly mix: 2 text posts with one concrete operations or AI lesson each (a before/after or a time saved); 1 native vertical video cut from existing Arqentia Reels, with no other platform's watermark; 1 thread (5–7 posts) walking through one automation step by step; 1 question post aimed at operators ('What's the one task your team still does by hand?').",
+          "title": "Restart posting: one post every weekday, queued two weeks ahead",
+          "detail": "Write 10 posts this week and load them into the Zernio queue so the account doesn't go quiet again. Keep what already works: one image, no link in the main post. Reuse the themes from the log (invoice matching, sales-call notes, supplier delays, support triage, data-pipeline failures) but change the angle: a before/after, a mistake you've seen at a client, a short checklist. Publishing cost: 10 × $0.015 = $0.15.",
           "effort": "medium",
           "impact": "high",
           "account": "arqentia",
-          "evidence": "Posts are 0 in last30Days and last90Days. With no posts there is nothing to measure, and the best-time sample stays at 0."
+          "evidence": "13 posts in 90 days, 11 of them Aug 12–27, none since Sep 11 (15 days). Aug 24–27 shows four weekday posts in a row went out with no failures."
         },
         {
-          "title": "Spend 20 minutes a day replying to larger AI and operations accounts",
-          "detail": "Every weekday, leave 10–15 useful replies (a specific fix, number or example, not 'great post') on posts from larger accounts in AI, automation and operations, in English and Spanish. At 326 followers, replies are the main way new people find the profile. Treat this as a practitioner heuristic to test, not a proven rule.",
+          "title": "Spend 15–20 minutes a day replying by hand in the X app",
+          "detail": "Pick 10–15 larger accounts your operators and founders follow: AI automation builders, finance and operations voices, field-service software people. Reply within 30–60 minutes of their posts with a specific point from your own work, such as matching invoices to purchase orders and receiving records, or the idempotency-key point from Aug 12. Write these replies by hand. Do not send replies to other accounts through Zernio. Also answer every reply on your own posts within the first hour.",
+          "effort": "medium",
+          "impact": "high",
+          "account": "arqentia",
+          "evidence": "The only failure in the 90-day log is an API reply to another account, rejected under the February 2026 rule. The ranking X published in 2023 weighted replies, especially ones the author answers, far above likes. There is no @arqentia engagement data yet to confirm this for the account."
+        },
+        {
+          "title": "Connect Rafael's personal X account and post as the founder",
+          "detail": "Connect Rafael's personal account to Zernio. Rafael posts the first-person version: what he saw at a client, what broke, what he would do again. @arqentia reposts or quotes those and keeps the workflow posts. Where it fits, Rafael writes the manual replies from his own account, since replies from a person usually get a better reception than replies from a company logo.",
           "effort": "medium",
           "impact": "medium",
-          "account": "arqentia",
-          "evidence": "Followers (326) is the only live metric, so weekly follower change is the one growth signal we can measure. Log 326 as the baseline for 2026-09-26."
+          "account": null,
+          "evidence": "No personal X account is connected yet, and the brief names Rafael Schwart as the personal brand. The idea that founder accounts outperform brand accounts is a practitioner rule of thumb. There is no data here to confirm it for this audience."
         },
         {
-          "title": "Move lead-magnet links out of the main post",
-          "detail": "For lead-magnet posts, use 'Reply KEYWORD and I'll DM it', or put the link in the first reply rather than the post body. Judge these posts on impressions, reposts and bookmarks, not reply count alone, because the keyword CTA inflates replies.",
+          "title": "Rewrite posts to invite replies: vary the opening and end with a question",
+          "detail": "Drop the “X should not…” opening for at least half the posts. Rotate in other openings: a number from a client job, a short story, or a contrarian line like “Most service businesses don’t have a lead problem.” End each post with one specific question operators can answer from experience, for example “Who approves invoice exceptions on your team today?” Once a week, turn one workflow into a 4–5 post thread using self-replies, which Zernio still supports. Put any link in the last reply.",
           "effort": "low",
           "impact": "medium",
           "account": "arqentia",
-          "evidence": "No link or CTA data exists yet (posts: []). This sets up a clean comparison once posts are tracked."
-        },
-        {
-          "title": "Tag every post with its language and format",
-          "detail": "In Zernio, label each post EN or ES and text, thread or video, so the dashboard can split results by language and format once data arrives.",
-          "effort": "low",
-          "impact": "medium",
-          "account": "arqentia",
-          "evidence": "byFormat is [], and the audience context covers both English and Spanish speakers in the US and Latin America."
-        },
-        {
-          "title": "Pin a post that explains what Arqentia does",
-          "detail": "Pin one post with a concrete automation example: what the client did before, what was automated and what changed. End it with one clear next step (a DM keyword or a booking link in the reply). New visitors who come from your replies will see this first.",
-          "effort": "low",
-          "impact": "low",
-          "account": "arqentia",
-          "evidence": "No existing post can be named as a pin candidate because the posts array is empty."
+          "evidence": "8 of 13 logged posts open with “[thing] should not/never…”, and no visible text asks a question (the log cuts posts at about 200 characters). Self-replies are not affected by the February 2026 API rule."
         }
       ],
-      "cadence": "Starting playbook, not a data finding: the best-time table has a sample of 0 and null lift on all 7 days. Post 5 times a week (one a day, Monday to Friday) and add replies every weekday. Until data exists, rotate posts evenly across three 3-hour blocks in America/New_York: 9–12, 12–15 and 18–21. The evening block overlaps with daytime in Latin America, which suits the Spanish posts. After about 20 tracked posts, reread the best-time table and keep only the blocks with lift above 1.0.",
+      "cadence": "No best-time data backs this (the best-time sample is 0 and every weekday value is null), so it is a starting schedule to test. For the first two weeks, publish 1 original post every weekday (5 a week) from the Zernio queue. Once the queue holds two weeks of drafts, move to 2 a day on weekdays (10 a week), including one thread a week built from self-replies. Rotate the posting time between 9:00 ET (used for 8 of the 13 past posts), 12:00 ET and 17:00 ET. Never publish two posts in the same hour: both Aug 12 posts (“Retries are necessary…” and “Schema drift should fail loudly…”) went out at 12:00. Add 15–20 minutes a day of manual replies in the X app, and answer replies on your own posts within the first hour. At 10 posts a week, publishing costs about $0.15 a week without links, versus $2.00 if every post had a link, so links go in a reply.",
       "working": [
         {
-          "point": "The account has an audience to post to.",
-          "evidence": "326 followers on 2026-09-26, even though the brief shows 0 posts in every period."
+          "point": "Links stay out of the main post.",
+          "evidence": "None of the 13 logged posts has a link. At X's rates each one cost $0.015 instead of $0.20, about $0.20 in total instead of $2.60. Links also tend to cost reach, but there is no reach data here to confirm that part."
         },
         {
-          "point": "The target audience is clearly defined, so content can be tightly focused from the first post.",
-          "evidence": "The brief's audience context: business owners, operators and builders adopting AI in the US and Latin America, in English and Spanish."
+          "point": "Every post includes an image.",
+          "evidence": "All 13 posts have one image, for example “An invoice should not be paid…” (Sep 11) and “Retries are necessary…” (Aug 12). Images are thought to keep people on a post longer, but with analytics off no number shows whether they helped."
+        },
+        {
+          "point": "The posts take a clear, specific position that suits operators.",
+          "evidence": "Each post names a real failure, a fix and a human check: “A sales call should not end as loose notes…” (Sep 8), “An AI agent should not run support from a shared inbox…” (Aug 24), “Most service businesses don’t have a lead problem…” (Aug 14). This fits the operator and founder audience in the brief. Whether it earns engagement is unknown because there are no post metrics."
         }
       ],
-      "headline": "Find out whether @arqentia actually posts on X or only lacks synced data, then publish a tracked 5-posts-a-week schedule; right now 326 followers is the only number available.",
+      "headline": "Turn on post analytics for @arqentia with a monthly spend cap, and start posting every day again this week: the account has posted nothing since Sep 11, and none of its 13 posts from the last 90 days can be measured.",
       "platform": "twitter",
-      "diagnosis": "The brief has no post data for @arqentia on X. Posts are 0 all-time, 0 in the last 30 days, 0 in the last 90 days and 0 in the previous 30 days, and every engagement, impression and engagement-rate field is null. The data note says Zernio returns followers only for this account, so this could be a sync gap rather than an inactive account; unavailable data is not the same as zero activity. The only number available is 326 followers as of 2026-09-26. Everything below is a starting playbook, not a data finding.",
+      "diagnosis": "There is no engagement data here. Analytics are switched off in Zernio for @arqentia (321 followers), so every metric in the brief is null and the best-time table has a sample of 0. Treat this as a starting playbook built from the publishing log, not a data finding. The log shows 13 posts in 90 days, each with one image and no link. But 11 of them went out between Aug 12 and Aug 27, only 2 in September (Sep 8 and Sep 11), and none in the 15 days since. That averages about one post a week, far below the several posts a day X tends to reward, and the one reply the account tried was rejected under X's February 2026 API rule.",
       "dataQuality": "none",
       "experiments": [
         {
-          "test": "Weeks 1–2: 5 posts a week with minimal replies. Weeks 3–4: the same 5 posts plus 10–15 replies each weekday. Record followers every Monday, starting from 326.",
-          "metric": "Net follower change per week",
-          "hypothesis": "For a 326-follower account, daily replies bring more new followers than extra original posts."
+          "test": "For 2 weeks after analytics are on, alternate: 5 posts ending in a question and 5 ending in a statement, all at the same time slot with the same format (one image, no link).",
+          "metric": "Replies per post and engagement rate on impressions. Compare the typical (median) post in each group, not single posts.",
+          "hypothesis": "Posts that end with a specific question get more replies than posts that end on a statement."
         },
         {
-          "test": "Alternate languages so each reaches at least 10 tracked posts (about 4 weeks at 5 a week). Keep the topic mix the same across both.",
-          "metric": "Median engagement rate on impressions, per language",
-          "hypothesis": "English and Spanish posts perform differently with this audience."
+          "test": "Rotate 9:00, 12:00 and 17:00 ET across weekdays for 3 weeks so each slot gets at least 5 posts.",
+          "metric": "Impressions per post in the first 24 hours. Then let the dashboard rebuild its best-time table from real data.",
+          "hypothesis": "9:00 ET, used for 8 of the 13 posts, may not be the best slot for a US and Latin American audience."
         },
         {
-          "test": "Run 2 lead-magnet posts with 'Reply KEYWORD' and 2 with the link in the post body, on similar topics.",
-          "metric": "Impressions, reposts and bookmarks per post, plus DMs sent",
-          "hypothesis": "Lead-magnet posts reach more people when the link isn't in the main post."
+          "test": "Over 4 weeks, publish 4 workflow topics as threads and 4 as single posts, pairing them by topic type.",
+          "metric": "Bookmarks and impressions per post. For threads, count the whole thread.",
+          "hypothesis": "A thread (an opening post plus 3–4 self-replies walking through the workflow) gets more bookmarks than the same content as a single post."
         }
       ],
-      "generatedAt": "2026-09-26T03:15:58.535Z"
+      "generatedAt": "2026-09-26T12:40:17.780Z"
     },
     {
       "fix": [
@@ -414,7 +420,7 @@
       "brand": "arqentia",
       "handle": "arqentia.inc",
       "displayName": "Arqentia | Business Automation & AI Integration",
-      "followers": 120
+      "followers": 121
     },
     {
       "key": "instagram-rgschwart",
@@ -422,7 +428,7 @@
       "brand": "personal",
       "handle": "rgschwart",
       "displayName": "Rafa Schwart",
-      "followers": 3233
+      "followers": 3232
     },
     {
       "key": "linkedin-rafael-schwart-pmp",
@@ -430,7 +436,7 @@
       "brand": "personal",
       "handle": "Rafael Schwart , PMP",
       "displayName": "Rafael Schwart , PMP",
-      "followers": 3564
+      "followers": 3566
     },
     {
       "key": "twitter-arqentia",
@@ -438,7 +444,7 @@
       "brand": "arqentia",
       "handle": "arqentia",
       "displayName": "Arqentia Inc",
-      "followers": 326
+      "followers": 321
     }
   ],
   "posts": [

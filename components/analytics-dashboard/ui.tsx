@@ -3,7 +3,15 @@
 import { useState } from "react";
 import { cn, formatCompact } from "@/lib/utils";
 import { PlatformGlyph } from "./platform-icons";
-import { BRAND_META, PLATFORM_META, type AnalyticsSnapshot, type Brand, type Platform, type SnapshotPost } from "./types";
+import {
+  BRAND_META,
+  PLATFORM_META,
+  type AnalyticsSnapshot,
+  type Brand,
+  type Platform,
+  type SnapshotAccount,
+  type SnapshotPost,
+} from "./types";
 
 /* ─────────────────────────────── formatting ─────────────────────────────── */
 
@@ -16,6 +24,14 @@ export type LinkMode = "internal" | "external";
 /** Where a post opens: the app's detail page, or the post on the platform. */
 export function postLink(p: SnapshotPost, linkMode: LinkMode): string | null {
   return linkMode === "internal" ? (p.href ?? p.url) : p.url;
+}
+
+/** Why an account shows no post metrics (analytics switched off in Zernio, or no posts returned). */
+export function noPostsReason(snapshot: AnalyticsSnapshot, account: Pick<SnapshotAccount, "key" | "handle">): string {
+  const off = snapshot.connections.find((c) => c.key === account.key)?.analyticsOff;
+  return off
+    ? `Post analytics are switched off for @${account.handle} in Zernio (X bills every metrics read), so it shows followers only.`
+    : `Zernio returns no posts for @${account.handle} yet, so it shows followers only.`;
 }
 
 export function stampOf(snapshot: AnalyticsSnapshot): string | null {

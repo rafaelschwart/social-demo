@@ -36,6 +36,7 @@ import {
   PageHeader,
   PlatformTile,
   Segmented,
+  noPostsReason,
   perPostFmt,
   pct,
   stampOf,
@@ -60,11 +61,7 @@ export function commonNotes(snapshot: AnalyticsSnapshot, rangeLabel: string): Re
     `Engagements are likes + comments + shares + saves as each platform reports them through Zernio. Periods compare posts published in the last ${rangeLabel} against the ${rangeLabel} before; recent posts are still collecting engagement.`,
     "Engagement rate is engagements ÷ impressions, as Zernio reports it. Impressions mean different things per platform (Instagram counts repeat views), so rates are compared within a platform, never across.",
     "Personal LinkedIn: LinkedIn only returns analytics for posts published through Zernio.",
-    ...(noPosts.length
-      ? [
-          `${noPosts.map((a) => `${PLATFORM_META[a.platform].label} @${a.handle}`).join(", ")}: Zernio returns no posts yet, so ${noPosts.length === 1 ? "it shows" : "they show"} followers only.`,
-        ]
-      : []),
+    ...noPosts.map((a) => `${PLATFORM_META[a.platform].label}: ${noPostsReason(snapshot, a)}`),
     "Missing values show as a dash — not available is not zero.",
   ];
 }
@@ -261,8 +258,8 @@ export function OverviewView({
                   </>
                 ) : (
                   <p className="text-xs leading-relaxed text-[var(--color-muted)]">
-                    {whole(accounts.reduce((a, x) => a + (x.followers ?? 0), 0))} followers · Zernio returns no posts
-                    for this account yet.
+                    {whole(accounts.reduce((a, x) => a + (x.followers ?? 0), 0))} followers ·{" "}
+                    {accounts.map((a) => noPostsReason(snapshot, a)).join(" ")}
                   </p>
                 )}
               </Link>
@@ -327,7 +324,7 @@ export function OverviewView({
         subtitle={`Engagements by publish ${view.series.bucket === "day" ? "day" : "week"} · last ${rangeLabel}`}
         rows={view.series.rows}
         series={view.chartPlatforms.map((pl) => ({ key: pl, label: PLATFORM_META[pl].label, color: PLATFORM_META[pl].color }))}
-        missing={view.noPostPlatforms.map((pl) => `${PLATFORM_META[pl].label} · no posts synced`)}
+        missing={view.noPostPlatforms.map((pl) => `${PLATFORM_META[pl].label} · no post metrics`)}
         emptyText="Widen the range or pick another brand."
       />
 
@@ -345,7 +342,7 @@ export function OverviewView({
         </div>
       </div>
 
-      <AccountTable accounts={view.accounts} posts={view.current} allPosts={snapshot.posts} linkMode={linkMode} />
+      <AccountTable snapshot={snapshot} accounts={view.accounts} posts={view.current} linkMode={linkMode} />
 
       <MethodNotes notes={commonNotes(snapshot, rangeLabel)} />
     </div>

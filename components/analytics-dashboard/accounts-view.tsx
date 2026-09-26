@@ -54,6 +54,14 @@ function ConnectionCard({ c, tz }: { c: SnapshotConnection; tz: string }) {
             <span className={cn("num rounded-[var(--radius-chip)] border px-1.5 text-[10px] uppercase leading-[18px] tracking-[0.06em]", st.cls)}>
               {st.label}
             </span>
+            {c.analyticsOff && (
+              <span
+                title="Post analytics are switched off for this account in Zernio (X bills each metrics read). Posting still works."
+                className="num rounded-[var(--radius-chip)] border border-[color-mix(in_srgb,var(--color-warning)_32%,transparent)] bg-[var(--color-warning-soft)] px-1.5 text-[10px] uppercase leading-[18px] tracking-[0.06em] text-[var(--color-warning)]"
+              >
+                Analytics off in Zernio
+              </span>
+            )}
           </div>
         </div>
         {c.profileUrl && (
@@ -77,7 +85,9 @@ function ConnectionCard({ c, tz }: { c: SnapshotConnection; tz: string }) {
         <div className="px-3 py-2">
           <p className="text-[11px] text-[var(--color-muted)]">Posts tracked</p>
           <p className="num mt-0.5 text-[16px] font-medium">{whole(c.postsTracked)}</p>
-          <p className="text-[10px] text-[var(--color-faint)]">{c.inAnalytics ? "In analytics" : "Outside this dashboard"}</p>
+          <p className="text-[10px] text-[var(--color-faint)]">
+            {!c.inAnalytics ? "Outside this dashboard" : c.analyticsOff ? "Posting only · no metrics" : "In analytics"}
+          </p>
         </div>
       </div>
     </Card>

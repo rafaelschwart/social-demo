@@ -17,8 +17,8 @@ import {
   type SeriesRow,
   type Summary,
 } from "./compute";
-import { PLATFORM_META, type Platform, type SnapshotAccount, type SnapshotPost } from "./types";
-import { BrandChip, PlatformDot, Segmented, perPostFmt, pct, postLink, whole, type LinkMode } from "./ui";
+import { PLATFORM_META, type AnalyticsSnapshot, type Platform, type SnapshotAccount, type SnapshotPost } from "./types";
+import { BrandChip, PlatformDot, Segmented, noPostsReason, perPostFmt, pct, postLink, whole, type LinkMode } from "./ui";
 
 /* ──────────────────────────── group comparison card ─────────────────────────── */
 
@@ -431,16 +431,17 @@ export function PatternsCard({ posts, tz }: { posts: SnapshotPost[]; tz: string 
 /* ───────────────────────────── account table ───────────────────────────── */
 
 export function AccountTable({
+  snapshot,
   accounts,
   posts,
-  allPosts,
   linkMode,
 }: {
+  snapshot: AnalyticsSnapshot;
   accounts: SnapshotAccount[];
   posts: SnapshotPost[];
-  allPosts: SnapshotPost[];
   linkMode: LinkMode;
 }) {
+  const allPosts = snapshot.posts;
   const rows = accountRows(accounts, posts);
   return (
     <Card>
@@ -482,7 +483,7 @@ export function AccountTable({
                   <td className="num px-3 py-3 text-right text-[var(--color-text)]">{whole(account.followers)}</td>
                   {never ? (
                     <td colSpan={6} className="px-3 py-3 text-xs text-[var(--color-muted)]">
-                      Zernio returns no posts for this account yet — followers only.
+                      {noPostsReason(snapshot, account)}
                     </td>
                   ) : (
                     <>

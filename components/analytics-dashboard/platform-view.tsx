@@ -23,7 +23,7 @@ import { SpecialistPreview } from "./recommendations-view";
 import { PlatformPostsTable } from "./posts-table";
 import { ActivityChart, EngagementMix, GroupCard, MethodNotes, PatternsCard } from "./sections";
 import { BRAND_META, PLATFORM_META, type AnalyticsSnapshot, type Brand, type Platform } from "./types";
-import { PageHeader, PlatformTile, Segmented, perPostFmt, pct, stampOf, whole, type LinkMode } from "./ui";
+import { PageHeader, PlatformTile, Segmented, noPostsReason, perPostFmt, pct, stampOf, whole, type LinkMode } from "./ui";
 
 /** Secondary account colors on a platform chart (first account = platform color). */
 const ACCOUNT_TONES = ["", "var(--color-text-2)", "var(--color-faint)"];
@@ -95,6 +95,8 @@ export function PlatformView({
 
   const rangeLabel = RANGES.find((r) => r.value === range)?.label ?? "";
   const hasAnyPosts = snapshot.posts.some((p) => p.platform === platform);
+  // Posts can be published while Zernio's analytics are off (X): don't report them as 0.
+  const metricsOff = !hasAnyPosts && snapshot.connections.some((c) => c.platform === platform && c.analyticsOff);
   const recs = snapshot.recommendations.find((r) => r.platform === platform) ?? null;
   const brandText = brands.map((b) => BRAND_META[b].label).join(" + ");
 
@@ -157,9 +159,9 @@ export function PlatformView({
         <MetricStat
           label="Posts"
           value={view.cur.posts}
-          display={whole(view.cur.posts)}
+          display={metricsOff ? "—" : whole(view.cur.posts)}
           deltaPct={change(view.cur.posts, view.prev.posts)}
-          sublabel={`Last ${rangeLabel}`}
+          sublabel={metricsOff ? "Not measured · analytics off" : `Last ${rangeLabel}`}
           icon={<FileText />}
         />
         <MetricStat
@@ -191,8 +193,12 @@ export function PlatformView({
         <Card>
           <CardContent className="pt-5">
             <EmptyState
-              title={`Zernio returns no ${meta.label} posts yet`}
-              description={`${view.accounts.map((a) => `@${a.handle}`).join(", ")} is connected (${whole(view.followers)} followers), but Zernio's analytics feed has no posts for it. Posts published through Zernio are tracked automatically; the specialist's first recommendation covers how to close this gap.`}
+              title={`No ${meta.label} post metrics yet`}
+              description={`${view.accounts.map((a) => noPostsReason(snapshot, a)).join(" ")} ${
+                snapshot.connections.some((c) => c.platform === platform && c.analyticsOff)
+                  ? "Posting still works. Turn analytics on in Zernio (Connections → the account → Settings) and every post's metrics flow in here on the next sync."
+                  : ""
+              }`}
             />
           </CardContent>
         </Card>

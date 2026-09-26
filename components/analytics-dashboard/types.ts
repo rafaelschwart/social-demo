@@ -60,6 +60,8 @@ export interface SnapshotConnection {
   health: "healthy" | "warning" | "error";
   inAnalytics: boolean;
   postsTracked: number;
+  /** True when post analytics are switched off for this account in Zernio (X: xCapabilities.analytics). */
+  analyticsOff: boolean;
 }
 
 export interface SpecialistPoint {

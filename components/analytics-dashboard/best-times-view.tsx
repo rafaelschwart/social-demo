@@ -262,7 +262,11 @@ export function BestTimesView({ snapshot }: { snapshot: AnalyticsSnapshot }) {
                 </>
               ) : (
                 <p className="mt-1 text-xs leading-relaxed text-[var(--color-muted)]">
-                  {hasPosts ? "Not enough posts yet." : "Zernio returns no posts yet — no best time to learn from."}
+                  {hasPosts
+                    ? "Not enough posts yet."
+                    : snapshot.connections.some((c) => c.platform === pl && c.analyticsOff)
+                      ? "Post analytics are off in Zernio — no metrics to learn a best time from."
+                      : "Zernio returns no posts yet — no best time to learn from."}
                 </p>
               )}
             </div>
