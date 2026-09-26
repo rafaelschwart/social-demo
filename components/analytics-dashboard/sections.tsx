@@ -38,7 +38,9 @@ export function GroupCard({
   previous: Summary;
   posts: SnapshotPost[];
 }) {
-  const followers = accounts.reduce((a, x) => a + (x.followers ?? 0), 0);
+  // Unknown stays unknown: only sum when at least one account reports followers.
+  const known = accounts.filter((x) => x.followers !== null);
+  const followers = known.length ? known.reduce((a, x) => a + (x.followers ?? 0), 0) : null;
   const rows = accountRows(accounts, posts);
   const maxEng = Math.max(1, ...rows.map((r) => r.summary.engagements ?? 0));
 

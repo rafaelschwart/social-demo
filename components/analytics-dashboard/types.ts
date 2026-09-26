@@ -62,6 +62,8 @@ export interface SnapshotConnection {
   postsTracked: number;
   /** True when post analytics are switched off for this account in Zernio (X: xCapabilities.analytics). */
   analyticsOff: boolean;
+  /** Set when this "account" is reached through another connection (the LinkedIn company page). */
+  via?: string | null;
 }
 
 export interface SpecialistPoint {

@@ -49,6 +49,11 @@ function ConnectionCard({ c, tz }: { c: SnapshotConnection; tz: string }) {
           <p className="truncate text-xs text-[var(--color-muted)]">
             @{c.handle} · {ANY_PLATFORM_LABEL[c.platform] ?? c.platform}
           </p>
+          {c.via && (
+            <p className="mt-0.5 truncate text-[11px] text-[var(--color-faint)]">
+              Via the {c.via} connection (page mode)
+            </p>
+          )}
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
             <BrandChip brand={c.brand} />
             <span className={cn("num rounded-[var(--radius-chip)] border px-1.5 text-[10px] uppercase leading-[18px] tracking-[0.06em]", st.cls)}>
@@ -155,6 +160,7 @@ export function AccountsView({ snapshot }: { snapshot: AnalyticsSnapshot }) {
       <MethodNotes
         notes={[
           "Accounts are connected in Zernio; each is assigned to Personal or Arqentia by its Zernio account id (the Zernio profiles mix both brands).",
+          "The Arqentia LinkedIn company page is not a separate connection: the personal LinkedIn connection switches to the page to publish, and its analytics are pulled the same way.",
           "This dashboard covers X, LinkedIn and Instagram. TikTok and Facebook stay connected for publishing but sit outside these analytics.",
           "Followers are the latest count Zernio reports; posts tracked counts every synced post on the account.",
         ]}
